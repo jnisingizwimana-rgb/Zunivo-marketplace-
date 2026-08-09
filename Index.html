@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zunivo Marketplace</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f3f6f8;
+    color:#17202a;
+}
+
+header{
+    background:#087443;
+    color:white;
+    padding:15px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.header{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav button{
+    padding:9px 12px;
+    border:0;
+    border-radius:8px;
+    margin:3px;
+    cursor:pointer;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+.hero{
+    background:#0d5135;
+    color:white;
+    padding:30px 20px;
+    border-radius:18px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    margin-top:0;
+    font-size:30px;
+}
+
+.search{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.search input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(230px,1fr));
+    gap:15px;
+}
+
+.product{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 2px 8px #0001;
+}
+
+.product img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+}
+
+.product-content{
+    padding:15px;
+}
+
+.price{
+    color:#087443;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.location{
+    color:#777;
+    font-size:14px;
+}
+
+button{
+    background:#087443;
+    color:white;
+    border:0;
+    padding:11px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.panel{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+input,textarea,select{
+    width:100%;
+    padding:12px;
+    margin:6px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(150px,1fr));
+    gap:12px;
+}
+
+.stat{
+    background:#eef7f2;
+    padding:18px;
+    border-radius:10px;
+}
+
+.chat{
+    height:250px;
+    overflow-y:auto;
+    background:#f1f3f5;
+    padding:10px;
+    border-radius:10px;
+}
+
+.message{
+    background:white;
+    padding:8px;
+    margin:5px;
+    border-radius:8px;
+}
+
+.my-message{
+    background:#087443;
+    color:white;
+    text-align:right;
+}
+
+.comment{
+    border-bottom:1px solid #ddd;
+    padding:8px;
+}
+
+.hidden{
+    display:none;
+}
+
+footer{
+    margin-top:40px;
+    background:#17202a;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header">
+
+<div class="logo">
+🛍️ Zunivo
+</div>
+
+<nav>
+
+<button onclick="showHome()">
+Home
+</button>
+
+<button onclick="showSeller()">
+Sell
+</button>
+
+<button onclick="showDashboard()">
+Analysis
+</button>
+
+<button onclick="showLogin()">
+Login
+</button>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<section class="hero">
+
+<h1>
+Gura kandi ugurishe ibicuruzwa bikwegereye
+</h1>
+
+<p>
+Zunivo ihuza abakiriya n'abacuruzi bo hafi yabo.
+</p>
+
+<button onclick="getLocation()">
+📍 Reba ibicuruzwa bikwegereye
+</button>
+
+<p id="locationStatus"></p>
+
+</section>
+
+
+<section class="search">
+
+<input
+type="text"
+id="search"
+placeholder="Shakisha igicuruzwa..."
+onkeyup="searchProducts()"
+>
+
+</section>
+
+
+<section id="home">
+
+<h2>
+🛍️ Ibicuruzwa
+</h2>
+
+<div
+class="products"
+id="products">
+</div>
+
+</section>
+
+
+<section
+id="seller"
+class="panel hidden">
+
+<h2>
+➕ Shyira igicuruzwa ku isoko
+</h2>
+
+<input
+id="productName"
+placeholder="Izina ry'igicuruzwa"
+>
+
+<textarea
+id="productDescription"
+placeholder="Sobanura igicuruzwa"
+></textarea>
+
+<input
+id="productPrice"
+type="number"
+placeholder="Igiciro muri RWF"
+>
+
+<input
+id="productImage"
+placeholder="URL y'ifoto"
+>
+
+<input
+id="productCity"
+placeholder="Aho igicuruzwa kiri"
+>
+
+<select id="productCategory">
+
+<option>
+Imyenda
+</option>
+
+<option>
+Telefone
+</option>
+
+<option>
+Ibiribwa
+</option>
+
+<option>
+Ibikoresho
+</option>
+
+<option>
+Imodoka
+</option>
+
+<option>
+Ibindi
+</option>
+
+</select>
+
+<button onclick="addProduct()">
+Shyira ku isoko
+</button>
+
+</section>
+
+
+<section
+id="dashboard"
+class="panel hidden">
+
+<h2>
+📊 Analysis
+</h2>
+
+<div class="stats">
+
+<div class="stat">
+
+<b>Products</b>
+
+<h2 id="totalProducts">
+0
+</h2>
+
+</div>
+
+<div class="stat">
+
+<b>Orders</b>
+
+<h2 id="orders">
+0
+</h2>
+
+</div>
+
+<div class="stat">
+
+<b>Earnings</b>
+
+<h2 id="earnings">
+0 RWF
+</h2>
+
+</div>
+
+<div class="stat">
+
+<b>Bonus</b>
+
+<h2 id="bonus">
+0 RWF
+</h2>
+
+</div>
+
+</div>
+
+<hr>
+
+<h3>
+🎁 Referral
+</h3>
+
+<p>
+Code yawe:
+<strong id="referral">
+ZUNIVO123
+</strong>
+</p>
+
+<p>
+Sangira iyi code n'abandi. Iyo biyandikishije ukoresheje code yawe ubona bonus.
+</p>
+
+</section>
+
+
+<section
+id="login"
+class="panel hidden">
+
+<h2>
+🔐 Login
+</h2>
+
+<input
+id="loginEmail"
+placeholder="Email"
+>
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Password"
+>
+
+<button onclick="login()">
+Injira
+</button>
+
+</section>
+
+
+<section
+id="chatPanel"
+class="panel hidden">
+
+<h2>
+💬 Live Chat
+</h2>
+
+<div
+id="chat"
+class="chat">
+</div>
+
+<input
+id="message"
+placeholder="Andika ubutumwa..."
+>
+
+<button onclick="sendMessage()">
+Ohereza
+</button>
+
+</section>
+
+
+<section
+id="commentsPanel"
+class="panel hidden">
+
+<h2>
+💬 Live Comments
+</h2>
+
+<div id="comments">
+</div>
+
+<input
+id="commentInput"
+placeholder="Andika comment..."
+>
+
+<button onclick="addComment()">
+Comment
+</button>
+
+</section>
+
+</div>
+
+
+<footer>
+
+<p>
+© 2026 Zunivo Marketplace
+</p>
+
+<p>
+Buy • Sell • Chat • Earn
+</p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   PRODUCTS
+========================= */
+
+let products = [
+
+{
+name:"Smartphone Samsung",
+price:250000,
+city:"Kigali",
+category:"Telefone",
+image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9",
+description:"Samsung smartphone nziza."
+},
+
+{
+name:"Inkweto",
+price:25000,
+city:"Kigali",
+category:"Imyenda",
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+description:"Inkweto nziza kandi zikomeye."
+},
+
+{
+name:"Laptop",
+price:450000,
+city:"Huye",
+category:"Ibikoresho",
+image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
+description:"Laptop ikoreshwa mu kazi no kwiga."
+}
+
+];
+
+let currentProduct = null;
+
+let orders = 0;
+
+let earnings = 0;
+
+let bonus = 0;
+
+
+/* =========================
+   DISPLAY PRODUCTS
+========================= */
+
+function displayProducts(list=products){
+
+let container =
+document.getElementById("products");
+
+container.innerHTML="";
+
+list.forEach((product,index)=>{
+
+container.innerHTML += `
+
+<div class="product">
+
+<img src="${product.image}">
+
+<div class="product-content">
+
+<h3>
+${product.name}
+</h3>
+
+<div class="price">
+${product.price.toLocaleString()} RWF
+</div>
+
+<p>
+${product.description}
+</p>
+
+<div class="location">
+📍 ${product.city}
+</div>
+
+<p>
+🏷️ ${product.category}
+</p>
+
+<button onclick="buyProduct(${index})">
+🛒 Gura
+</button>
+
+<button onclick="openChat(${index})">
+💬 Chat
+</button>
+
+<button onclick="openComments(${index})">
+💬 Comments
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchProducts(){
+
+let search =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+let result =
+products.filter(product=>
+
+product.name
+.toLowerCase()
+.includes(search)
+
+||
+
+product.city
+.toLowerCase()
+.includes(search)
+
+||
+
+product.category
+.toLowerCase()
+.includes(search)
+
+);
+
+displayProducts(result);
+
+}
+
+
+/* =========================
+   ADD PRODUCT
+========================= */
+
+function addProduct(){
+
+let name =
+document.getElementById("productName").value;
+
+let description =
+document.getElementById("productDescription").value;
+
+let price =
+Number(document.getElementById("productPrice").value);
+
+let image =
+document.getElementById("productImage").value;
+
+let city =
+document.getElementById("productCity").value;
+
+let category =
+document.getElementById("productCategory").value;
+
+
+if(!name || !price){
+
+alert(
+"Shyiramo izina n'igiciro."
+);
+
+return;
+
+}
+
+
+products.push({
+
+name:name,
+
+description:description,
+
+price:price,
+
+image:image ||
+"https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+
+city:city || "Aho uri",
+
+category:category
+
+});
+
+
+alert(
+"Igicuruzwa cyashyizwe ku isoko!"
+);
+
+
+displayProducts();
+
+showHome();
+
+updateDashboard();
+
+}
+
+
+/* =========================
+   BUY
+========================= */
+
+function buyProduct(index){
+
+let product =
+products[index];
+
+let confirmBuy =
+confirm(
+
+"Urashaka kugura " +
+
+product.name +
+
+" kuri " +
+
+product.price.toLocaleString() +
+
+" RWF?"
+
+);
+
+
+if(!confirmBuy){
+
+return;
+
+}
+
+
+orders++;
+
+earnings += product.price;
+
+
+alert(
+
+"🎉 Murakoze!"
+
++
+
+"\n"
+
++
+
+"Order yawe yakiriwe."
+
++
+
+"\n\n"
+
++
+
+"Product: "
+
++
+
+product.name
+
++
+
+"\n"
+
++
+
+"Igiciro: "
+
++
+
+product.price.toLocaleString()
+
++
+
+" RWF"
+
+);
+
+
+updateDashboard();
+
+}
+
+
+/* =========================
+   CHAT
+========================= */
+
+function openChat(index){
+
+currentProduct =
+products[index];
+
+document
+.getElementById("chatPanel")
+.classList
+.remove("hidden");
+
+document
+.getElementById("chat")
+.innerHTML = `
+
+<div class="message">
+Muraho! 👋
+Mushobora kubaza umucuruzi
+amakuru y'iki gicuruzwa.
+</div>
+
+`;
+
+}
+
+
+function sendMessage(){
+
+let input =
+document.getElementById("message");
+
+let message =
+input.value.trim();
+
+if(!message){
+
+return;
+
+}
+
+
+document
+.getElementById("chat")
+.innerHTML += `
+
+<div class="message my-message">
+
+${message}
+
+</div>
+
+`;
+
+
+input.value="";
+
+
+setTimeout(()=>{
+
+document
+.getElementById("chat")
+.innerHTML += `
+
+<div class="message">
+
+Murakoze kubaza.
+Umucuruzi aragusubiza vuba.
+
+</div>
+
+`;
+
+},1000);
+
+}
+
+
+/* =========================
+   COMMENTS
+========================= */
+
+function openComments(index){
+
+currentProduct =
+products[index];
+
+document
+.getElementById("commentsPanel")
+.classList
+.remove("hidden");
+
+document
+.getElementById("comments")
+.innerHTML = `
+
+<div class="comment">
+
+⭐ Igicuruzwa ni cyiza cyane.
+
+</div>
+
+<div class="comment">
+
+⭐ Igiciro ni cyiza.
+
+</div>
+
+`;
+
+}
+
+
+function addComment(){
+
+let input =
+document.getElementById("commentInput");
+
+let text =
+input.value.trim();
+
+if(!text){
+
+return;
+
+}
+
+
+document
+.getElementById("comments")
+innerHTML += `
+
+<div class="comment">
+
+👤 Umukiriya:
+
+${text}
+
+</div>
+
+`;
+
+input.value="";
+
+}
+
+
+/* =========================
+   LOCATION
+========================= */
+
+function getLocation(){
+
+if(!navigator.geolocation){
+
+alert(
+"Telefone yawe ntishyigikira Location."
+);
+
+return;
+
+}
+
+
+navigator.geolocation
+.getCurrentPosition(
+
+function(position){
+
+let lat =
+position.coords.latitude;
+
+let lng =
+position.coords.longitude;
+
+
+document
+.getElementById("locationStatus")
+.innerHTML =
+
+"📍 Location yabonetse. "
+
++
+
+"Turimo gushaka ibicuruzwa bikwegereye...";
+
+
+/*
+   Hano ni ho backend izashyirwa
+   kugira ngo ibicuruzwa bitondekwe
+   hashingiwe ku ntera.
+*/
+
+},
+
+function(){
+
+alert(
+"Emera Location muri browser."
+);
+
+}
+
+);
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard(){
+
+document
+.getElementById("totalProducts")
+.textContent =
+products.length;
+
+document
+.getElementById("orders")
+.textContent =
+orders;
+
+document
+.getElementById("earnings")
+.textContent =
+earnings.toLocaleString()
++
+" RWF";
+
+document
+.getElementById("bonus")
+.textContent =
+bonus.toLocaleString()
++
+" RWF";
+
+}
+
+
+/* =========================
+   REFERRAL
+========================= */
+
+function generateReferral(){
+
+let code =
+"ZUNIVO"
++
+Math.floor(
+Math.random()*100000
+);
+
+document
+.getElementById("referral")
+.textContent =
+code;
+
+}
+
+
+/* =========================
+   PAGES
+========================= */
+
+function hideAll(){
+
+document
+.getElementById("seller")
+.classList
+.add("hidden");
+
+document
+.getElementById("dashboard")
+.classList
+.add("hidden");
+
+document
+.getElementById("login")
+.classList
+.add("hidden");
+
+}
+
+
+function showHome(){
+
+hideAll();
+
+document
+.getElementById("home")
+.classList
+.remove("hidden");
+
+}
+
+
+function showSeller(){
+
+hideAll();
+
+document
+.getElementById("seller")
+.classList
+.remove("hidden");
+
+}
+
+
+function showDashboard(){
+
+hideAll();
+
+document
+.getElementById("dashboard")
+.classList
+.remove("hidden");
+
+updateDashboard();
+
+}
+
+
+function showLogin(){
+
+hideAll();
+
+document
+.getElementById("login")
+.classList
+.remove("hidden");
+
+}
+
+
+/* =========================
+   LOGIN DEMO
+========================= */
+
+function login(){
+
+let email =
+document
+.getElementById("loginEmail")
+.value;
+
+if(!email){
+
+alert("Andika email.");
+
+return;
+
+}
+
+alert(
+"Winjiye neza muri Zunivo!"
+);
+
+showHome();
+
+}
+
+
+/* START */
+
+displayProducts();
+
+updateDashboard();
+
+generateReferral();
+
+</script>
+
+</body>
+</html>
