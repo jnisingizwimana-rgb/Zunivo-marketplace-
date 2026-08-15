@@ -7,7 +7,6 @@
 <title>Zunivo Marketplace</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
@@ -15,58 +14,69 @@
 body{
     margin:0;
     font-family:Arial,sans-serif;
-    background:#f3f6f8;
+    background:#f4f7f6;
     color:#17202a;
 }
 
 header{
     background:#087443;
     color:white;
-    padding:15px;
+    padding:14px;
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:100;
 }
 
-.header{
-    max-width:1100px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-}
+.header{max-width:1100px;margin:auto}
 
 .logo{
-    font-size:25px;
+    font-size:24px;
     font-weight:bold;
 }
 
 nav button{
-    padding:9px 12px;
     border:0;
+    padding:9px 12px;
+    margin:2px;
     border-radius:8px;
-    margin:3px;
     cursor:pointer;
 }
 
 .container{
     max-width:1100px;
     margin:auto;
-    padding:20px;
+    padding:18px;
 }
 
 .hero{
-    background:#0d5135;
+    background:linear-gradient(135deg,#07552f,#0b8b50);
     color:white;
     padding:30px 20px;
     border-radius:18px;
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
 .hero h1{
-    margin-top:0;
     font-size:30px;
+    margin-top:0;
+}
+
+.hero button{
+    background:white;
+    color:#087443;
+}
+
+button{
+    background:#087443;
+    color:white;
+    border:0;
+    padding:11px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
 }
 
 .search{
@@ -81,20 +91,20 @@ nav button{
     padding:13px;
     border:1px solid #ccc;
     border-radius:8px;
+    font-size:16px;
 }
 
 .products{
     display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(230px,1fr));
-    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:16px;
 }
 
 .product{
     background:white;
     border-radius:14px;
     overflow:hidden;
-    box-shadow:0 2px 8px #0001;
+    box-shadow:0 2px 10px #0001;
 }
 
 .product img{
@@ -118,17 +128,13 @@ nav button{
     font-size:14px;
 }
 
-button{
-    background:#087443;
-    color:white;
-    border:0;
-    padding:11px 15px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-button:hover{
-    opacity:.9;
+.badge{
+    display:inline-block;
+    background:#e6f6ed;
+    color:#087443;
+    padding:5px 8px;
+    border-radius:20px;
+    font-size:12px;
 }
 
 .panel{
@@ -138,7 +144,9 @@ button:hover{
     margin-top:20px;
 }
 
-input,textarea,select{
+.panel input,
+.panel textarea,
+.panel select{
     width:100%;
     padding:12px;
     margin:6px 0;
@@ -146,32 +154,35 @@ input,textarea,select{
     border-radius:8px;
 }
 
+.panel textarea{
+    min-height:90px;
+}
+
 .stats{
     display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(150px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
     gap:12px;
 }
 
 .stat{
-    background:#eef7f2;
+    background:#eef8f2;
     padding:18px;
     border-radius:10px;
 }
 
 .chat{
-    height:250px;
+    height:260px;
     overflow-y:auto;
-    background:#f1f3f5;
+    background:#f0f3f5;
     padding:10px;
     border-radius:10px;
 }
 
 .message{
     background:white;
-    padding:8px;
-    margin:5px;
-    border-radius:8px;
+    padding:9px;
+    margin:6px;
+    border-radius:9px;
 }
 
 .my-message{
@@ -182,11 +193,31 @@ input,textarea,select{
 
 .comment{
     border-bottom:1px solid #ddd;
-    padding:8px;
+    padding:10px;
 }
 
 .hidden{
     display:none;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:#0008;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    z-index:200;
+}
+
+.modal-box{
+    background:white;
+    width:min(600px,100%);
+    max-height:90vh;
+    overflow:auto;
+    padding:20px;
+    border-radius:15px;
 }
 
 footer{
@@ -197,41 +228,67 @@ footer{
     padding:25px;
 }
 
+@media(max-width:650px){
+
+.header{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+nav{
+    width:100%;
+}
+
+nav button{
+    font-size:12px;
+}
+
+.hero h1{
+    font-size:24px;
+}
+
+}
+
+.top-row{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%}
+.top-actions{display:flex;gap:6px}
+.top-actions button{background:white;color:#087443}
+.main-nav{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #ffffff33}
+.main-nav button{flex:0 0 auto}
+.nearby-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.nearby-controls button{background:#e9f6ef;color:#087443}
+.location-note{margin:8px 0 0;color:#667085;font-size:14px}
+.two-column{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.job-box{background:#f8fbf9;border:1px solid #dfe9e3;padding:15px;border-radius:12px;margin-top:12px}
+.job-card{background:white;border:1px solid #e1e6e3;border-radius:12px;padding:15px;margin-top:12px;box-shadow:0 2px 8px #0001}
+.job-meta{color:#68737a;font-size:14px;margin:6px 0}
+.distance{display:inline-block;background:#e6f6ed;color:#087443;padding:5px 8px;border-radius:20px;font-size:12px;margin-left:5px}
+@media(max-width:650px){
+  .top-actions button{font-size:11px;padding:8px}
+  .main-nav{overflow-x:auto}
+  .main-nav button{font-size:12px;padding:8px 10px}
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-
 <div class="header">
-
-<div class="logo">
-🛍️ Zunivo
+  <div class="top-row">
+    <div class="logo">🛍️ Zunivo</div>
+    <div class="top-actions">
+      <button onclick="showEmployees()">👤 Employees</button>
+      <button onclick="showLogin()">🔐 Login</button>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <button onclick="showHome()">🏠 Home</button>
+    <button onclick="showSeller()">➕ Sell</button>
+    <button onclick="showJobs()">💼 Jobs</button>
+    <button onclick="showDashboard()">📊 Analysis</button>
+  </nav>
 </div>
-
-<nav>
-
-<button onclick="showHome()">
-Home
-</button>
-
-<button onclick="showSeller()">
-Sell
-</button>
-
-<button onclick="showDashboard()">
-Analysis
-</button>
-
-<button onclick="showLogin()">
-Login
-</button>
-
-</nav>
-
-</div>
-
 </header>
 
 
@@ -244,7 +301,7 @@ Gura kandi ugurishe ibicuruzwa bikwegereye
 </h1>
 
 <p>
-Zunivo ihuza abakiriya n'abacuruzi bo hafi yabo.
+Zunivo Marketplace ihuza abaguzi n'abacuruzi bo hafi yabo.
 </p>
 
 <button onclick="getLocation()">
@@ -257,21 +314,21 @@ Zunivo ihuza abakiriya n'abacuruzi bo hafi yabo.
 
 
 <section class="search">
-
-<input
-type="text"
-id="search"
-placeholder="Shakisha igicuruzwa..."
-onkeyup="searchProducts()"
->
-
+  <input type="text" id="search"
+    placeholder="🔎 Shakisha igicuruzwa, category cyangwa umujyi..."
+    onkeyup="searchProducts()">
+  <div class="nearby-controls">
+    <button onclick="sortByDistance()">📍 Ibiri hafi yanjye</button>
+    <button onclick="showAllProducts()">🌍 Byose</button>
+  </div>
+  <p id="locationStatus" class="location-note"></p>
 </section>
 
 
 <section id="home">
 
 <h2>
-🛍️ Ibicuruzwa
+🛍️ Ibicuruzwa biri ku isoko
 </h2>
 
 <div
@@ -282,12 +339,14 @@ id="products">
 </section>
 
 
+<!-- SELLER -->
+
 <section
 id="seller"
 class="panel hidden">
 
 <h2>
-➕ Shyira igicuruzwa ku isoko
+🏪 Shyira igicuruzwa cyawe ku isoko
 </h2>
 
 <input
@@ -297,7 +356,7 @@ placeholder="Izina ry'igicuruzwa"
 
 <textarea
 id="productDescription"
-placeholder="Sobanura igicuruzwa"
+placeholder="Sobanura igicuruzwa cyawe..."
 ></textarea>
 
 <input
@@ -308,97 +367,109 @@ placeholder="Igiciro muri RWF"
 
 <input
 id="productImage"
-placeholder="URL y'ifoto"
+placeholder="URL y'ifoto y'igicuruzwa"
 >
 
 <input
 id="productCity"
-placeholder="Aho igicuruzwa kiri"
+placeholder="Umujyi / Akarere igicuruzwa kirimo"
 >
 
 <select id="productCategory">
 
-<option>
-Imyenda
-</option>
-
-<option>
-Telefone
-</option>
-
-<option>
-Ibiribwa
-</option>
-
-<option>
-Ibikoresho
-</option>
-
-<option>
-Imodoka
-</option>
-
-<option>
-Ibindi
-</option>
+<option>Imyenda</option>
+<option>Telefone</option>
+<option>Ibiribwa</option>
+<option>Ibikoresho</option>
+<option>Imodoka</option>
+<option>Inzu</option>
+<option>Ubwiza</option>
+<option>Ibindi</option>
 
 </select>
 
 <button onclick="addProduct()">
-Shyira ku isoko
+📤 Shyira ku isoko
 </button>
 
 </section>
 
+
+
+<!-- JOBS -->
+<section id="jobs" class="panel hidden">
+<h2>💼 Akazi</h2>
+<p>Shakisha akazi cyangwa ushyire akazi ku isoko.</p>
+<div class="two-column">
+  <div class="job-box">
+    <h3>🔎 Shaka akazi</h3>
+    <input id="jobSearch" placeholder="Akazi, skill cyangwa umujyi..." onkeyup="searchJobs()">
+    <div id="jobList"></div>
+  </div>
+  <div class="job-box">
+    <h3>📢 Shyiraho akazi</h3>
+    <input id="jobTitle" placeholder="Izina ry'akazi">
+    <input id="jobCompany" placeholder="Company / Umukoresha">
+    <input id="jobCity" placeholder="Umujyi / Akarere">
+    <input id="jobSalary" placeholder="Umushahara">
+    <select id="jobType"><option>Full-time</option><option>Part-time</option><option>Contract</option></select>
+    <input id="jobEducation" placeholder="Amashuri asabwa">
+    <input id="jobSkills" placeholder="Skills / Uburambe">
+    <textarea id="jobDescription" placeholder="Sobanura akazi n'ibisabwa..."></textarea>
+    <button onclick="addJob()">📤 Shyira akazi ku isoko</button>
+  </div>
+</div>
+</section>
+
+<!-- EMPLOYEES -->
+<section id="employees" class="panel hidden">
+<h2>👤 Employees</h2>
+<p>Shaka umukozi ukurikije umwuga, skills n'aho ari.</p>
+<input id="employeeSearch" placeholder="Shakisha umwuga, skill cyangwa umujyi..." onkeyup="searchEmployees()">
+<div class="job-box">
+  <h3>📝 Kora profile y'umukozi</h3>
+  <input id="employeeName" placeholder="Amazina">
+  <input id="employeeJob" placeholder="Akazi / Umwuga">
+  <input id="employeeCity" placeholder="Umujyi / Akarere">
+  <input id="employeeEducation" placeholder="Amashuri wize">
+  <input id="employeeSkills" placeholder="Skills">
+  <input id="employeeExperience" placeholder="Uburambe">
+  <textarea id="employeeAbout" placeholder="Andika amakuru akwerekeye..."></textarea>
+  <button onclick="addEmployee()">👤 Bika profile</button>
+</div>
+<div id="employeeList"></div>
+</section>
+
+<!-- DASHBOARD -->
 
 <section
 id="dashboard"
 class="panel hidden">
 
 <h2>
-📊 Analysis
+📊 Analysis & Earnings
 </h2>
 
 <div class="stats">
 
 <div class="stat">
-
-<b>Products</b>
-
-<h2 id="totalProducts">
-0
-</h2>
-
+📦 Products
+<h2 id="totalProducts">0</h2>
 </div>
 
 <div class="stat">
-
-<b>Orders</b>
-
-<h2 id="orders">
-0
-</h2>
-
+🛒 Orders
+<h2 id="orders">0</h2>
 </div>
 
 <div class="stat">
-
-<b>Earnings</b>
-
-<h2 id="earnings">
-0 RWF
-</h2>
-
+💰 Earnings
+<h2 id="earnings">0 RWF</h2>
 </div>
 
 <div class="stat">
-
-<b>Bonus</b>
-
-<h2 id="bonus">
-0 RWF
-</h2>
-
+🎁 Bonus
+<h2 id="bonus">0 RWF</h2>
 </div>
 
 </div>
@@ -406,30 +477,41 @@ class="panel hidden">
 <hr>
 
 <h3>
-🎁 Referral
+🎁 Referral Program
 </h3>
 
 <p>
 Code yawe:
-<strong id="referral">
-ZUNIVO123
-</strong>
+<strong id="referral">ZUNIVO0000</strong>
 </p>
 
+<button onclick="copyReferral()">
+📋 Copy Referral Code
+</button>
+
 <p>
-Sangira iyi code n'abandi. Iyo biyandikishije ukoresheje code yawe ubona bonus.
+Sangira referral code yawe n'abandi.
+Iyo umuntu yiyandikishije akoresheje code yawe,
+ushobora kubona bonus.
 </p>
 
 </section>
 
+
+<!-- LOGIN -->
 
 <section
 id="login"
 class="panel hidden">
 
 <h2>
-🔐 Login
+🔐 Injira muri Zunivo
 </h2>
+
+<input
+id="loginName"
+placeholder="Amazina"
+>
 
 <input
 id="loginEmail"
@@ -442,12 +524,26 @@ type="password"
 placeholder="Password"
 >
 
+<select id="loginRole">
+
+<option value="customer">
+Umukiriya
+</option>
+
+<option value="seller">
+Umucuruzi
+</option>
+
+</select>
+
 <button onclick="login()">
 Injira
 </button>
 
 </section>
 
+
+<!-- CHAT -->
 
 <section
 id="chatPanel"
@@ -456,6 +552,8 @@ class="panel hidden">
 <h2>
 💬 Live Chat
 </h2>
+
+<p id="chatProduct"></p>
 
 <div
 id="chat"
@@ -468,11 +566,13 @@ placeholder="Andika ubutumwa..."
 >
 
 <button onclick="sendMessage()">
-Ohereza
+📤 Ohereza
 </button>
 
 </section>
 
+
+<!-- COMMENTS -->
 
 <section
 id="commentsPanel"
@@ -481,6 +581,8 @@ class="panel hidden">
 <h2>
 💬 Live Comments
 </h2>
+
+<p id="commentProduct"></p>
 
 <div id="comments">
 </div>
@@ -491,7 +593,7 @@ placeholder="Andika comment..."
 >
 
 <button onclick="addComment()">
-Comment
+💬 Ohereza Comment
 </button>
 
 </section>
@@ -501,12 +603,16 @@ Comment
 
 <footer>
 
-<p>
-© 2026 Zunivo Marketplace
-</p>
+<h3>
+🛍️ Zunivo Marketplace
+</h3>
 
 <p>
 Buy • Sell • Chat • Earn
+</p>
+
+<p>
+© 2026 Zunivo
 </p>
 
 </footer>
@@ -515,25 +621,27 @@ Buy • Sell • Chat • Earn
 <script>
 
 /* =========================
-   PRODUCTS
+   DATABASE YA DEMO
 ========================= */
 
 let products = [
 
 {
-name:"Smartphone Samsung",
+name:"Samsung Smartphone",
 price:250000,
 city:"Kigali",
 category:"Telefone",
+lat:-1.9441,lng:30.0619,
 image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9",
-description:"Samsung smartphone nziza."
+description:"Samsung smartphone nziza kandi nshya."
 },
 
 {
-name:"Inkweto",
+name:"Inkweto nziza",
 price:25000,
 city:"Kigali",
 category:"Imyenda",
+lat:-1.9500,lng:30.0588,
 image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff",
 description:"Inkweto nziza kandi zikomeye."
 },
@@ -543,13 +651,23 @@ name:"Laptop",
 price:450000,
 city:"Huye",
 category:"Ibikoresho",
+lat:-2.5967,lng:29.7394,
 image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
-description:"Laptop ikoreshwa mu kazi no kwiga."
+description:"Laptop nziza yo kwigiraho no gukoreraho."
+},
+
+{
+name:"Imbuto",
+price:5000,
+city:"Musanze",
+category:"Ibiribwa",
+lat:-1.4998,lng:29.6340,
+image:"https://images.unsplash.com/photo-1610832958506-aa56368176cf",
+description:"Imbuto nshya."
 }
 
 ];
 
-let currentProduct = null;
 
 let orders = 0;
 
@@ -557,27 +675,39 @@ let earnings = 0;
 
 let bonus = 0;
 
+let currentProduct = null;
+
+let currentUser = null;
+
 
 /* =========================
-   DISPLAY PRODUCTS
+   SHOW PRODUCTS
 ========================= */
 
-function displayProducts(list=products){
+function displayProducts(list = products){
 
-let container =
+let box =
 document.getElementById("products");
 
-container.innerHTML="";
+box.innerHTML = "";
 
 list.forEach((product,index)=>{
 
-container.innerHTML += `
+box.innerHTML += `
 
 <div class="product">
 
-<img src="${product.image}">
+<img
+src="${product.image}"
+alt="${product.name}"
+onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27400%27 height=%27250%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23087443%27/%3E%3Ctext x=%2750%25%27 y=%2752%25%27 fill=%27white%27 font-size=%2730%27 text-anchor=%27middle%27%3EZunivo%3C/text%3E%3C/svg%3E"
+>
 
 <div class="product-content">
+
+<span class="badge">
+${product.category}
+</span>
 
 <h3>
 ${product.name}
@@ -593,11 +723,10 @@ ${product.description}
 
 <div class="location">
 📍 ${product.city}
+${product.distanceKm != null ? `<span class="distance">${product.distanceKm.toFixed(1)} km</span>` : ""}
 </div>
 
-<p>
-🏷️ ${product.category}
-</p>
+<br>
 
 <button onclick="buyProduct(${index})">
 🛒 Gura
@@ -628,29 +757,30 @@ ${product.description}
 
 function searchProducts(){
 
-let search =
-document.getElementById("search")
+let value =
+document
+.getElementById("search")
 .value
 .toLowerCase();
 
 let result =
-products.filter(product=>
+products.filter(product =>
 
 product.name
 .toLowerCase()
-.includes(search)
+.includes(value)
 
 ||
 
 product.city
 .toLowerCase()
-.includes(search)
+.includes(value)
 
 ||
 
 product.category
 .toLowerCase()
-.includes(search)
+.includes(value)
 
 );
 
@@ -666,29 +796,36 @@ displayProducts(result);
 function addProduct(){
 
 let name =
-document.getElementById("productName").value;
+document.getElementById("productName").value.trim();
 
 let description =
-document.getElementById("productDescription").value;
+document.getElementById("productDescription").value.trim();
 
 let price =
 Number(document.getElementById("productPrice").value);
 
 let image =
-document.getElementById("productImage").value;
+document.getElementById("productImage").value.trim();
 
 let city =
-document.getElementById("productCity").value;
+document.getElementById("productCity").value.trim();
 
 let category =
 document.getElementById("productCategory").value;
 
 
-if(!name || !price){
+if(!name){
 
-alert(
-"Shyiramo izina n'igiciro."
-);
+alert("Andika izina ry'igicuruzwa.");
+
+return;
+
+}
+
+
+if(!price){
+
+alert("Andika igiciro.");
 
 return;
 
@@ -704,9 +841,10 @@ description:description,
 price:price,
 
 image:image ||
-"https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+"https://via.placeholder.com/500x300?text=Zunivo",
 
-city:city || "Aho uri",
+city:city ||
+"Kigali",
 
 category:category
 
@@ -714,8 +852,19 @@ category:category
 
 
 alert(
-"Igicuruzwa cyashyizwe ku isoko!"
+"✅ Igicuruzwa cyawe cyashyizwe ku isoko!"
 );
+
+
+document.getElementById("productName").value="";
+
+document.getElementById("productDescription").value="";
+
+document.getElementById("productPrice").value="";
+
+document.getElementById("productImage").value="";
+
+document.getElementById("productCity").value="";
 
 
 displayProducts();
@@ -728,7 +877,7 @@ updateDashboard();
 
 
 /* =========================
-   BUY
+   BUY PRODUCT
 ========================= */
 
 function buyProduct(index){
@@ -736,23 +885,32 @@ function buyProduct(index){
 let product =
 products[index];
 
-let confirmBuy =
+
+let answer =
 confirm(
 
-"Urashaka kugura " +
+"Urashaka kugura:\n\n"
 
-product.name +
++
 
-" kuri " +
+product.name
 
-product.price.toLocaleString() +
++
 
-" RWF?"
+"\n\nIgiciro: "
+
++
+
+product.price.toLocaleString()
+
++
+
+" RWF"
 
 );
 
 
-if(!confirmBuy){
+if(!answer){
 
 return;
 
@@ -764,17 +922,18 @@ orders++;
 earnings += product.price;
 
 
+/*
+ BONUS YA DEMO
+ */
+
+bonus += Math.round(
+product.price * 0.02
+);
+
+
 alert(
 
-"🎉 Murakoze!"
-
-+
-
-"\n"
-
-+
-
-"Order yawe yakiriwe."
+"🎉 ORDER YAKIRIWE!"
 
 +
 
@@ -804,6 +963,14 @@ product.price.toLocaleString()
 
 " RWF"
 
++
+
+"\n\n"
+
++
+
+"Murakoze gukoresha Zunivo."
+
 );
 
 
@@ -821,19 +988,39 @@ function openChat(index){
 currentProduct =
 products[index];
 
+
 document
 .getElementById("chatPanel")
 .classList
 .remove("hidden");
+
+
+document
+.getElementById("chatProduct")
+.innerHTML =
+
+"Uri kuganira ku: <b>"
+
++
+
+currentProduct.name
+
++
+
+"</b>";
+
 
 document
 .getElementById("chat")
 .innerHTML = `
 
 <div class="message">
-Muraho! 👋
-Mushobora kubaza umucuruzi
-amakuru y'iki gicuruzwa.
+
+👋 Muraho!
+
+Mubaze umucuruzi amakuru
+y'igicuruzwa.
+
 </div>
 
 `;
@@ -846,10 +1033,11 @@ function sendMessage(){
 let input =
 document.getElementById("message");
 
-let message =
+let text =
 input.value.trim();
 
-if(!message){
+
+if(!text){
 
 return;
 
@@ -858,11 +1046,13 @@ return;
 
 document
 .getElementById("chat")
-.innerHTML += `
+innerHTML += `
 
 <div class="message my-message">
 
-${message}
+👤 Wowe:<br>
+
+${text}
 
 </div>
 
@@ -872,22 +1062,24 @@ ${message}
 input.value="";
 
 
-setTimeout(()=>{
+setTimeout(function(){
 
 document
 .getElementById("chat")
-.innerHTML += `
+innerHTML += `
 
 <div class="message">
 
+🏪 Umucuruzi:<br>
+
 Murakoze kubaza.
-Umucuruzi aragusubiza vuba.
+Turagusubiza vuba.
 
 </div>
 
 `;
 
-},1000);
+},1200);
 
 }
 
@@ -901,10 +1093,27 @@ function openComments(index){
 currentProduct =
 products[index];
 
+
 document
 .getElementById("commentsPanel")
 .classList
 .remove("hidden");
+
+
+document
+.getElementById("commentProduct")
+.innerHTML =
+
+"Comments kuri: <b>"
+
++
+
+currentProduct.name
+
++
+
+"</b>";
+
 
 document
 .getElementById("comments")
@@ -935,6 +1144,7 @@ document.getElementById("commentInput");
 let text =
 input.value.trim();
 
+
 if(!text){
 
 return;
@@ -944,7 +1154,7 @@ return;
 
 document
 .getElementById("comments")
-.innerHTML += `
+innerHTML += `
 
 <div class="comment">
 
@@ -956,9 +1166,81 @@ ${text}
 
 `;
 
+
 input.value="";
 
 }
+
+
+
+/* JOBS */
+let jobs=[
+{title:"Sales & Marketing Officer",company:"Zunivo Demo",city:"Kigali",salary:"250,000 - 400,000 RWF",type:"Full-time",education:"Secondary / University",skills:"Marketing, Communication",description:"Akazi ko muri sales na marketing."},
+{title:"Software Developer",company:"Tech Company",city:"Kigali",salary:"500,000 - 900,000 RWF",type:"Full-time",education:"Computer Science / IT",skills:"HTML, CSS, JavaScript",description:"Gukora no gufata neza software n'imbuga."}
+];
+let employees=[
+{name:"Jean",job:"Graphic Designer",city:"Kigali",education:"University",skills:"Photoshop, Canva",experience:"2 years",about:"Mfite uburambe mu gukora designs."},
+{name:"Aline",job:"Sales Agent",city:"Huye",education:"Secondary",skills:"Sales, Customer Service",experience:"3 years",about:"Mfite uburambe mu kugurisha."}
+];
+
+function addJob(){
+ const v=id=>document.getElementById(id).value.trim();
+ if(!v("jobTitle")||!v("jobCompany")||!v("jobCity")){alert("Andika izina ry'akazi, umukoresha n'aho akazi kari.");return;}
+ jobs.unshift({title:v("jobTitle"),company:v("jobCompany"),city:v("jobCity"),salary:v("jobSalary"),type:document.getElementById("jobType").value,education:v("jobEducation"),skills:v("jobSkills"),description:v("jobDescription")});
+ renderJobs(); alert("✅ Akazi kashyizwe ku isoko!");
+}
+function renderJobs(list=jobs){
+ const box=document.getElementById("jobList");box.innerHTML="";
+ list.forEach((j,i)=>box.innerHTML+=`<div class="job-card"><h3>💼 ${j.title}</h3><div class="job-meta">🏢 ${j.company} · 📍 ${j.city}</div><div class="job-meta">💰 ${j.salary||"Negotiable"} · 🕒 ${j.type}</div><div class="job-meta">🎓 ${j.education||"N/A"}</div><p><b>Skills:</b> ${j.skills||"N/A"}</p><p>${j.description||""}</p><button onclick="applyJob(${i})">📩 Apply</button></div>`);
+}
+function searchJobs(){
+ const v=document.getElementById("jobSearch").value.toLowerCase();
+ renderJobs(jobs.filter(j=>[j.title,j.company,j.city,j.skills,j.education,j.description].join(" ").toLowerCase().includes(v)));
+}
+function applyJob(i){alert("📩 Application yawe kuri \""+jobs[i].title+"\" yakiriwe.");}
+
+function addEmployee(){
+ const v=id=>document.getElementById(id).value.trim();
+ if(!v("employeeName")||!v("employeeJob")||!v("employeeCity")){alert("Andika amazina, umwuga n'aho uherereye.");return;}
+ employees.unshift({name:v("employeeName"),job:v("employeeJob"),city:v("employeeCity"),education:v("employeeEducation"),skills:v("employeeSkills"),experience:v("employeeExperience"),about:v("employeeAbout")});
+ renderEmployees();alert("✅ Profile y'umukozi yabitswe!");
+}
+function renderEmployees(list=employees){
+ const box=document.getElementById("employeeList");box.innerHTML="";
+ list.forEach((p,i)=>box.innerHTML+=`<div class="job-card"><h3>👤 ${p.name}</h3><div class="job-meta">💼 ${p.job} · 📍 ${p.city}</div><div class="job-meta">🎓 ${p.education||"N/A"} · 🧑‍💼 ${p.experience||"N/A"}</div><p><b>Skills:</b> ${p.skills||"N/A"}</p><p>${p.about||""}</p><button onclick="contactEmployee(${i})">💬 Contact</button></div>`);
+}
+function searchEmployees(){
+ const v=document.getElementById("employeeSearch").value.toLowerCase();
+ renderEmployees(employees.filter(p=>[p.name,p.job,p.city,p.education,p.skills,p.experience,p.about].join(" ").toLowerCase().includes(v)));
+}
+function contactEmployee(i){alert("💬 Contact ya "+employees[i].name+" yatangijwe.");}
+
+/* NEARBY -> FAR */
+let userLocation=null;
+function distanceKm(a,b,c,d){
+ const R=6371, dLat=(c-a)*Math.PI/180,dLon=(d-b)*Math.PI/180;
+ const x=Math.sin(dLat/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dLon/2)**2;
+ return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
+}
+function sortByDistance(){
+ if(!navigator.geolocation){alert("Browser yawe ntishyigikira Location.");return;}
+ document.getElementById("locationStatus").textContent="📍 Turimo kubona aho uri...";
+ navigator.geolocation.getCurrentPosition(pos=>{
+  userLocation={lat:pos.coords.latitude,lng:pos.coords.longitude};
+  products.forEach(p=>p.distanceKm=distanceKm(userLocation.lat,userLocation.lng,p.lat,p.lng));
+  products.sort((a,b)=>a.distanceKm-b.distanceKm);
+  displayProducts(products);
+  document.getElementById("locationStatus").textContent="📍 Ibicuruzwa bitondetse kuva ku bikwegereye kugeza ku biri kure.";
+ },()=>alert("Emera Location muri browser yawe."));
+}
+function showAllProducts(){
+ products.forEach(p=>delete p.distanceKm);displayProducts(products);
+ document.getElementById("locationStatus").textContent="🌍 Ubu ureba ibicuruzwa byose.";
+}
+
+/* NEW NAVIGATION */
+function showJobs(){hidePanels();document.getElementById("jobs").classList.remove("hidden");renderJobs();}
+function showEmployees(){hidePanels();document.getElementById("employees").classList.remove("hidden");renderEmployees();}
 
 
 /* =========================
@@ -970,7 +1252,7 @@ function getLocation(){
 if(!navigator.geolocation){
 
 alert(
-"Telefone yawe ntishyigikira Location."
+"Browser yawe ntishyigikira Location."
 );
 
 return;
@@ -978,15 +1260,14 @@ return;
 }
 
 
-navigator.geolocation
-.getCurrentPosition(
+navigator.geolocation.getCurrentPosition(
 
 function(position){
 
-let lat =
+let latitude =
 position.coords.latitude;
 
-let lng =
+let longitude =
 position.coords.longitude;
 
 
@@ -994,25 +1275,55 @@ document
 .getElementById("locationStatus")
 .innerHTML =
 
-"📍 Location yabonetse. "
+"📍 Location yabonetse! "
 
 +
 
-"Turimo gushaka ibicuruzwa bikwegereye...";
+"Turimo kukwereka ibicuruzwa bikwegereye.";
 
 
 /*
-   Hano ni ho backend izashyirwa
-   kugira ngo ibicuruzwa bitondekwe
-   hashingiwe ku ntera.
-*/
+ Muri version ya backend
+ aha hazajya calculation
+ y'intera hagati ya buyer
+ n'umucuruzi.
+ */
+
+
+alert(
+
+"Location yabonetse!\n\n"
+
++
+
+"Latitude: "
+
++
+
+latitude.toFixed(4)
+
++
+
+"\nLongitude: "
+
++
+
+longitude.toFixed(4)
+
+);
 
 },
 
 function(){
 
 alert(
-"Emera Location muri browser."
+
+"❌ Ntabwo twabonye Location.\n\n"
+
++
+
+"Emera Location muri browser yawe."
+
 );
 
 }
@@ -1030,26 +1341,35 @@ function updateDashboard(){
 
 document
 .getElementById("totalProducts")
-.textContent =
+.innerText =
 products.length;
+
 
 document
 .getElementById("orders")
-.textContent =
+.innerText =
 orders;
+
 
 document
 .getElementById("earnings")
-.textContent =
+.innerText =
+
 earnings.toLocaleString()
+
 +
+
 " RWF";
+
 
 document
 .getElementById("bonus")
-.textContent =
+.innerText =
+
 bonus.toLocaleString()
+
 +
+
 " RWF";
 
 }
@@ -1062,25 +1382,111 @@ bonus.toLocaleString()
 function generateReferral(){
 
 let code =
-"ZUNIVO"
+
+"ZUNIVO-"
+
 +
-Math.floor(
-Math.random()*100000
+
+Math
+.floor(
+100000 + Math.random()*900000
 );
 
 document
 .getElementById("referral")
-.textContent =
+innerText =
 code;
 
 }
 
 
+function copyReferral(){
+
+let code =
+document
+.getElementById("referral")
+innerText;
+
+
+navigator.clipboard.writeText(code);
+
+
+alert(
+"✅ Referral code yakopowe!"
+);
+
+}
+
+
 /* =========================
-   PAGES
+   LOGIN
 ========================= */
 
-function hideAll(){
+function login(){
+
+let name =
+document
+.getElementById("loginName")
+.value.trim();
+
+let email =
+document
+.getElementById("loginEmail")
+.value.trim();
+
+let role =
+document
+.getElementById("loginRole")
+.value;
+
+
+if(!name || !email){
+
+alert(
+"Andika amazina na email."
+);
+
+return;
+
+}
+
+
+currentUser = {
+
+name:name,
+
+email:email,
+
+role:role
+
+};
+
+
+alert(
+
+"🎉 Murakaza neza "
+
++
+
+name
+
++
+
+"!"
+
+);
+
+
+showHome();
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function hidePanels(){
 
 document
 .getElementById("seller")
@@ -1097,12 +1503,30 @@ document
 .classList
 .add("hidden");
 
+document
+.getElementById("chatPanel")
+.classList
+.add("hidden");
+
+document
+.getElementById("commentsPanel")
+.classList
+.add("hidden");
+document
+.getElementById("jobs")
+.classList
+.add("hidden");
+document
+.getElementById("employees")
+.classList
+.add("hidden");
+
 }
 
 
 function showHome(){
 
-hideAll();
+hidePanels();
 
 document
 .getElementById("home")
@@ -1114,7 +1538,7 @@ document
 
 function showSeller(){
 
-hideAll();
+hidePanels();
 
 document
 .getElementById("seller")
@@ -1126,7 +1550,7 @@ document
 
 function showDashboard(){
 
-hideAll();
+hidePanels();
 
 document
 .getElementById("dashboard")
@@ -1140,7 +1564,7 @@ updateDashboard();
 
 function showLogin(){
 
-hideAll();
+hidePanels();
 
 document
 .getElementById("login")
@@ -1151,40 +1575,16 @@ document
 
 
 /* =========================
-   LOGIN DEMO
+   START WEBSITE
 ========================= */
-
-function login(){
-
-let email =
-document
-.getElementById("loginEmail")
-.value;
-
-if(!email){
-
-alert("Andika email.");
-
-return;
-
-}
-
-alert(
-"Winjiye neza muri Zunivo!"
-);
-
-showHome();
-
-}
-
-
-/* START */
 
 displayProducts();
 
 updateDashboard();
 
 generateReferral();
+renderJobs();
+renderEmployees();
 
 </script>
 
