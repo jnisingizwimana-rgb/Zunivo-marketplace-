@@ -1,0 +1,118 @@
+📍 Reba ibicuruzwa bikwegereye
+</button>
+
+<p id="herolocationStatus"></p>
+
+</section>
+
+
+<section class="search">
+  <input type="text" id="search"
+    placeholder="🔎 Shakisha igicuruzwa, category cyangwa umujyi..."
+    onkeyup="searchProducts()">
+  <div class="nearby-controls">
+    <button onclick="sortByDistance()">📍 Ibiri hafi yanjye</button>
+    <button onclick="showAllProducts()">🌍 Byose</button>
+  </div>
+  <p id="locationStatus" class="location-note"></p>
+</section>
+
+
+<section id="home">
+
+<h2>
+🛍️ Ibicuruzwa biri ku isoko
+</h2>
+
+<div
+class="products"
+id="products">
+</div>
+
+</section>
+
+
+<!-- SELLER -->
+
+<section
+id="seller"
+class="panel hidden">
+
+<h2>
+🏪 Shyira igicuruzwa cyawe ku isoko
+</h2>
+
+<input
+id="productName"
+placeholder="Izina ry'igicuruzwa"
+>
+
+<textarea
+id="productDescription"
+placeholder="Sobanura igicuruzwa cyawe..."
+></textarea>
+
+<input
+id="productPrice"
+type="number"
+placeholder="Igiciro muri RWF"
+>
+
+<input
+id="productImage"
+placeholder="URL y'ifoto y'igicuruzwa"
+>
+
+<input
+id="productCity"
+placeholder="Umujyi / Akarere igicuruzwa kirimo"
+>
+
+<select id="productCategory">
+
+<option>Imyenda</option>
+<option>Telefone</option>
+<option>Ibiribwa</option>
+<option>Ibikoresho</option>
+<option>Imodoka</option>
+<option>Inzu</option>
+<option>Ubwiza</option>
+<option>Ibindi</option>
+
+</select>
+
+<button onclick="addProduct()">
+📤 Shyira ku isoko
+</button>
+
+</section>
+
+
+
+<!-- JOBS -->
+<section id="jobs" class="panel hidden">
+<h2>💼 Akazi</h2>
+<p>Shakisha akazi cyangwa ushyire akazi ku isoko.</p>
+<div class="two-column">
+  <div class="job-box">
+    <h3>🔎 Shaka akazi</h3>
+    <input id="jobSearch" placeholder="Akazi, skill cyangwa umujyi..." onkeyup="searchJobs()">
+    <div id="jobList"></div>
+  </div>
+  <div class="job-box">
+    <h3>📢 Shyiraho akazi</h3>
+    <input id="jobTitle" placeholder="Izina ry'akazi">
+    <input id="jobCompany" placeholder="Company / Umukoresha">
+    <input id="jobCity" placeholder="Umujyi / Akarere">
+    <input id="jobSalary" placeholder="Umushahara">
+    <select id="jobType"><option>Full-time</option><option>Part-time</option><option>Contract</option></select>
+    <input id="jobEducation" placeholder="Amashuri asabwa">
+    <input id="jobSkills" placeholder="Skills / Uburambe">
+    <textarea id="jobDescription" placeholder="Sobanura akazi n'ibisabwa..."></textarea>
+    <button onclick="addJob()">📤 Shyira akazi ku isoko</button>
+  </div>
+</div>
+</section>
+
+<!-- EMPLOYEES -->
+<section id="employees" class="panel hidden">
