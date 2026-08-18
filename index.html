@@ -2026,3 +2026,306 @@ async function loadJobs(){
 }
 
 </script>
+<script>
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+async function openNotifications(){
+
+ if(!user){
+
+  openLogin();
+
+  return;
+
+ }
+
+ const {data,error}=
+ await supabaseClient
+ .from("notifications")
+ .select("*")
+ .eq("user_id",user.id)
+ .order("created_at",{ascending:false});
+
+ if(error){
+
+  alert(error.message);
+
+  return;
+
+ }
+
+ document.getElementById("notifications")
+ .innerHTML=(data||[]).map(n=>`
+
+ <div class="notification">
+
+ <b>
+ 🔔 ${escapeHTML(n.title||"Zunivo")}
+ </b>
+
+ <br>
+
+ ${escapeHTML(n.body||"")}
+
+ </div>
+
+ `).join("") ||
+
+ "<p>Nta notifications.</p>";
+
+ document.getElementById("notificationModal")
+ .classList.add("show");
+
+}
+
+/* =========================
+   BROWSER NOTIFICATIONS
+========================= */
+
+async function enableNotifications(){
+
+ if(!("Notification" in window)){
+
+  alert(
+   "Browser yawe ntiyemera notifications."
+  );
+
+  return;
+
+ }
+
+ const permission=
+ await Notification.requestPermission();
+
+ if(permission==="granted"){
+
+  new Notification(
+   "Zunivo",
+   {
+    body:"Notifications zemewe neza."
+   }
+  );
+
+ }else{
+
+  alert(
+   "Notifications ntizemerewe."
+  );
+
+ }
+
+}
+
+/* =========================
+   REFERRAL
+========================= */
+
+async function copyReferral(){
+
+ const code=
+ document.getElementById("referralCode")
+ .textContent;
+
+ if(code==="-" )return;
+
+ try{
+
+  await navigator.clipboard.writeText(code);
+
+  alert(
+   "✅ Referral code yakopowe."
+  );
+
+ }catch(e){
+
+  alert(code);
+
+ }
+
+}
+
+/* =========================
+   LOCATION
+========================= */
+
+function findNearby(){
+
+ if(!navigator.geolocation){
+
+  alert(
+   "Phone/browser yawe ntiyemera Location."
+  );
+
+  return;
+
+ }
+
+ navigator.geolocation.getCurrentPosition(
+
+  position=>{
+
+   alert(
+    "📍 Location yawe yabonetse.\n"+
+    "Zunivo ishobora kuyikoresha mu kwerekana ibikwegereye."
+   );
+
+  },
+
+  ()=>{
+
+   alert(
+    "Emera Location muri browser yawe."
+   );
+
+  }
+
+ );
+
+}
+
+/* =========================
+   MODAL
+========================= */
+
+function closeModal(id){
+
+ document
+ .getElementById(id)
+ .classList.remove("show");
+
+}
+
+/* =========================
+   HELPERS
+========================= */
+
+function money(number){
+
+ return Number(number||0)
+ .toLocaleString("en-US")+" RWF";
+
+}
+
+function escapeHTML(value){
+
+ return String(value??"")
+ .replace(/[&<>"']/g,function(c){
+
+  return {
+
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#039;"
+
+  }[c];
+
+ });
+
+}
+
+/* =========================
+   REALTIME LIVE CHAT
+========================= */
+
+supabaseClient
+.channel("zunivo-live")
+.on(
+ "postgres_changes",
+ {
+  event:"INSERT",
+  schema:"public",
+  table:"messages"
+ },
+ payload=>{
+
+  if(
+   currentChat &&
+   payload.new.product_id===currentChat
+  ){
+
+   loadMessages();
+
+  }
+
+ }
+)
+.on(
+ "postgres_changes",
+ {
+  event:"INSERT",
+  schema:"public",
+  table:"comments"
+ },
+ payload=>{
+
+  if(
+   selectedProduct &&
+   payload.new.product_id===selectedProduct.id
+  ){
+
+   loadComments(
+    selectedProduct.id
+   );
+
+  }
+
+ }
+)
+.subscribe();
+
+/* =========================
+   AUTH SESSION
+========================= */
+
+(async function(){
+
+ const {data}=
+
+ await supabaseClient
+ .auth
+ .getSession();
+
+ if(data.session){
+
+  user=data.session.user;
+
+  await loadProfile();
+
+ }
+
+ loadProducts();
+
+})();
+
+/* =========================
+   AUTH STATE
+========================= */
+
+supabaseClient
+.auth
+.onAuthStateChange(
+ async(event,session)=>{
+
+  if(session){
+
+   user=session.user;
+
+   await loadProfile();
+
+  }else{
+
+   user=null;
+
+  }
+
+ });
+
+</script>
+
+</body>
+</html>
