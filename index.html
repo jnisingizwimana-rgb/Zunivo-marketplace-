@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#1769ff">
+
+<title>Zunivo Marketplace</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f4f7fb;
+ color:#172033;
+}
+
+button{
+ border:0;
+ border-radius:10px;
+ padding:11px 14px;
+ background:#1769ff;
+ color:white;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+input,textarea,select{
+ width:100%;
+ padding:12px;
+ margin:6px 0;
+ border:1px solid #d7dce5;
+ border-radius:10px;
+ font-size:15px;
+}
+
+header{
+ background:white;
+ position:sticky;
+ top:0;
+ z-index:100;
+ box-shadow:0 2px 10px #0001;
+}
+
+.head{
+ max-width:1100px;
+ margin:auto;
+ padding:10px 14px;
+}
+
+.top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.logo{
+ color:#1769ff;
+ font-size:24px;
+ font-weight:900;
+}
+
+.icon{
+ background:#edf3ff;
+ color:#1769ff;
+ padding:10px;
+}
+
+.nav{
+ display:flex;
+ gap:7px;
+ overflow:auto;
+ margin-top:10px;
+}
+
+.nav button{
+ background:#eef1f5;
+ color:#263247;
+ white-space:nowrap;
+}
+
+.container{
+ max-width:1100px;
+ margin:auto;
+ padding:15px;
+}
+
+.hero{
+ background:linear-gradient(135deg,#0750d8,#3187ff);
+ color:white;
+ padding:25px;
+ border-radius:20px;
+ margin-bottom:15px;
+}
+
+.hero h1{
+ margin-top:0;
+}
+
+.search{
+ background:white;
+ padding:12px;
+ border-radius:15px;
+ margin-bottom:15px;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+ gap:14px;
+}
+
+.card{
+ background:white;
+ border-radius:16px;
+ overflow:hidden;
+ box-shadow:0 3px 15px #0001;
+}
+
+.media{
+ width:100%;
+ height:200px;
+ object-fit:cover;
+ display:block;
+ background:#e8edf5;
+}
+
+.body{
+ padding:13px;
+}
+
+.price{
+ color:#1769ff;
+ font-size:20px;
+ font-weight:900;
+}
+
+.muted{
+ color:#707887;
+ font-size:13px;
+}
+
+.panel{
+ background:white;
+ border-radius:16px;
+ padding:17px;
+ margin-bottom:15px;
+ box-shadow:0 3px 14px #0001;
+}
+
+.hidden{
+ display:none!important;
+}
+
+.row{
+ display:flex;
+ gap:7px;
+ flex-wrap:wrap;
+ align-items:center;
+}
+
+.secondary{
+ background:#e9f0ff;
+ color:#1769ff;
+}
+
+.danger{
+ background:#ffe8e8;
+ color:#b42318;
+}
+
+.badge{
+ display:inline-block;
+ padding:5px 9px;
+ border-radius:20px;
+ background:#eaf1ff;
+ color:#1769ff;
+ font-size:12px;
+ font-weight:bold;
+}
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:#0008;
+ z-index:500;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:14px;
+}
+
+.modal.show{
+ display:flex;
+}
+
+.modalbox{
+ background:white;
+ width:min(600px,100%);
+ max-height:92vh;
+ overflow:auto;
+ border-radius:18px;
+ padding:18px;
+}
+
+.login{
+ position:fixed;
+ inset:0;
+ z-index:1000;
+ background:linear-gradient(135deg,#063da7,#3288ff);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:15px;
+}
+
+.loginbox{
+ width:min(480px,100%);
+ background:white;
+ padding:22px;
+ border-radius:22px;
+}
+
+.loginTitle{
+ text-align:center;
+ color:#1769ff;
+ font-size:30px;
+ font-weight:900;
+}
+
+.chat{
+ height:300px;
+ overflow:auto;
+ background:#f1f4f8;
+ border-radius:12px;
+ padding:10px;
+}
+
+.mymsg{
+ background:#dce9ff;
+ padding:9px;
+ border-radius:10px;
+ margin:5px 0;
+ text-align:right;
+}
+
+.othermsg{
+ background:white;
+ padding:9px;
+ border-radius:10px;
+ margin:5px 0;
+}
+
+.comment{
+ padding:10px;
+ border-bottom:1px solid #eee;
+}
+
+.menu{
+ position:absolute;
+ right:12px;
+ top:60px;
+ width:235px;
+ background:white;
+ border-radius:15px;
+ box-shadow:0 8px 30px #0003;
+ padding:8px;
+ display:none;
+}
+
+.menu.show{
+ display:block;
+}
+
+.menu button{
+ width:100%;
+ margin:3px 0;
+ background:white;
+ color:#172033;
+ text-align:left;
+}
+
+.statgrid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+ gap:10px;
+}
+
+.stat{
+ background:#f1f5ff;
+ padding:15px;
+ border-radius:13px;
+}
+
+.stat b{
+ font-size:22px;
+}
+
+.notification{
+ padding:11px;
+ border-bottom:1px solid #eee;
+}
+
+@media(max-width:600px){
+ .hero h1{font-size:24px}
+ .nav button{font-size:12px;padding:9px}
+ .media{height:180px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================= -->
+<!-- SUPABASE CONNECTION -->
+<!-- ============================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+"https://brettfrzuvyjrsbsjjml.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_aGs2zQzGZxOJYfuEznsvsQ_hyCkIXzYn";
+
+const supabaseClient =
+window.supabase.createClient(
+ SUPABASE_URL,
+ SUPABASE_KEY
+);
+
+let user=null;
+let selectedProduct=null;
+let currentChat=null;
+let products=[];
+
+</script>
+
+<!-- ============================= -->
+<!-- HEADER -->
+<!-- ============================= -->
+
+<header>
+
+<div class="head">
+
+<div class="top">
+
+<div class="logo">
+🛍️ Zunivo
+</div>
+
+<div class="row">
+
+<button class="icon" onclick="openNotifications()">
+🔔
+</button>
+
+<button class="icon" onclick="toggleMenu()">
+👤
+</button>
+
+</div>
+
+</div>
+
+<div id="profileMenu" class="menu">
+
+<button onclick="protectedPage('orders')">
+🛒 Orders
+</button>
+
+<button onclick="protectedPage('dashboard')">
+📊 Seller Dashboard
+</button>
+
+<button onclick="protectedPage('referral')">
+🎁 Referral
+</button>
+
+<button onclick="protectedPage('employees')">
+👥 Employees
+</button>
+
+<button onclick="protectedPage('profile')">
+👤 Profile
+</button>
+
+<button onclick="protectedPage('settings')">
+⚙️ Settings
+</button>
+
+<button onclick="logout()" class="danger">
+🚪 Logout
+</button>
+
+</div>
+
+<div class="nav">
+
+<button onclick="showPage('home')">
+🏠 Home
+</button>
+
+<button onclick="protectedPage('sell')">
+➕ Sell
+</button>
+
+<button onclick="protectedPage('jobs')">
+💼 Jobs
+</button>
+
+<button onclick="protectedPage('employees')">
+👥 Employees
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- ============================= -->
+<!-- HOME -->
+<!-- ============================= -->
+
+<main class="container">
+
+<section id="homePage">
+
+<div class="hero">
+
+<h1>
+Gura kandi ugurishe ibikwegereye
+</h1>
+
+<p>
+Zunivo ihuza abaguzi n'abacuruzi.
+</p>
+
+<button onclick="findNearby()">
+📍 Ibikwegereye
+</button>
+
+</div>
+
+<div class="search">
+
+<input
+id="searchBox"
+placeholder="🔎 Shakisha igicuruzwa..."
+oninput="loadProducts()"
+>
+
+</div>
+
+<h2>🛍️ Ibicuruzwa</h2>
+
+<div id="products" class="grid">
+
+<div class="panel">
+⏳ Turimo kuzana products...
+</div>
+
+</div>
+
+</section>
+
+<!-- ============================= -->
+<!-- SELL -->
+<!-- ============================= -->
+
+<section id="sellPage" class="panel hidden">
+
+<h2>➕ Shyira igicuruzwa</h2>
+
+<input id="productName"
+placeholder="Izina ry'igicuruzwa">
+
+<textarea
+id="productDescription"
+placeholder="Sobanura igicuruzwa">
+</textarea>
+
+<input
+id="productPrice"
+type="number"
+placeholder="Igiciro muri RWF">
+
+<input
+id="productCity"
+placeholder="Umujyi / Akarere">
+
+<select id="productCategory">
+
+<option>Imyenda</option>
+<option>Telefone</option>
+<option>Ibiribwa</option>
+<option>Ibikoresho</option>
+<option>Imodoka</option>
+<option>Inzu</option>
+<option>Ubwiza</option>
+<option>Ibindi</option>
+
+</select>
+
+<p>
+<b>📷 Ifoto cyangwa 🎥 Video</b>
+</p>
+
+<input
+id="productFile"
+type="file"
+accept="image/*,video/*"
+>
+
+<button onclick="publishProduct()">
+📤 Shyira ku isoko
+</button>
+
+<p id="uploadMessage" class="muted"></p>
+
+</section>
+
+<!-- ============================= -->
+<!-- ORDERS -->
+<!-- ============================= -->
+
+<section id="ordersPage" class="panel hidden">
+
+<h2>🛒 Orders</h2>
+
+<div id="ordersList">
+⏳ Turimo kuzana orders...
+</div>
+
+</section>
+
+<!-- ============================= -->
+<!-- DASHBOARD -->
+<!-- ============================= -->
+
+<section id="dashboardPage" class="panel hidden">
+
+<h2>📊 Seller Dashboard</h2>
+
+<div class="statgrid">
+
+<div class="stat">
+Products<br>
+<b id="statProducts">0</b>
+</div>
+
+<div class="stat">
+Orders<br>
+<b id="statOrders">0</b>
+</div>
+
+<div class="stat">
+Likes<br>
+<b id="statLikes">0</b>
+</div>
+
+<div class="stat">
+Sales<br>
+<b id="statSales">0 RWF</b>
+</div>
+
+</div>
+
+</section>
+
+<!-- ============================= -->
+<!-- REFERRAL -->
+<!-- ============================= -->
+
+<section id="referralPage" class="panel hidden">
+
+<h2>🎁 Referral</h2>
+
+<p>Code yawe:</p>
+
+<h2 id="referralCode">-</h2>
+
+<button onclick="copyReferral()">
+📋 Copy code
+</button>
+
+</section>
+
+<!-- ============================= -->
+<!-- EMPLOYEES -->
+<!-- ============================= -->
+
+<section id="employeesPage" class="panel hidden">
+
+<h2>👥 Employees</h2>
+
+<input
+id="employeeSearch"
+placeholder="Shakisha employee..."
+oninput="loadEmployees()"
+>
+
+<div class="panel">
+
+<h3>📝 Employee Profile</h3>
+
+<input id="employeeName"
+placeholder="Amazina">
+
+<input id="employeeJob"
+placeholder="Umwuga">
+
+<input id="employeeCity"
+placeholder="Umujyi">
+
+<input id="employeeSkills"
+placeholder="Skills">
+
+<input id="employeeExperience"
+placeholder="Uburambe">
+
+<textarea
+id="employeeAbout"
+placeholder="Amakuru">
+</textarea>
+
+<button onclick="createEmployee()">
+👤 Bika Profile
+</button>
+
+</div>
+
+<div id="employeeList"></div>
+
+</section>
+
+<!-- ============================= -->
+<!-- JOBS -->
+<!-- ============================= -->
+
+<section id="jobsPage" class="panel hidden">
+
+<h2>💼 Jobs</h2>
+
+<div class="panel">
+
+<input id="jobTitle" placeholder="Izina ry'akazi">
+
+<input id="jobCompany" placeholder="Company">
+
+<input id="jobCity" placeholder="Umujyi">
+
+<input id="jobSalary" placeholder="Umushahara">
+
+<textarea
+id="jobDescription"
+placeholder="Sobanura akazi">
+</textarea>
+
+<button onclick="createJob()">
+📤 Shyira Job
+</button>
+
+</div>
+
+<div id="jobList"></div>
+
+</section>
+
+<!-- ============================= -->
+<!-- PROFILE -->
+<!-- ============================= -->
+
+<section id="profilePage" class="panel hidden">
+
+<h2>👤 Profile</h2>
+
+<h3 id="profileName"></h3>
+
+<p id="profileEmail"></p>
+
+<input
+id="profileCity"
+placeholder="Umujyi">
+
+<input
+id="profileAvatar"
+placeholder="Profile picture URL">
+
+<button onclick="saveProfile()">
+💾 Bika
+</button>
+
+</section>
+
+<!-- ============================= -->
+<!-- SETTINGS -->
+<!-- ============================= -->
+
+<section id="settingsPage" class="panel hidden">
+
+<h2>⚙️ Settings</h2>
+
+<button onclick="enableNotifications()">
+🔔 Emera Notifications
+</button>
+
+</section>
+
+</main>
+
+<!-- ============================= -->
+<!-- LOGIN -->
+<!-- ============================= -->
+
+<div id="loginModal" class="modal">
+
+<div class="modalbox">
+
+<h2>🔐 Kwinjira muri Zunivo</h2>
+
+<div class="row">
+
+<button
+id="sellerTab"
+onclick="setLoginRole('seller')">
+🏪 Umucuruzi
+</button>
+
+<button
+id="customerTab"
+class="secondary"
+onclick="setLoginRole('customer')">
+🛒 Umukiriya
+</button>
+
+</div>
+
+<input
+id="loginName"
+placeholder="Amazina">
+
+<input
+id="loginEmail"
+type="email"
+placeholder="Email">
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Password">
+
+<input
+id="loginCity"
+placeholder="Umujyi">
+
+<div class="row">
+
+<button onclick="login()">
+🔐 Injira
+</button>
+
+<button
+class="secondary"
+onclick="register()">
+📝 Fungura Account
+</button>
+
+</div>
+
+<p id="loginMessage" class="muted"></p>
+
+<button
+class="secondary"
+onclick="closeLogin()">
+← Garuka kuri Home
+</button>
+
+</div>
+
+</div>
+
+<!-- ============================= -->
+<!-- PRODUCT DETAILS -->
+<!-- ============================= -->
+
+<div id="productModal" class="modal">
+
+<div class="modalbox">
+
+<button
+class="secondary"
+onclick="closeModal('productModal')">
+← Garuka
+</button>
+
+<div id="productDetails"></div>
+
+</div>
+
+</div>
+
+<!-- ============================= -->
+<!-- CHAT -->
+<!-- ============================= -->
+
+<div id="chatModal" class="modal">
+
+<div class="modalbox">
+
+<button
+class="secondary"
+onclick="closeModal('chatModal')">
+← Garuka
+</button>
+
+<h2>💬 Live Chat</h2>
+
+<div id="chatBox" class="chat"></div>
+
+<input
+id="chatMessage"
+placeholder="Andika ubutumwa...">
+
+<button onclick="sendMessage()">
+📤 Ohereza
+</button>
+
+</div>
+
+</div>
+
+<!-- ============================= -->
+<!-- NOTIFICATIONS -->
+<!-- ============================= -->
+
+<div id="notificationModal" class="modal">
+
+<div class="modalbox">
+
+<button
+class="secondary"
+onclick="closeModal('notificationModal')">
+← Garuka
+</button>
+
+<h2>🔔 Notifications</h2>
+
+<div id="notifications"></div>
+
+</div>
+
+</div>
