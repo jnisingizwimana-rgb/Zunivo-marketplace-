@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#1769ff">
 
-<title>Zunivo Marketplace</title>
+<title>Zunivo Marketplace<title>
 
 <style>
 *{box-sizing:border-box}
@@ -308,8 +308,8 @@ header{
  .nav button{font-size:12px;padding:9px}
  .media{height:180px}
 }
-</style>
-</head>
+<style>
+<head>
 
 <body>
 
@@ -338,7 +338,7 @@ let selectedProduct=null;
 let currentChat=null;
 let products=[];
 
-</script>
+<script>
 
 <!-- ============================= -->
 <!-- HEADER -->
@@ -352,77 +352,77 @@ let products=[];
 
 <div class="logo">
 🛍️ Zunivo
-</div>
+<div>
 
 <div class="row">
 
 <button class="icon" onclick="openNotifications()">
 🔔
-</button>
+<button>
 
 <button class="icon" onclick="toggleMenu()">
 👤
-</button>
+<button>
 
-</div>
+<div>
 
-</div>
+<div>
 
 <div id="profileMenu" class="menu">
 
 <button onclick="protectedPage('orders')">
 🛒 Orders
-</button>
+<button>
 
 <button onclick="protectedPage('dashboard')">
 📊 Seller Dashboard
-</button>
+<button>
 
 <button onclick="protectedPage('referral')">
 🎁 Referral
-</button>
+<button>
 
 <button onclick="protectedPage('employees')">
 👥 Employees
-</button>
+<button>
 
 <button onclick="protectedPage('profile')">
 👤 Profile
-</button>
+<button>
 
 <button onclick="protectedPage('settings')">
 ⚙️ Settings
-</button>
+<button>
 
 <button onclick="logout()" class="danger">
 🚪 Logout
-</button>
+<button>
 
-</div>
+<div>
 
 <div class="nav">
 
 <button onclick="showPage('home')">
 🏠 Home
-</button>
+<button>
 
 <button onclick="protectedPage('sell')">
 ➕ Sell
-</button>
+<button>
 
 <button onclick="protectedPage('jobs')">
 💼 Jobs
-</button>
+<button>
 
 <button onclick="protectedPage('employees')">
 👥 Employees
-</button>
+<button>
 
-</div>
+<div>
 
-</div>
+<div>
 
-</header>
+<header>
 
 <!-- ============================= -->
 <!-- HOME -->
@@ -436,17 +436,17 @@ let products=[];
 
 <h1>
 Gura kandi ugurishe ibikwegereye
-</h1>
+<h1>
 
 <p>
 Zunivo ihuza abaguzi n'abacuruzi.
-</p>
+<p>
 
 <button onclick="findNearby()">
 📍 Ibikwegereye
-</button>
+<button>
 
-</div>
+<div>
 
 <div class="search">
 
@@ -456,7 +456,7 @@ placeholder="🔎 Shakisha igicuruzwa..."
 oninput="loadProducts()"
 >
 
-</div>
+<div>
 
 <h2>🛍️ Ibicuruzwa</h2>
 
@@ -464,11 +464,11 @@ oninput="loadProducts()"
 
 <div class="panel">
 ⏳ Turimo kuzana products...
-</div>
+<div>
 
-</div>
+<div>
 
-</section>
+<section>
 
 <!-- ============================= -->
 <!-- SELL -->
@@ -484,7 +484,7 @@ placeholder="Izina ry'igicuruzwa">
 <textarea
 id="productDescription"
 placeholder="Sobanura igicuruzwa">
-</textarea>
+<textarea>
 
 <input
 id="productPrice"
@@ -497,14 +497,14 @@ placeholder="Umujyi / Akarere">
 
 <select id="productCategory">
 
-<option>Imyenda</option>
-<option>Telefone</option>
-<option>Ibiribwa</option>
-<option>Ibikoresho</option>
-<option>Imodoka</option>
-<option>Inzu</option>
-<option>Ubwiza</option>
-<option>Ibindi</option>
+<option>Imyenda<option>
+<option>Telefone<option>
+<option>Ibiribwa<option>
+<option>Ibikoresho<option>
+<option>Imodoka<option>
+<option>Inzu<option>
+<option>Ubwiza<option>
+<option>Ibindi<option>
 
 </select>
 
@@ -546,7 +546,7 @@ accept="image/*,video/*"
 
 <section id="dashboardPage" class="panel hidden">
 
-<h2>📊 Seller Dashboard</h2>
+<h2>📊 Seller Dashboard<h2>
 
 <div class="statgrid">
 
@@ -557,17 +557,17 @@ Products<br>
 
 <div class="stat">
 Orders<br>
-<b id="statOrders">0</b>
+<b id="statOrders">0<b>
 </div>
 
 <div class="stat">
 Likes<br>
-<b id="statLikes">0</b>
+<b id="statLikes">0<b>
 </div>
 
 <div class="stat">
 Sales<br>
-<b id="statSales">0 RWF</b>
+<b id="statSales">0 RWF<b>
 </div>
 
 </div>
@@ -580,17 +580,17 @@ Sales<br>
 
 <section id="referralPage" class="panel hidden">
 
-<h2>🎁 Referral</h2>
+<h2>🎁 Referral<h2>
 
-<p>Code yawe:</p>
+<p>Code yawe:<p>
 
-<h2 id="referralCode">-</h2>
+<h2 id="referralCode">-<h2>
 
 <button onclick="copyReferral()">
 📋 Copy code
-</button>
+<button>
 
-</section>
+<section>
 
 <!-- ============================= -->
 <!-- EMPLOYEES -->
@@ -598,7 +598,7 @@ Sales<br>
 
 <section id="employeesPage" class="panel hidden">
 
-<h2>👥 Employees</h2>
+<h2>👥 Employees<h2>
 
 <input
 id="employeeSearch"
@@ -628,17 +628,17 @@ placeholder="Uburambe">
 <textarea
 id="employeeAbout"
 placeholder="Amakuru">
-</textarea>
+<textarea>
 
 <button onclick="createEmployee()">
 👤 Bika Profile
-</button>
+<button>
 
-</div>
+<div>
 
 <div id="employeeList"></div>
 
-</section>
+<section>
 
 <!-- ============================= -->
 <!-- JOBS -->
@@ -661,15 +661,15 @@ placeholder="Amakuru">
 <textarea
 id="jobDescription"
 placeholder="Sobanura akazi">
-</textarea>
+<textarea>
 
 <button onclick="createJob()">
 📤 Shyira Job
-</button>
+<button>
 
-</div>
+<div>
 
-<div id="jobList"></div>
+<div id="jobList"><div>
 
 </section>
 
@@ -679,11 +679,11 @@ placeholder="Sobanura akazi">
 
 <section id="profilePage" class="panel hidden">
 
-<h2>👤 Profile</h2>
+<h2>👤 Profile<h2>
 
-<h3 id="profileName"></h3>
+<h3 id="profileName"><h3>
 
-<p id="profileEmail"></p>
+<p id="profileEmail"><p>
 
 <input
 id="profileCity"
@@ -695,9 +695,9 @@ placeholder="Profile picture URL">
 
 <button onclick="saveProfile()">
 💾 Bika
-</button>
+<button>
 
-</section>
+<section>
 
 <!-- ============================= -->
 <!-- SETTINGS -->
@@ -705,15 +705,15 @@ placeholder="Profile picture URL">
 
 <section id="settingsPage" class="panel hidden">
 
-<h2>⚙️ Settings</h2>
+<h2>⚙️ Settings<h2>
 
 <button onclick="enableNotifications()">
 🔔 Emera Notifications
-</button>
+<button>
 
-</section>
+<section>
 
-</main>
+<main>
 
 <!-- ============================= -->
 <!-- LOGIN -->
@@ -723,7 +723,7 @@ placeholder="Profile picture URL">
 
 <div class="modalbox">
 
-<h2>🔐 Kwinjira muri Zunivo</h2>
+<h2>🔐 Kwinjira muri Zunivo<h2>
 
 <div class="row">
 
@@ -731,16 +731,16 @@ placeholder="Profile picture URL">
 id="sellerTab"
 onclick="setLoginRole('seller')">
 🏪 Umucuruzi
-</button>
+<button>
 
 <button
 id="customerTab"
 class="secondary"
 onclick="setLoginRole('customer')">
 🛒 Umukiriya
-</button>
+<button>
 
-</div>
+<div>
 
 <input
 id="loginName"
@@ -764,27 +764,27 @@ placeholder="Umujyi">
 
 <button onclick="login()">
 🔐 Injira
-</button>
+<button>
 
 <button
 class="secondary"
 onclick="register()">
 📝 Fungura Account
-</button>
+<button>
 
-</div>
+<div>
 
-<p id="loginMessage" class="muted"></p>
+<p id="loginMessage" class="muted"><p>
 
 <button
 class="secondary"
 onclick="closeLogin()">
 ← Garuka kuri Home
-</button>
+<button>
 
-</div>
+<div>
 
-</div>
+<div>
 
 <!-- ============================= -->
 <!-- PRODUCT DETAILS -->
@@ -798,13 +798,13 @@ onclick="closeLogin()">
 class="secondary"
 onclick="closeModal('productModal')">
 ← Garuka
-</button>
+<button>
 
-<div id="productDetails"></div>
+<div id="productDetails"><div>
 
-</div>
+<div>
 
-</div>
+<div>
 
 <!-- ============================= -->
 <!-- CHAT -->
@@ -818,11 +818,11 @@ onclick="closeModal('productModal')">
 class="secondary"
 onclick="closeModal('chatModal')">
 ← Garuka
-</button>
+<button>
 
-<h2>💬 Live Chat</h2>
+<h2>💬 Live Chat<h2>
 
-<div id="chatBox" class="chat"></div>
+<div id="chatBox" class="chat"><div>
 
 <input
 id="chatMessage"
@@ -830,11 +830,11 @@ placeholder="Andika ubutumwa...">
 
 <button onclick="sendMessage()">
 📤 Ohereza
-</button>
+<button>
 
-</div>
+<div>
 
-</div>
+<div>
 
 <!-- ============================= -->
 <!-- NOTIFICATIONS -->
@@ -848,20 +848,20 @@ placeholder="Andika ubutumwa...">
 class="secondary"
 onclick="closeModal('notificationModal')">
 ← Garuka
-</button>
+<button>
 
 <h2>🔔 Notifications</h2>
 
 <div id="notifications"></div>
 
-</div>
+<div>
 
-</div>
+<div>
 <script>
 
-/* =========================
+ =========================
    LOGIN
-========================= */
+========================= 
 
 let loginRole="customer";
 
@@ -977,9 +977,9 @@ async function login(){
 
 }
 
-/* =========================
+=========================
    LOGOUT
-========================= */
+========================= 
 
 async function logout(){
 
@@ -990,10 +990,9 @@ async function logout(){
  location.reload();
 
 }
-
-/* =========================
+=========================
    PAGE CONTROL
-========================= */
+=========================
 
 function showPage(page){
 
@@ -1052,10 +1051,9 @@ function protectedPage(page){
  if(page==="jobs") loadJobs();
 
 }
-
-/* =========================
+=========================
    MENU
-========================= */
+=========================
 
 function toggleMenu(){
 
@@ -1064,9 +1062,9 @@ function toggleMenu(){
 
 }
 
-/* =========================
+ =========================
    PRODUCTS
-========================= */
+========================= 
 
 async function loadProducts(){
 
@@ -1093,7 +1091,7 @@ async function loadProducts(){
  if(error){
 
   document.getElementById("products").innerHTML=
-  `<div class="panel">${error.message}</div>`;
+  `<div class="panel">${error.message}<div>`;
 
   return;
 
@@ -1114,7 +1112,7 @@ function renderProducts(list){
   box.innerHTML=
   `<div class="panel">
    Nta products ziraboneka ubu.
-  </div>`;
+  <div>`;
 
   return;
 
@@ -1133,7 +1131,7 @@ function renderProducts(list){
     class="media"
     src="${p.media_url}"
     controls>
-   </video>`
+   <video>`
 
   :
 
@@ -1148,47 +1146,47 @@ function renderProducts(list){
 
  <span class="badge">
  ${escapeHTML(p.category||"Ibindi")}
- </span>
+ <span>
 
  <h3>
  ${escapeHTML(p.name)}
- </h3>
+ <h3>
 
  <div class="price">
  ${money(p.price)}
- </div>
+ <div>
 
  <p>
  ${escapeHTML(p.description||"")}
- </p>
+ <p>
 
  <div class="muted">
  📍 ${escapeHTML(p.city||"")}
- </div>
+ <div>
 
  <div class="row" style="margin-top:10px">
 
  <button onclick="openProduct('${p.id}')">
  👀 Reba
- </button>
+ <button>
 
  <button
  class="secondary"
  onclick="likeProduct('${p.id}')">
- ❤️ <span id="like-${p.id}">0</span>
- </button>
+ ❤️ <span id="like-${p.id}">0<span>
+ <button>
 
  <button
  class="secondary"
  onclick="openChat('${p.id}')">
  💬 Chat
- </button>
+ <button>
 
- </div>
+ <div>
 
- </div>
+ <div>
 
- </article>
+ <article>
 
  `).join("");
 
@@ -1209,9 +1207,9 @@ async function loadLikeCount(id){
 
 }
 
-/* =========================
+=========================
    LIKE
-========================= */
+========================= 
 
 async function likeProduct(id){
 
@@ -1255,9 +1253,9 @@ async function likeProduct(id){
 
 }
 
-/* =========================
+=========================
    PRODUCT DETAILS
-========================= */
+========================= 
 
 async function openProduct(id){
 
@@ -1278,7 +1276,7 @@ async function openProduct(id){
    class="media"
    src="${p.media_url}"
    controls>
-  </video>`
+  <video>`
 
   :
 
@@ -1291,49 +1289,49 @@ async function openProduct(id){
 
  <h2>
  ${escapeHTML(p.name)}
- </h2>
+ <h2>
 
  <div class="price">
  ${money(p.price)}
- </div>
+ <div>
 
  <p>
  ${escapeHTML(p.description||"")}
- </p>
+ <p>
 
  <p class="muted">
  📍 ${escapeHTML(p.city||"")}
- </p>
+ <p>
 
  <div class="row">
 
  <button onclick="buyProduct('${p.id}')">
  🛒 Gura
- </button>
+ <button>
 
  <button
  class="secondary"
  onclick="likeProduct('${p.id}')">
  ❤️ Like
- </button>
+ <button>
 
  <button
  class="secondary"
  onclick="openChat('${p.id}')">
  💬 Live Chat
- </button>
+ <button>
 
- </div>
+ <div>
 
  <hr>
 
  <h3>
  💬 Comments
- </h3>
+ <h3>
 
  <div id="comments">
  ⏳
- </div>
+ <div>
 
  <input
  id="commentInput"
@@ -1341,7 +1339,7 @@ async function openProduct(id){
 
  <button onclick="addComment('${p.id}')">
  💬 Ohereza
- </button>
+ <button>
 
  `;
 
@@ -1352,9 +1350,9 @@ async function openProduct(id){
 
 }
 
-/* =========================
+=========================
    COMMENTS
-========================= */
+========================= 
 
 async function loadComments(productId){
 
@@ -1381,13 +1379,13 @@ async function loadComments(productId){
 
  <b>
  ${escapeHTML(c.profiles?.name||"User")}
- </b>
+ <b>
 
  <br>
 
  ${escapeHTML(c.body)}
 
- </div>
+ <div>
 
  `).join("") ||
 
@@ -1436,9 +1434,9 @@ async function addComment(productId){
 
 }
 
-/* =========================
+=========================
    LIVE CHAT
-========================= */
+========================= 
 
 async function openChat(productId){
 
@@ -1488,13 +1486,13 @@ async function loadMessages(){
 
  <b>
  ${escapeHTML(m.profiles?.name||"User")}
- </b>
+ <b>
 
  <br>
 
  ${escapeHTML(m.body)}
 
- </div>
+ <div>
 
  `).join("");
 
@@ -1537,9 +1535,9 @@ async function sendMessage(){
 
 }
 
-/* =========================
+=========================
    BUY / ORDERS
-========================= */
+========================= 
 
 async function buyProduct(id){
 
@@ -1580,9 +1578,9 @@ async function buyProduct(id){
 
 }
 
-/* =========================
+=========================
    SELL PRODUCT
-========================= */
+=========================
 
 async function publishProduct(){
 
@@ -1606,7 +1604,7 @@ async function publishProduct(){
  }
 
  const path=
- user.id+"/"+Date.now()+"-"+file.name;
+ user.id+"+Date.now()+"-"+file.name;
 
  document.getElementById("uploadMessage")
  .textContent="⏳ Turimo kohereza...";
@@ -1659,7 +1657,7 @@ async function publishProduct(){
   media_url:publicURL,
 
   media_type:
-  file.type.startsWith("video/")
+  file.type.startsWith("video")
   ?"video"
   :"image"
 
@@ -1683,9 +1681,9 @@ async function publishProduct(){
 
 }
 
-/* =========================
+=========================
    ORDERS
-========================= */
+=========================
 
 async function loadOrders(){
 
@@ -1728,13 +1726,13 @@ async function loadOrders(){
 
  `).join("") ||
 
- "<p>Nta orders uragira.</p>";
+ "<p>Nta orders uragira.<p>";
 
 }
 
-/* =========================
+ =========================
    DASHBOARD
-========================= */
+========================= 
 
 async function loadDashboard(){
 
@@ -1758,9 +1756,9 @@ async function loadDashboard(){
 
 }
 
-/* =========================
+=========================
    PROFILE
-========================= */
+========================= 
 
 async function loadProfile(){
 
@@ -1791,9 +1789,9 @@ async function loadProfile(){
 
 }
 
-/* =========================
+=========================
    SAVE PROFILE
-========================= */
+========================= 
 
 async function saveProfile(){
 
@@ -1821,9 +1819,9 @@ async function saveProfile(){
 
 }
 
-/* =========================
+=========================
    EMPLOYEES
-========================= */
+========================= 
 
 async function createEmployee(){
 
@@ -1907,33 +1905,33 @@ async function loadEmployees(){
 
  <h3>
  👤 ${escapeHTML(e.name)}
- </h3>
+ <h3>
 
  <b>
  💼 ${escapeHTML(e.job)}
- </b>
+ <b>
 
  <p>
  📍 ${escapeHTML(e.city)}
- </p>
+ <p>
 
  <p>
  Skills: ${escapeHTML(e.skills||"")}
- </p>
+ <p>
 
  <p>
  ${escapeHTML(e.about||"")}
- </p>
+ <p>
 
- </div>
+ <div>
 
  `).join("");
 
 }
 
-/* =========================
+ =========================
    JOBS
-========================= */
+========================= 
 
 async function createJob(){
 
@@ -2001,36 +1999,36 @@ async function loadJobs(){
 
  <h3>
  💼 ${escapeHTML(j.title)}
- </h3>
+ <h3>
 
  <b>
  🏢 ${escapeHTML(j.company)}
- </b>
+ <b>
 
  <p>
  📍 ${escapeHTML(j.city)}
- </p>
+ <p>
 
  <p>
  💰 ${escapeHTML(j.salary||"")}
- </p>
+ <p>
 
  <p>
  ${escapeHTML(j.description||"")}
- </p>
+ <p>
 
- </div>
+ <div>
 
  `).join("");
 
 }
 
-</script>
+<script>
 <script>
 
-/* =========================
+=========================
    NOTIFICATIONS
-========================= */
+========================= 
 
 async function openNotifications(){
 
@@ -2064,26 +2062,26 @@ async function openNotifications(){
 
  <b>
  🔔 ${escapeHTML(n.title||"Zunivo")}
- </b>
+ <b>
 
  <br>
 
  ${escapeHTML(n.body||"")}
 
- </div>
+ <div>
 
  `).join("") ||
 
- "<p>Nta notifications.</p>";
+ "<p>Nta notifications.<p>";
 
  document.getElementById("notificationModal")
  .classList.add("show");
 
 }
 
-/* =========================
+ =========================
    BROWSER NOTIFICATIONS
-========================= */
+========================= 
 
 async function enableNotifications(){
 
@@ -2119,9 +2117,9 @@ async function enableNotifications(){
 
 }
 
-/* =========================
+ =========================
    REFERRAL
-========================= */
+========================= 
 
 async function copyReferral(){
 
@@ -2147,9 +2145,9 @@ async function copyReferral(){
 
 }
 
-/* =========================
+=========================
    LOCATION
-========================= */
+========================= 
 
 function findNearby(){
 
@@ -2168,7 +2166,7 @@ function findNearby(){
   position=>{
 
    alert(
-    "📍 Location yawe yabonetse.\n"+
+    "📍 Location yawe yabonetse.n"+
     "Zunivo ishobora kuyikoresha mu kwerekana ibikwegereye."
    );
 
@@ -2186,9 +2184,9 @@ function findNearby(){
 
 }
 
-/* =========================
+=========================
    MODAL
-========================= */
+========================= 
 
 function closeModal(id){
 
@@ -2198,9 +2196,9 @@ function closeModal(id){
 
 }
 
-/* =========================
+ =========================
    HELPERS
-========================= */
+========================= 
 
 function money(number){
 
@@ -2228,9 +2226,9 @@ function escapeHTML(value){
 
 }
 
-/* =========================
+ =========================
    REALTIME LIVE CHAT
-========================= */
+========================= 
 
 supabaseClient
 .channel("zunivo-live")
@@ -2278,9 +2276,9 @@ supabaseClient
 )
 .subscribe();
 
-/* =========================
+=========================
    AUTH SESSION
-========================= */
+========================= 
 
 (async function(){
 
@@ -2302,9 +2300,9 @@ supabaseClient
 
 })();
 
-/* =========================
+=========================
    AUTH STATE
-========================= */
+========================= 
 
 supabaseClient
 .auth
@@ -2325,7 +2323,7 @@ supabaseClient
 
  });
 
-</script>
+<script>
 
-</body>
-</html>
+<body>
+<html>
