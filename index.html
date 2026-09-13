@@ -496,18 +496,61 @@ $("paymentModal").classList.add("show");
 }
 function closePayment(){$("paymentModal").classList.remove("show")}
 async function submitPayment(){
-if(!user){openAuth();return}
-const method=document.querySelector('input[name="paymentMethod"]:checked')?.value||"mtn";
-const p=paymentPurpose;if(!p)return;
-const row={user_id:user.id,purpose:p.type,amount:p.amount,payment_method:method,status:"pending",product_id:p.productId||null};
-const {data,error}=await supabaseClient.from("payments").insert(row).select().single();
-if(error){$("paymentMessage").innerHTML=`<span class="error">${escapeHTML(error.message)}</span>`;return}
-$("paymentMessage").innerHTML=`<span class="success">Payment request #${escapeHTML(data.id)} yabitswe. Tegereza verification. Product/Jobs/Exam ntibifunguka mbere ya verification.</span>`;
-if(p.type==="listing")$("sellMessage").textContent="Payment request yoherejwe. Product izajya public gusa payment imaze verified.";
-if(p.type==="job_search")await refreshJobAccess();
-if(p.type==="exam")await refreshExamAccess();
-}
+  if(!user){
+    openAuth();
+    return;
+  }
 
+  const method =
+    document.querySelector('input[name="paymentMethod"]:checked')?.value || "mtn";
+
+  const p = paymentPurpose;
+
+  if(!p){
+    $("paymentMessage").innerHTML =
+      '<span class="error">Payment information ntabwo ibonetse.</span>';
+    return;
+  }
+
+  const row = {
+    user_id: user.id,
+    purpose: p.type,
+    amount: p.amount,
+    method: method,
+    status: "pending",
+    product_id: p.productId || null
+  };
+
+  const {data,error} = await supabaseClient
+    .from("payments")
+    .insert(row)
+    .select()
+    .single();
+
+  if(error){
+    $("paymentMessage").innerHTML =
+      `<span class="error">${escapeHTML(error.message)}</span>`;
+    return;
+  }
+
+  $("paymentMessage").innerHTML =
+    `<span class="success">
+      Payment request #${escapeHTML(data.id)}
+      yabitswe. Tegereza verification.
+    </span>`;
+
+  if(p.type==="listing"){
+    $("sellMessage").textContent =
+      "Payment request yoherejwe. Product izajya public gusa payment imaze verified.";
+  }
+
+  if(p.type==="job_search"){
+    await refreshJobAccess();
+  }
+
+  if(p.type==="exam"){
+    await refreshExamAccess();
+  {
 async function refreshJobAccess(){
 if(!user)return;
 const {data,error}=await supabaseClient.rpc("has_verified_job_access",{p_user_id:user.id});
