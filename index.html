@@ -395,6 +395,16 @@ const demoJobs=[
 function $(id){return document.getElementById(id)}
 function money(n){return Number(n||0).toLocaleString("en-US")+" RWF"}
 function escapeHTML(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+ 
+  async function refreshUser(){
+  const {data} =
+    await supabaseClient.auth.getUser();
+
+  user = data.user || null;
+
+  await updateAdminUI();
+
+}
 
 async function init(){
 const {data}=await supabaseClient.auth.getSession();
