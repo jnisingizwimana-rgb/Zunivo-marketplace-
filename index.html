@@ -407,17 +407,48 @@ function escapeHTML(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;",
 }
 
 async function init(){
-const {data}=await supabaseClient.auth.getSession();
-user=data.session?.user||null;
-supabaseClient.auth.onAuthStateChange((_event,session)=>{
-user=session?.user||null;
-setTimeout(async()=>{if(user)await loadProfile();renderProducts();},0);
-});
-await loadProducts();
-if(user)await loadProfile();
-renderProducts();
-await refreshJobAccess();
+
+  const {data} =
+    await supabaseClient.auth.getSession();
+
+  user = data.session?.user || null;
+
+  // Check admin immediately
+  await updateAdminUI();
+
+  supabaseClient.auth.onAuthStateChange(
+    (_event, session) => {
+
+      user = session?.user || null;
+
+      setTimeout(async () => {
+
+        // Update Admin button after login/logout
+        await updateAdminUI();
+
+        if(user){
+          await loadProfile();
+        }
+
+        renderProducts();
+
+      }, 0);
+    }
+  );
+
+  await loadProducts();
+
+  if(user){
+    await loadProfile();
+  }
+
+  renderProducts();
+
+  if(user){
+    await refreshJobAccess();
+  }
 }
+
 init();
 
 function showPage(page){
@@ -465,8 +496,18 @@ const {error}=await supabaseClient.auth.verifyOtp({phone,token,type:"sms"});
 $("authMessage").textContent=error?error.message:"Phone verified.";
 if(!error)closeAuth();
 }
-async function logout(){await supabaseClient.auth.signOut();user=null;showPage("home")}
 
+async function logout(){
+
+  await supabaseClient.auth.signOut();
+
+  user = null;
+
+  await updateAdminUI();
+
+  showPage("home");
+}
+  
 async function loadProducts(){
 try{
 const {data,error}=await supabaseClient.from("products").select("*").eq("status","active").order("created_at",{ascending:false});
