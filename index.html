@@ -701,6 +701,385 @@ $("bar4").style.width=Math.min(100,(orders||0)*10)+"%";
 }
 
 document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal").forEach(m=>m.classList.remove("show"))});
+  // =========================================================
+// ZUNIVO ADMIN PAYMENT DASHBOARD
+// =========================================================
+
+const ZUNIVO_ADMIN_EMAIL = "jnisingizwimana@gmail.com";
+
+
+// ---------------------------------------------------------
+// CHECK ADMIN
+// ---------------------------------------------------------
+
+async function isZunivoAdmin(){
+
+  if(!user){
+    return false;
+  }
+
+  const email = (
+    user.email ||
+    ""
+  ).toLowerCase()
+   .trim();
+
+  return email === ZUNIVO_ADMIN_EMAIL;
+}
+
+
+// ---------------------------------------------------------
+// SHOW / HIDE ADMIN BUTTON
+// ---------------------------------------------------------
+
+async function updateAdminUI(){
+
+  const adminBtn = document.getElementById("adminNavBtn");
+
+  if(!adminBtn){
+    return;
+  }
+
+  const admin = await isZunivoAdmin();
+
+  adminBtn.style.display =
+    admin ? "inline-flex" : "none";
+}
+
+
+// ---------------------------------------------------------
+// OPEN ADMIN DASHBOARD
+// ---------------------------------------------------------
+
+async function showAdminDashboard(){
+
+  const admin = await isZunivoAdmin();
+
+  if(!admin){
+
+    alert("Nturi Admin wa Zunivo.");
+
+    return;
+  }
+
+  // Hide normal pages
+  document.querySelectorAll(".page").forEach(page => {
+    page.style.display = "none";
+  });
+
+  const adminPage =
+    document.getElementById("adminPage");
+
+  if(adminPage){
+    adminPage.style.display = "block";
+  }
+
+  await loadAdminPayments();
+}
+
+
+// ---------------------------------------------------------
+// LOAD PAYMENTS
+// ---------------------------------------------------------
+
+async function loadAdminPayments(){
+
+  const admin = await isZunivoAdmin();
+
+  if(!admin){
+
+    document.getElementById("adminMessage").textContent =
+      "Nturi Admin.";
+
+    return;
+  }
+
+  const box =
+    document.getElementById("adminPaymentList");
+
+  const message =
+    document.getElementById("adminMessage");
+
+  box.innerHTML =
+    `<div style="padding:20px;text-align:center;">
+      ⏳ Turimo gushaka payments...
+    </div>`;
+
+  message.textContent = "";
+
+  const {data,error} =
+    await supabaseClient.rpc(
+      "admin_get_payments"
+    );
+
+  if(error){
+
+    box.innerHTML = "";
+
+    message.textContent =
+      "❌ " + error.message;
+
+    return;
+  }
+
+  if(!data || data.length === 0){
+
+    box.innerHTML = `
+      <div style="
+        padding:25px;
+        text-align:center;
+        background:#f5f5f5;
+        border-radius:14px;
+      ">
+        💳 Nta payments ziraboneka.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML =
+    data.map(payment => {
+
+      const status =
+        payment.status || "pending";
+
+      let statusText = "⏳ Pending";
+
+      if(status === "verified"){
+        statusText = "✅ Verified";
+      }
+
+      if(status === "rejected"){
+        statusText = "❌ Rejected";
+      }
+
+      const amount =
+        Number(payment.amount || 0)
+          .toLocaleString("en-US");
+
+      const created =
+        payment.created_at
+          ? new Date(payment.created_at)
+              .toLocaleString()
+          : "-";
+
+      const reference =
+        payment.transaction_reference || "-";
+
+      const method =
+        payment.method || "-";
+
+      const purpose =
+        payment.purpose || "-";
+
+      return `
+
+        <div style="
+          background:#fff;
+          border:1px solid #ddd;
+          border-radius:16px;
+          padding:16px;
+          margin-bottom:12px;
+          box-shadow:0 2px 8px rgba(0,0,0,.06);
+        ">
+
+          <div style="
+            display:flex;
+            justify-content:space-between;
+            gap:10px;
+            flex-wrap:wrap;
+          ">
+
+            <strong>
+              💰 ${amount} RWF
+            </strong>
+
+            <strong>
+              ${statusText}
+            </strong>
+
+          </div>
+
+          <hr>
+
+          <div>
+            <b>Purpose:</b>
+            ${purpose}
+          </div>
+
+          <div>
+            <b>Method:</b>
+            ${method}
+          </div>
+
+          <div style="
+            word-break:break-all;
+          ">
+            <b>Reference:</b>
+            ${reference}
+          </div>
+
+          <div>
+            <b>Date:</b>
+            ${created}
+          </div>
+
+          ${
+            status === "pending"
+
+            ? `
+
+              <div style="
+                display:flex;
+                gap:10px;
+                margin-top:15px;
+              ">
+
+                <button
+                  onclick="verifyPayment('${payment.id}')"
+                  style="
+                    flex:1;
+                    padding:12px;
+                    border:0;
+                    border-radius:10px;
+                    cursor:pointer;
+                    background:#16a34a;
+                    color:#fff;
+                    font-weight:700;
+                  ">
+                  ✅ Verify
+                </button>
+
+                <button
+                  onclick="rejectPayment('${payment.id}')"
+                  style="
+                    flex:1;
+                    padding:12px;
+                    border:0;
+                    border-radius:10px;
+                    cursor:pointer;
+                    background:#dc2626;
+                    color:#fff;
+                    font-weight:700;
+                  ">
+                  ❌ Reject
+                </button>
+
+              </div>
+
+            `
+
+            : ""
+
+          }
+
+        </div>
+
+      `;
+
+    }).join("");
+}
+
+
+// ---------------------------------------------------------
+// VERIFY PAYMENT
+// ---------------------------------------------------------
+
+async function verifyPayment(paymentId){
+
+  const admin = await isZunivoAdmin();
+
+  if(!admin){
+
+    alert("Nturi Admin.");
+
+    return;
+  }
+
+  const ok =
+    confirm(
+      "Urashaka kwemeza iyi payment?"
+    );
+
+  if(!ok){
+    return;
+  }
+
+  const {data,error} =
+    await supabaseClient.rpc(
+      "admin_verify_payment",
+      {
+        p_payment_id: paymentId
+      }
+    );
+
+  if(error){
+
+    alert(
+      "❌ Payment ntiyemejwe:\n" +
+      error.message
+    );
+
+    return;
+  }
+
+  alert(
+    "✅ Payment yemejwe neza."
+  );
+
+  await loadAdminPayments();
+}
+
+
+// ---------------------------------------------------------
+// REJECT PAYMENT
+// ---------------------------------------------------------
+
+async function rejectPayment(paymentId){
+
+  const admin = await isZunivoAdmin();
+
+  if(!admin){
+
+    alert("Nturi Admin.");
+
+    return;
+  }
+
+  const ok =
+    confirm(
+      "Urashaka kwanga iyi payment?"
+    );
+
+  if(!ok){
+    return;
+  }
+
+  const {data,error} =
+    await supabaseClient.rpc(
+      "admin_reject_payment",
+      {
+        p_payment_id: paymentId
+      }
+    );
+
+  if(error){
+
+    alert(
+      "❌ Payment ntiyanzwe:\n" +
+      error.message
+    );
+
+    return;
+  }
+
+  alert(
+    "❌ Payment yangiwe."
+  );
+
+  await loadAdminPayments();
+}
 </script>
 </body>
 </html>
