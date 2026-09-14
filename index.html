@@ -518,6 +518,7 @@ async function submitPayment(){
     amount: p.amount,
     method: method,
     status: "pending",
+    transaction_reference: "ZUNIVO-" + Date.now() + "-" + Math.random().toString(36).substring(2, 8),
     product_id: p.productId || null
   };
 
