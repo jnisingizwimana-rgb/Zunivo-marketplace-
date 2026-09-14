@@ -547,15 +547,20 @@ async function submitPayment(){
   if(p.type==="job_search"){
     await refreshJobAccess();
   }
-
+  
   if(p.type==="exam"){
     await refreshExamAccess();
-  {
+  }
+}
 async function refreshJobAccess(){
 if(!user)return;
+  
 const {data,error}=await supabaseClient.rpc("has_verified_job_access",{p_user_id:user.id});
-if(!error&&data===true)showJobs();
-else $("jobResults").classList.add("hidden");
+if(!error&&data===true){
+  showJobs();
+}else{ 
+  $("jobResults").classList.add("locksd");
+  }
 }
 function showJobs(){
 $("jobResults").classList.remove("hidden");
