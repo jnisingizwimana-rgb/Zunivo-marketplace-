@@ -104,7 +104,7 @@ padding:9px 12px
 
 <section id="homePage" class="page">
 <div class="hero">
-<h1>Gura kandi ugurishe ibikwegereye</h1>
+<h1>Gura ugurishe namupaka</h1>
 <p>Zunivo ihuza abaguzi, abacuruzi n'abashaka akazi.</p>
 <button onclick="findNearby()">📍 Ibikwegereye</button>
 </div>
@@ -244,7 +244,65 @@ padding:9px 12px
 <button class="secondary" onclick="alert('Payment verification ikorwa na Supabase/Edge Function cyangwa admin verification.')">💳 Payment Settings</button>
 </div>
 </section>
+  
+<!-- =====================================================
+     ZUNIVO ADMIN PAYMENT DASHBOARD
+===================================================== -->
 
+<section id="adminPage" class="page" style="display:none;">
+
+  <div class="page-header">
+    <h2>🛡️ Admin Payment Dashboard</h2>
+    <p>Reba kandi wemeze amafaranga abakiriya bishyuye.</p>
+  </div>
+
+  <div id="adminMessage"
+       style="margin:10px 0;font-weight:600;">
+  </div>
+
+  <div style="
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:15px;
+  ">
+
+    <button
+      onclick="loadAdminPayments()"
+      style="
+        padding:12px 16px;
+        border:0;
+        border-radius:10px;
+        cursor:pointer;
+      ">
+      🔄 Refresh
+    </button>
+
+    <button
+      onclick="showHome()"
+      style="
+        padding:12px 16px;
+        border:0;
+        border-radius:10px;
+        cursor:pointer;
+      ">
+      🏠 Home
+    </button>
+
+  </div>
+
+  <div id="adminPaymentList">
+
+    <div style="
+      padding:20px;
+      text-align:center;
+    ">
+      Loading...
+    </div>
+    
+  </div>
+</section>
+  
 </main>
 <div class="nav">
 <button data-page="home" onclick="showPage('home')">🏠 Home</button>
