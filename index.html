@@ -79,6 +79,11 @@ padding:9px 12px
 
 <div id="profileMenu" class="menu">
 <button onclick="protectedPage('profile')">👤 Profile</button>
+  <button
+  id="adminNavBtn"
+  onclick="showAdminDashboard()"
+    style="display:none">
+  🛡️ Admin</button>
 <button onclick="protectedPage('dashboard')">📊 Dashboard</button>
 <button onclick="protectedPage('orders')">🛒 Orders</button>
 <button onclick="protectedPage('settings')">⚙️ Settings</button>
