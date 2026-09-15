@@ -78,6 +78,15 @@ padding:9px 12px
 <button class="secondary" onclick="toggleMenu()">👤</button>
 </div>
 </div>
+  
+  </main>
+<div class="nav">
+<button data-page="home" onclick="showPage('home')">🏠 Home</button>
+<button data-page="sell" onclick="protectedPage('sell')">🛒 Sell</button>
+<button data-page="jobs" onclick="showPage('jobs')">💼 Job</button>
+<button data-page="analysis" onclick="protectedPage('analysis')">📈 Analysis</button>
+<button data-page="profile" onclick="protectedPage('profile')">👤 Profile</button>
+</div>
 
 <div id="profileMenu" class="menu">
 <button onclick="protectedPage('profile')">👤 Profile</button>
@@ -293,7 +302,7 @@ padding:9px 12px
 <div class="panel">
 <h2>⚙️ Settings</h2>
 <button onclick="alert('Notifications setting')">🔔 Notifications</button>
-<button class="secondary" onclick="alert('Language: Kinyarwanda')">🌐 Kinyarwanda</button>
+<button class="secondary" onclick="alert('Language: Kinyarwanda')">🌐 Kinyarwanda)<English"(France".</button>
 <button class="secondary" onclick="alert('Payment verification ikorwa na Supabase/Edge Function cyangwa admin verification.')">💳 Payment Settings</button>
 </div>
 </section>
@@ -361,15 +370,6 @@ padding:9px 12px
 <div id="adminExamSection" class="hidden"><div id="adminExamList"></div></div>
 </section>
   
-</main>
-<div class="nav">
-<button data-page="home" onclick="showPage('home')">🏠 Home</button>
-<button data-page="sell" onclick="protectedPage('sell')">🛒 Sell</button>
-<button data-page="jobs" onclick="showPage('jobs')">💼 Job</button>
-<button data-page="analysis" onclick="protectedPage('analysis')">📈 Analysis</button>
-<button data-page="profile" onclick="protectedPage('profile')">👤 Profile</button>
-</div>
-
 <div id="authModal" class="modal"><div class="modalbox"><div class="loginBox">
 <h2>🔐 Kwinjira muri Zunivo</h2>
 <button style="width:100%" onclick="googleLogin()">🔵 Continue with Google</button>
