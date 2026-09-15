@@ -63,6 +63,8 @@ padding:9px 12px
 .top{padding-right:90px}
 .smallgrid{grid-template-columns:1fr}
 }
+
+.avatarWrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:8px 0 14px}.avatar{width:82px;height:82px;border-radius:50%;object-fit:cover;background:#e8edf5;border:3px solid #1769ff}.mediaType{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.mediaType button{background:#eef1f5;color:#263247}.mediaType button.active{background:#1769ff;color:#fff}.shareRow{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.shareBtn{background:#eef1f5!important;color:#263247!important}.loginBox{background:linear-gradient(135deg,#0750d8,#1769ff);color:#fff;border-radius:20px;padding:18px}.loginBox input{background:#fff;color:#172033}.loginBox hr{border:0;border-top:1px solid #ffffff55}.loginDots{display:none;text-align:center;letter-spacing:5px}.loginDots.show{display:block}.loginDots span{display:inline-block;animation:dotPulse 1s infinite}.loginDots span:nth-child(2){animation-delay:.15s}.loginDots span:nth-child(3){animation-delay:.3s}@keyframes dotPulse{0%,70%,100%{opacity:.25}35%{opacity:1}}
 </style>
 </head>
 <body>
@@ -91,13 +93,6 @@ padding:9px 12px
 <button onclick="logout()" class="danger">🚪 Logout</button>
 </div>
 
-<div class="nav">
-<button data-page="home" onclick="showPage('home')">🏠 Home</button>
-<button data-page="sell" onclick="protectedPage('sell')">🛒 Sell</button>
-<button data-page="jobs" onclick="showPage('jobs')">💼 Job</button>
-<button data-page="analysis" onclick="protectedPage('analysis')">📈 Analysis</button>
-<button data-page="profile" onclick="protectedPage('profile')">👤 Profile</button>
-</div>
 </div>
 </header>
 
@@ -139,7 +134,17 @@ padding:9px 12px
 <option>Telefone</option><option>Imyenda</option><option>Ibiribwa</option><option>Ibikoresho</option>
 <option>Imodoka</option><option>Inzu</option><option>Ubwiza</option><option>Ibindi</option>
 </select>
-<input id="productImage" type="url" placeholder="URL y'ifoto">
+<div class="panel" style="padding:12px;background:#f7f9fd">
+<b>📸 Media y'igicuruzwa</b>
+<div class="mediaType">
+<button type="button" id="mediaImageBtn" class="active" onclick="setMediaType('image')">🖼️ Image</button>
+<button type="button" id="mediaVideoBtn" onclick="setMediaType('video')">🎥 Video</button>
+<button type="button" id="mediaTextBtn" onclick="setMediaType('text')">📝 Text</button>
+</div>
+<input id="productMediaFile" type="file" accept="image/*" onchange="previewProductMedia(event)">
+<textarea id="productMediaText" class="hidden" placeholder="Andika text y'inyongera kuri product..."></textarea>
+<div id="productMediaPreview"></div>
+</div>
 <p class="notice">Fee yo gushyira product ku isoko: <b>1,000 RWF</b>.</p>
 <button onclick="publishProduct()">💳 Ishyura 1,000 RWF → Shyira ku isoko</button>
 <p id="sellMessage" class="muted"></p>
@@ -211,6 +216,10 @@ padding:9px 12px
 <section id="profilePage" class="page hidden">
 <div class="panel">
 <h2>👤 Profile</h2>
+<div class="avatarWrap">
+<img id="profileAvatar" class="avatar" src="https://via.placeholder.com/160x160?text=Z" alt="Profile picture">
+<div><b>📸 Profile picture</b><input id="profilePhoto" type="file" accept="image/*" onchange="previewProfilePhoto(event)"><small class="muted">Hitamo ifoto yo kuri telefone.</small></div>
+</div>
 <input id="profileName" placeholder="Amazina">
 <input id="profileEmail" placeholder="Email">
 <input id="profilePhone" placeholder="Phone">
@@ -247,7 +256,7 @@ padding:9px 12px
       <b>Referral Code yawe:</b>
       <div style="font-size:24px;font-weight:900;margin:8px 0" id="myReferralCode">...</div>
       <button onclick="copyReferralCode()">📋 Copy Code</button>
-      <button class="secondary" onclick="copyReferralLink()">🔗 Copy Link</button>
+      <button class="secondary" onclick="copyReferralLink()">🔗 Copy Link</button><button class="shareBtn" onclick="shareReferral()">↗️ Share</button>
     </div>
 
     <div class="stats" style="margin-top:15px">
@@ -300,8 +309,11 @@ padding:9px 12px
     <p>Reba kandi wemeze amafaranga abakiriya bishyuye.</p>
   </div>
 
-  <div id="adminMessage"
-       style="margin:10px 0;font-weight:600;">
+  <div id="adminMessage" style="margin:10px 0;font-weight:600;"></div>
+  <div class="adminTabs">
+    <button onclick="showAdminTab('payments')">💳 Payments</button>
+    <button class="secondary" onclick="showAdminTab('withdrawals')">💸 Withdrawals</button>
+    <button class="secondary" onclick="showAdminTab('exams')">📝 Exam Results</button>
   </div>
 
   <div style="
@@ -335,7 +347,7 @@ padding:9px 12px
 
   </div>
 
-  <div id="adminPaymentList">
+  <div id="adminPaymentSection"><div id="adminPaymentList">
 
     <div style="
       padding:20px;
@@ -345,6 +357,8 @@ padding:9px 12px
     </div>
     
   </div>
+<div id="adminWithdrawalSection" class="hidden"><div id="adminWithdrawalList"></div></div>
+<div id="adminExamSection" class="hidden"><div id="adminExamList"></div></div>
 </section>
   
 </main>
@@ -356,8 +370,7 @@ padding:9px 12px
 <button data-page="profile" onclick="protectedPage('profile')">👤 Profile</button>
 </div>
 
-<div id="authModal" class="modal">
-<div class="modalbox">
+<div id="authModal" class="modal"><div class="modalbox"><div class="loginBox">
 <h2>🔐 Kwinjira muri Zunivo</h2>
 <button style="width:100%" onclick="googleLogin()">🔵 Continue with Google</button>
 <hr>
@@ -370,9 +383,10 @@ padding:9px 12px
 <button class="secondary" onclick="sendPhoneOTP()">📱 Ohereza OTP</button>
 <input id="authOtp" placeholder="6-digit OTP">
 <button onclick="verifyPhoneOTP()">✅ Verify OTP</button>
+<div id="loginDots" class="loginDots">● ● ●</div>
 <p id="authMessage" class="muted"></p>
 <button class="danger" onclick="closeAuth()">Funga</button>
-</div></div>
+</div></div></div>
 
 <div id="paymentModal" class="modal">
 <div class="modalbox">
@@ -380,13 +394,12 @@ padding:9px 12px
 <p id="paymentDescription"></p>
 <div class="panel">
 <label><input type="radio" name="paymentMethod" value="mtn" checked> 📱 MTN Mobile Money</label>
-<p class="muted">Destination: <b>*182*8*1*2233481#</b></p>
 <label><input type="radio" name="paymentMethod" value="equity"> 🏦 Equity Bank</label>
-<p class="muted">Account: <b>4015101396746</b></p>
+<p class="muted">Hitamo uburyo bwo kwishyura, ukande <b>Pay</b> kugira ngo utangire payment.</p>
 <label><input type="radio" name="paymentMethod" value="visa"> 💳 Visa Card</label>
 <p class="muted">Visa payment ikorwa na payment gateway yemewe. Ntitubika card/CVV muri database.</p>
 </div>
-<button onclick="submitPayment()">📤 Nohereje Payment</button>
+<button id="payButton" onclick="payNow()">💳 Pay</button><button onclick="submitPayment()">📤 Nohereje Payment</button>
 <button class="secondary" onclick="closePayment()">Funga</button>
 <p id="paymentMessage" class="muted"></p>
 </div></div>
@@ -417,7 +430,28 @@ padding:9px 12px
 <div id="examResult"></div>
 </div></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+function showAdminTab(t){
+ $("adminPaymentSection").classList.toggle("hidden",t!=="payments");
+ $("adminWithdrawalSection").classList.toggle("hidden",t!=="withdrawals");
+ $("adminExamSection").classList.toggle("hidden",t!=="exams");
+ if(t==="withdrawals")loadAdminWithdrawals();
+ if(t==="exams")loadAdminExams();
+}
+async function loadAdminWithdrawals(){
+ if(!await isZunivoAdmin())return;const b=$("adminWithdrawalList");b.innerHTML="⏳ Loading...";
+ const {data,error}=await supabaseClient.rpc("admin_get_withdrawals");
+ if(error){b.innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return}
+ b.innerHTML=data?.length?data.map(w=>`<div class="card" style="padding:14px;margin-bottom:10px"><b>${money(w.amount)}</b> · ${escapeHTML(w.method||"")} · <span class="status">${escapeHTML(w.status||"")}</span><p class="muted">${escapeHTML(w.account||"")}</p>${w.status==="pending"?`<button onclick="adminProcessWithdrawal('${w.id}','approve')">✅ Approve</button> <button class="danger" onclick="adminProcessWithdrawal('${w.id}','reject')">❌ Reject</button>`:""}${w.status==="approved"?`<button onclick="adminProcessWithdrawal('${w.id}','paid')">💸 Mark Paid</button>`:""}</div>`).join(""):"<p class='muted'>Nta withdrawal requests.</p>";
+}
+async function adminProcessWithdrawal(id,a){const fn=a==="approve"?"admin_approve_withdrawal":a==="paid"?"admin_mark_withdrawal_paid":"admin_reject_withdrawal";const {error}=await supabaseClient.rpc(fn,{p_withdrawal_id:id});if(error){alert(error.message);return}loadAdminWithdrawals();}
+async function loadAdminExams(){
+ if(!await isZunivoAdmin())return;const b=$("adminExamList");b.innerHTML="⏳ Loading...";
+ const {data,error}=await supabaseClient.rpc("admin_get_exam_results");
+ if(error){b.innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return}
+ b.innerHTML=data?.length?data.map(r=>`<div class="listrow">Score: <b>${escapeHTML(String(r.score??""))}/${escapeHTML(String(r.total??""))}</b> · ${escapeHTML(r.user_id||"")}<br><span class="muted">${r.created_at?new Date(r.created_at).toLocaleString():""}</span></div>`).join(""):"<p class='muted'>Nta exam results.</p>";
+}
+</script>
 <script>
 const SUPABASE_URL="https://brretfrzuvyjrsbsjjml.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_aGs2zQzGZxOJYfuEznsvsQ_hyCkIXzY";
@@ -514,31 +548,31 @@ function closeAuth(){$("authModal").classList.remove("show")}
 function closeModal(id){$(id).classList.remove("show")}
 function openNotifications(){$("notificationModal").classList.add("show")}
 
-async function googleLogin(){
+async function googleLogin(){setLoginLoading(true);
 const {error}=await supabaseClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:window.location.origin+window.location.pathname}});
 if(error)$("authMessage").textContent=error.message;
 }
-async function emailSignup(){
+async function emailSignup(){setLoginLoading(true);
 const email=$("authEmail").value.trim(),password=$("authPassword").value;
 if(!email||password.length<6){$("authMessage").textContent="Email na password (min 6) byuzuze.";return}
 const {data,error}=await supabaseClient.auth.signUp({email,password});
-$("authMessage").textContent=error?error.message:(data.user?"Account yakozwe. Reba email yawe niba confirmation isabwa.":"Reba email yawe.");
+$("authMessage").textContent=error?error.message:(data.user?"Account yakozwe. Reba email yawe niba confirmation isabwa.":"Reba email yawe.");setLoginLoading(false);
 }
-async function emailLogin(){
+async function emailLogin(){setLoginLoading(true);
 const email=$("authEmail").value.trim(),password=$("authPassword").value;
 const {error}=await supabaseClient.auth.signInWithPassword({email,password});
-if(error)$("authMessage").textContent=error.message;else closeAuth();
+if(error){$("authMessage").textContent=error.message;setLoginLoading(false)}else{closeAuth();setLoginLoading(false)}
 }
-async function sendPhoneOTP(){
+async function sendPhoneOTP(){setLoginLoading(true);
 const phone=$("authPhone").value.trim();
 if(!phone){$("authMessage").textContent="Andika phone nka +2507...";return}
 const {error}=await supabaseClient.auth.signInWithOtp({phone});
-$("authMessage").textContent=error?error.message:"OTP yoherejwe kuri phone yawe.";
+$("authMessage").textContent=error?error.message:"OTP yoherejwe kuri phone yawe.";setLoginLoading(false);
 }
-async function verifyPhoneOTP(){
+async function verifyPhoneOTP(){setLoginLoading(true);
 const phone=$("authPhone").value.trim(),token=$("authOtp").value.trim();
 const {error}=await supabaseClient.auth.verifyOtp({phone,token,type:"sms"});
-$("authMessage").textContent=error?error.message:"Phone verified.";
+$("authMessage").textContent=error?error.message:"Phone verified.";setLoginLoading(false);
 if(!error)closeAuth();
 }
 
@@ -553,6 +587,48 @@ async function logout(){
   showPage("home");
 }
   
+
+let productMediaType="image";
+let productMediaFile=null;
+
+function previewProfilePhoto(e){const f=e.target.files?.[0];if(f)$("profileAvatar").src=URL.createObjectURL(f);}
+function setMediaType(t){
+ productMediaType=t;
+ ["image","video","text"].forEach(x=>{const b=$("media"+x.charAt(0).toUpperCase()+x.slice(1)+"Btn");if(b)b.classList.toggle("active",x===t);});
+ $("productMediaFile").classList.toggle("hidden",t==="text");
+ $("productMediaText").classList.toggle("hidden",t!=="text");
+ $("productMediaFile").accept=t==="video"?"video/*":"image/*";
+ $("productMediaPreview").innerHTML="";
+ productMediaFile=null;
+}
+function previewProductMedia(e){productMediaFile=e.target.files?.[0]||null;if(!productMediaFile)return;const u=URL.createObjectURL(productMediaFile);$("productMediaPreview").innerHTML=productMediaType==="video"?`<video class="media" controls src="${u}"></video>`:`<img class="media" src="${u}" alt="">`;}
+async function uploadProductMedia(){
+ if(productMediaType==="text")return {url:"",text:$("productMediaText").value.trim()};
+ if(!productMediaFile)return {url:"",text:""};
+ const ext=(productMediaFile.name.split(".").pop()||"bin").toLowerCase(),path=`products/${user.id}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+ const {error}=await supabaseClient.storage.from("product-media").upload(path,productMediaFile,{upsert:false});
+ if(error)throw error;
+ return {url:supabaseClient.storage.from("product-media").getPublicUrl(path).data.publicUrl,text:""};
+}
+async function uploadProfilePhoto(){
+ const f=$("profilePhoto")?.files?.[0];if(!f||!user)return "";
+ const ext=(f.name.split(".").pop()||"jpg").toLowerCase(),path=`profiles/${user.id}/avatar-${Date.now()}.${ext}`;
+ const {error}=await supabaseClient.storage.from("profile-avatars").upload(path,f,{upsert:true});if(error)throw error;
+ return supabaseClient.storage.from("profile-avatars").getPublicUrl(path).data.publicUrl;
+}
+async function shareItem(title,url){try{if(navigator.share){await navigator.share({title,text:title,url});return}await navigator.clipboard.writeText(url);alert("Link yakopiwe.");}catch(e){}}
+function shareProduct(id){const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);if(p)shareItem(p.name||"Zunivo Product",location.href.split("?")[0]+"?product="+encodeURIComponent(id));}
+function shareReferral(){const c=$("myReferralCode")?.textContent?.trim()||"";shareItem("Zunivo Referral "+c,location.href.split("?")[0]+"?ref="+encodeURIComponent(c));}
+async function payNow(){
+ if(!user){openAuth();return} const p=paymentPurpose;if(!p)return;
+ const m=document.querySelector('input[name="paymentMethod"]:checked')?.value||"mtn";
+ $("payButton").disabled=true;$("paymentMessage").innerHTML='<span class="notice">⏳ Turimo gutegura Pay...</span>';
+ try{
+  if(m==="mtn") location.href="tel:"+encodeURIComponent("*182*8*1*2233481#");
+  else $("paymentMessage").innerHTML='<span class="notice">🏦 Koresha Equity Mobile Banking/App, urangize payment, hanyuma ukande “Nohereje Payment”.</span>';
+ }finally{setTimeout(()=>{$("payButton").disabled=false},2500);}
+}
+function setLoginLoading(on){$("loginDots")?.classList.toggle("show",on);}
 async function loadProducts(){
 try{
 const {data,error}=await supabaseClient.from("products").select("*").eq("status","active").order("created_at",{ascending:false});
@@ -574,7 +650,7 @@ $("products").innerHTML=list.length?list.map(p=>`
 <div class="row">
 <button onclick="openProduct('${p.id}')">👀 Reba</button>
 <button class="secondary" onclick="likeProduct('${p.id}')">❤️ Like</button>
-<button class="secondary" onclick="buyProduct('${p.id}')">🛒 Gura</button>
+<button class="secondary" onclick="buyProduct('${p.id}')">🛒 Gura</button><button class="shareBtn" onclick="shareProduct('${p.id}')">↗️ Share</button>
 </div>
 </div></article>`).join(""):`<div class="panel">Nta products zirabonetse.</div>`;
 }
@@ -613,12 +689,14 @@ $("profileName").value=data.name||user.user_metadata?.name||"";
 $("profileEmail").value=data.email||user.email||"";
 $("profilePhone").value=data.phone||user.phone||"";
 $("profileCity").value=data.city||"";
-$("profileAbout").value=data.about||"";
+$("profileAbout").value=data.about||"";if(data.avatar_url)$("profileAvatar").src=data.avatar_url;
 }
 }
 async function saveProfile(){
 if(!user){openAuth();return}
+let avatarUrl="";try{avatarUrl=await uploadProfilePhoto()}catch(e){$("profileMessage").textContent="Ifoto ntiyabitswe: "+e.message;return}
 const payload={id:user.id,name:$("profileName").value.trim(),email:$("profileEmail").value.trim(),phone:$("profilePhone").value.trim(),city:$("profileCity").value.trim(),about:$("profileAbout").value.trim()};
+if(avatarUrl)payload.avatar_url=avatarUrl;
 const {error}=await supabaseClient.from("profiles").upsert(payload);
 $("profileMessage").textContent=error?error.message:"Profile yabitswe neza.";
 }
@@ -636,10 +714,11 @@ async function publishProduct(){
 if(!user){openAuth();return}
 const name=$("productName").value.trim(),price=Number($("productPrice").value);
 if(!name||!price){$("sellMessage").textContent="Uzuza product name n'igiciro.";return}
+let media={url:"",text:""};try{media=await uploadProductMedia()}catch(e){$("sellMessage").textContent="Media ntiyabitswe: "+e.message;return}
 const {data,error}=await supabaseClient.from("products").insert({
 seller_id:user.id,name,description:$("productDescription").value.trim(),price,
 city:$("productCity").value.trim(),category:$("productCategory").value,
-image_url:$("productImage").value.trim(),status:"pending_payment"
+image_url:media.url,status:"pending_payment",media_type:productMediaType,media_text:media.text||null
 }).select().single();
 if(error){$("sellMessage").textContent=error.message;return}
 window.pendingListingId=data.id;
