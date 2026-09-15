@@ -27,14 +27,14 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
 .hero{background:linear-gradient(135deg,#0750d8,#3187ff);color:#fff;padding:25px;border-radius:20px;margin-bottom:15px}
 .hero h1{margin:0 0 8px}.panel{background:#fff;border-radius:17px;padding:17px;margin-bottom:15px;box-shadow:0 3px 15px #0001}
 .hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.card{background:#fff;border-radius🏠:16px;overflow:hidden;box-shadow:0 3px 15px #0001}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 3px 15px #0001}
 .media{width:100%;height:190px;object-fit:cover;background:#e8edf5;display:block}
 .body{padding:13px}.price{font-size:20px;font-weight:900;color:#1769ff}.muted{font-size:13px;color:#707887}
 .badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#eaf1ff;color:#1769ff;font-size:12px;font-weight:bold}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}
 .stat{background:#f1f5ff;padding:14px;border-radius:13px}.stat b{font-size:22px}
 .modal{position:fixed;inset:0;background:#0008;z-index:500;display:none;align-items:center;justify-content:center;padding:14px}
-.modal.show{display:flex}.modalbox{bound:#fff;width:min(680px,100%);max-height:92vh;overflow:auto;border-radius:20px;padding:18px}
+.modal.show{display:flex}.modalbox{background:#fff;width:min(680px,100%);max-height:92vh;overflow:auto;border-radius:20px;padding:18px}
 .menu{position:absolute;right:14px;top:60px;width:250px;background:#fff;border-radius:15px;box-shadow:0 8px 30px #0003;padding:8px;display:none}
 .menu.show{display:block}.menu button{width:100%;margin:3px 0;background:#fff;color:#172033;text-align:left}
 .listrow{padding:12px 0;border-bottom:1px solid #eee}.notice{padding:12px;border-radius:12px;background:#fff7d6;color:#745b00}
@@ -86,6 +86,7 @@ padding:9px 12px
   🛡️ Admin</button>
 <button onclick="protectedPage('dashboard')">📊 Dashboard</button>
 <button onclick="protectedPage('orders')">🛒 Orders</button>
+<button onclick="protectedPage('referral')">🎁 Referral</button>
 <button onclick="protectedPage('settings')">⚙️ Settings</button>
 <button onclick="logout()" class="danger">🚪 Logout</button>
 </div>
@@ -116,7 +117,7 @@ padding:9px 12px
 <section id="sellPage" class="page hidden">
 <div class="panel">
 <h2>🏪 Business Account</h2>
-<p class="muted">Fungura Business Account mbere yo gushyira ibintu ku isoko.</p>Yb
+<p class="muted">Fungura Business Account mbere yo gushyira ibintu ku isoko.</p>
 <button onclick="toggleBusiness()">➕ Create Business Account</button>
 <div id="businessForm" class="hidden">
 <input id="bizName" placeholder="Izina rya business">
@@ -236,6 +237,49 @@ padding:9px 12px
 <div class="panel"><h2>🛒 Orders</h2><div id="ordersList"><p class="muted">Nta orders ziriho.</p></div></div>
 </section>
 
+
+<section id="referralPage" class="page hidden">
+  <div class="panel">
+    <h2>🎁 Referral Program</h2>
+    <p>Injiza inshuti muri Zunivo ukoresheje referral code yawe. Iyo umuntu mushya yinjiye akoresheje code yawe, bonus ni <b>500 RWF</b>.</p>
+
+    <div class="notice">
+      <b>Referral Code yawe:</b>
+      <div style="font-size:24px;font-weight:900;margin:8px 0" id="myReferralCode">...</div>
+      <button onclick="copyReferralCode()">📋 Copy Code</button>
+      <button class="secondary" onclick="copyReferralLink()">🔗 Copy Link</button>
+    </div>
+
+    <div class="stats" style="margin-top:15px">
+      <div class="stat">Referrals<br><b id="refCount">0</b></div>
+      <div class="stat">Bonus<br><b id="refBalance">0 RWF</b></div>
+    </div>
+
+    <h3>➕ Injiza referral code</h3>
+    <input id="referralInput" placeholder="Andika referral code">
+    <button onclick="applyReferralCode()">🎁 Koresha Code</button>
+    <p id="referralMessage" class="muted"></p>
+  </div>
+
+  <div class="panel">
+    <h2>💸 Withdraw</h2>
+    <p>Withdraw amafaranga ya referral umaze kubona. Minimum withdrawal: <b>5,000 RWF</b>.</p>
+    <input id="withdrawAmount" type="number" min="5000" step="500" placeholder="Amount RWF">
+    <select id="withdrawMethod">
+      <option value="mtn">MTN Mobile Money</option>
+      <option value="equity">Equity Bank</option>
+    </select>
+    <input id="withdrawAccount" placeholder="MTN phone cyangwa Equity account">
+    <button onclick="requestWithdrawal()">💸 Saba Withdraw</button>
+    <p id="withdrawMessage" class="muted"></p>
+  </div>
+
+  <div class="panel">
+    <h3>📜 Withdrawal History</h3>
+    <div id="withdrawalList"><p class="muted">Nta withdrawals ziraboneka.</p></div>
+  </div>
+</section>
+
 <section id="settingsPage" class="page hidden">
 <div class="panel">
 <h2>⚙️ Settings</h2>
@@ -279,7 +323,7 @@ padding:9px 12px
     </button>
 
     <button
-      onclick="showHome()"
+      onclick="showPage('home')"
       style="
         padding:12px 16px;
         border:0;
@@ -460,6 +504,7 @@ if(page==="dashboard")loadDashboard();
 if(page==="analysis")loadAnalysis();
 if(page==="orders")loadOrders();
 if(page==="jobs")refreshJobAccess();
+if(page==="referral")loadReferralDashboard();
 $("profileMenu").classList.remove("show");
 }
 function protectedPage(page){if(!user){openAuth();return}showPage(page)}
@@ -674,7 +719,7 @@ const {data,error}=await supabaseClient.rpc("has_verified_job_access",{p_user_id
 if(!error&&data===true){
   showJobs();
 }else{ 
-  $("jobResults").classList.add("locksd");
+  $("jobResults").classList.add("hidden");
   }
 }
 function showJobs(){
@@ -752,7 +797,159 @@ $("bar4").style.width=Math.min(100,(orders||0)*10)+"%";
 }
 
 document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal").forEach(m=>m.classList.remove("show"))});
-  // =========================================================
+  
+// =========================================================
+// ZUNIVO REFERRAL + WITHDRAW
+// =========================================================
+
+async function loadReferralDashboard(){
+  if(!user)return;
+
+  const {data:profile} = await supabaseClient
+    .from("profiles")
+    .select("referral_code")
+    .eq("id",user.id)
+    .maybeSingle();
+
+  if(profile?.referral_code){
+    $("myReferralCode").textContent = profile.referral_code;
+  }else{
+    const code = "ZUN" + user.id.replace(/-/g,"").substring(0,8).toUpperCase();
+    const {error} = await supabaseClient
+      .from("profiles")
+      .update({referral_code:code})
+      .eq("id",user.id);
+
+    $("myReferralCode").textContent = error ? "Ntabwo yabonetse" : code;
+  }
+
+  const {count} = await supabaseClient
+    .from("referrals")
+    .select("id",{count:"exact",head:true})
+    .eq("referrer_id",user.id);
+
+  $("refCount").textContent = count || 0;
+
+  const {data:wallet} = await supabaseClient
+    .from("referral_wallets")
+    .select("balance")
+    .eq("user_id",user.id)
+    .maybeSingle();
+
+  $("refBalance").textContent = money(wallet?.balance || 0);
+
+  await loadWithdrawals();
+}
+
+async function copyReferralCode(){
+  const code=$("myReferralCode").textContent.trim();
+  if(!code || code==="...")return;
+  try{
+    await navigator.clipboard.writeText(code);
+    $("referralMessage").textContent="Referral code yakopiwe.";
+  }catch(e){
+    $("referralMessage").textContent="Code: "+code;
+  }
+}
+
+async function copyReferralLink(){
+  const code=$("myReferralCode").textContent.trim();
+  if(!code || code==="...")return;
+  const link=window.location.origin+window.location.pathname+"?ref="+encodeURIComponent(code);
+  try{
+    await navigator.clipboard.writeText(link);
+    $("referralMessage").textContent="Referral link yakopiwe.";
+  }catch(e){
+    $("referralMessage").textContent=link;
+  }
+}
+
+async function applyReferralCode(){
+  if(!user){openAuth();return}
+
+  const code=$("referralInput").value.trim().toUpperCase();
+  if(!code){
+    $("referralMessage").textContent="Andika referral code.";
+    return;
+  }
+
+  const {data,error}=await supabaseClient.rpc("apply_referral_code",{p_code:code});
+
+  if(error){
+    $("referralMessage").innerHTML='<span class="error">'+escapeHTML(error.message)+'</span>';
+    return;
+  }
+
+  $("referralMessage").innerHTML='<span class="success">'+
+    escapeHTML(data?.message || "Referral code yakoreshejwe neza.")+
+    '</span>';
+
+  $("referralInput").value="";
+  await loadReferralDashboard();
+}
+
+async function requestWithdrawal(){
+  if(!user){openAuth();return}
+
+  const amount=Number($("withdrawAmount").value);
+  const method=$("withdrawMethod").value;
+  const account=$("withdrawAccount").value.trim();
+
+  if(!amount || amount<5000){
+    $("withdrawMessage").textContent="Minimum withdrawal ni 5,000 RWF.";
+    return;
+  }
+
+  if(!account){
+    $("withdrawMessage").textContent="Andika phone cyangwa account.";
+    return;
+  }
+
+  const {data,error}=await supabaseClient.rpc("request_referral_withdrawal",{
+    p_amount:amount,
+    p_method:method,
+    p_account:account
+  });
+
+  if(error){
+    $("withdrawMessage").innerHTML='<span class="error">'+escapeHTML(error.message)+'</span>';
+    return;
+  }
+
+  $("withdrawMessage").innerHTML='<span class="success">Withdrawal request yoherejwe. Tegereza Admin verification.</span>';
+  $("withdrawAmount").value="";
+  $("withdrawAccount").value="";
+  await loadReferralDashboard();
+}
+
+async function loadWithdrawals(){
+  if(!user)return;
+
+  const {data,error}=await supabaseClient
+    .from("withdrawals")
+    .select("*")
+    .eq("user_id",user.id)
+    .order("created_at",{ascending:false});
+
+  if(error){
+    $("withdrawalList").innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';
+    return;
+  }
+
+  $("withdrawalList").innerHTML=data?.length
+    ? data.map(w=>`
+      <div class="listrow">
+        <b>${money(w.amount)}</b>
+        · ${escapeHTML(w.method||"")}
+        · <span class="status">${escapeHTML(w.status||"pending")}</span><br>
+        <span class="muted">${escapeHTML(w.account||"")} · ${w.created_at?new Date(w.created_at).toLocaleString():""}</span>
+      </div>
+    `).join("")
+    : '<p class="muted">Nta withdrawals ziraboneka.</p>';
+}
+
+
+// =========================================================
 // ZUNIVO ADMIN PAYMENT DASHBOARD
 // =========================================================
 
