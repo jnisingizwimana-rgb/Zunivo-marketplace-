@@ -79,7 +79,7 @@ padding:9px 12px
 </div>
 </div>
   
-  </main>
+  
 <div class="nav">
 <button data-page="home" onclick="showPage('home')">🏠 Home</button>
 <button data-page="sell" onclick="protectedPage('sell')">🛒 Sell</button>
@@ -429,15 +429,34 @@ padding:9px 12px
 <button class="secondary" onclick="closeModal('examModal')">Funga</button>
 <div id="examResult"></div>
 </div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+<script>
 function showAdminTab(t){
- $("adminPaymentSection").classList.toggle("hidden",t!=="payments");
- $("adminWithdrawalSection").classList.toggle("hidden",t!=="withdrawals");
- $("adminExamSection").classList.toggle("hidden",t!=="exams");
- if(t==="withdrawals")loadAdminWithdrawals();
- if(t==="exams")loadAdminExams();
+  $("adminPaymentSection").classList.toggle(
+    "hidden",
+    t !== "payments"
+  );
+
+  $("adminWithdrawalSection").classList.toggle(
+    "hidden",
+    t !== "withdrawals"
+  );
+
+  $("adminExamSection").classList.toggle(
+    "hidden",
+    t !== "exams"
+  );
+
+  if(t === "withdrawals"){
+    loadAdminWithdrawals();
+  }
+
+  if(t === "exams"){
+    loadAdminExams();
+  }
 }
+ 
 async function loadAdminWithdrawals(){
  if(!await isZunivoAdmin())return;const b=$("adminWithdrawalList");b.innerHTML="⏳ Loading...";
  const {data,error}=await supabaseClient.rpc("admin_get_withdrawals");
@@ -603,18 +622,83 @@ function setMediaType(t){
 }
 function previewProductMedia(e){productMediaFile=e.target.files?.[0]||null;if(!productMediaFile)return;const u=URL.createObjectURL(productMediaFile);$("productMediaPreview").innerHTML=productMediaType==="video"?`<video class="media" controls src="${u}"></video>`:`<img class="media" src="${u}" alt="">`;}
 async function uploadProductMedia(){
- if(productMediaType==="text")return {url:"",text:$("productMediaText").value.trim()};
- if(!productMediaFile)return {url:"",text:""};
- const ext=(productMediaFile.name.split(".").pop()||"bin").toLowerCase(),path=`products/${user.id}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
- const {error}=await supabaseClient.storage.from("product-media").upload(path,productMediaFile,{upsert:false});
- if(error)throw error;
- return {url:supabaseClient.storage.from("product-media").getPublicUrl(path).data.publicUrl,text:""};
+
+  if(productMediaType === "text"){
+    return {
+      url:"",
+      text:$("productMediaText").value.trim()
+    };
+  }
+
+  if(!productMediaFile){
+    return {
+      url:"",
+      text:""
+    };
+  }
+
+  const ext =
+    (productMediaFile.name.split(".").pop() || "bin")
+    .toLowerCase();
+
+  const bucket =
+    productMediaType === "video"
+      ? "product-videos"
+      : "product-images";
+
+  const path =
+    `products/${user.id}/${Date.now()}-${Math.random()
+      .toString(36)
+      .slice(2)}.${ext}`;
+
+  const {error} =
+    await supabaseClient
+      .storage
+      .from(bucket)
+      .upload(path, productMediaFile, {
+        upsert:false
+      });
+
+  if(error) throw error;
+
+  const publicUrl =
+    supabaseClient
+      .storage
+      .from(bucket)
+      .getPublicUrl(path)
+      .data
+      .publicUrl;
+
+  return {
+    url:publicUrl,
+    text:""
+  };
 }
 async function uploadProfilePhoto(){
- const f=$("profilePhoto")?.files?.[0];if(!f||!user)return "";
- const ext=(f.name.split(".").pop()||"jpg").toLowerCase(),path=`profiles/${user.id}/avatar-${Date.now()}.${ext}`;
- const {error}=await supabaseClient.storage.from("profile-avatars").upload(path,f,{upsert:true});if(error)throw error;
- return supabaseClient.storage.from("profile-avatars").getPublicUrl(path).data.publicUrl;
+  const f = $("profilePhoto")?.files?.[0];
+
+  if(!f || !user) return "";
+
+  const ext =
+    (f.name.split(".").pop() || "jpg").toLowerCase();
+
+  const path =
+    `profiles/${user.id}/avatar-${Date.now()}.${ext}`;
+
+  const {error} =
+    await supabaseClient
+      .storage
+      .from("profile-pictures")
+      .upload(path, f, {upsert:true});
+
+  if(error) throw error;
+
+  return supabaseClient
+    .storage
+    .from("profile-pictures")
+    .getPublicUrl(path)
+    .data
+    .publicUrl;
 }
 async function shareItem(title,url){try{if(navigator.share){await navigator.share({title,text:title,url});return}await navigator.clipboard.writeText(url);alert("Link yakopiwe.");}catch(e){}}
 function shareProduct(id){const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);if(p)shareItem(p.name||"Zunivo Product",location.href.split("?")[0]+"?product="+encodeURIComponent(id));}
