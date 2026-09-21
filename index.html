@@ -65,6 +65,32 @@ padding:9px 12px
 }
 
 .avatarWrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:8px 0 14px}.avatar{width:82px;height:82px;border-radius:50%;object-fit:cover;background:#e8edf5;border:3px solid #1769ff}.mediaType{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.mediaType button{background:#eef1f5;color:#263247}.mediaType button.active{background:#1769ff;color:#fff}.shareRow{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.shareBtn{background:#eef1f5!important;color:#263247!important}.loginBox{background:linear-gradient(135deg,#0750d8,#1769ff);color:#fff;border-radius:20px;padding:18px}.loginBox input{background:#fff;color:#172033}.loginBox hr{border:0;border-top:1px solid #ffffff55}.loginDots{display:none;text-align:center;letter-spacing:5px}.loginDots.show{display:block}.loginDots span{display:inline-block;animation:dotPulse 1s infinite}.loginDots span:nth-child(2){animation-delay:.15s}.loginDots span:nth-child(3){animation-delay:.3s}@keyframes dotPulse{0%,70%,100%{opacity:.25}35%{opacity:1}}
+
+/* ZUNIVO V2 - compatibility/performance additions */
+html{font-display:swap}
+img{max-width:100%}
+button,input,select,textarea{touch-action:manipulation}
+.productSeller{display:flex;align-items:center;gap:9px;margin:8px 0;cursor:pointer}
+.productSeller img{width:38px;height:38px;border-radius:50%;object-fit:cover;background:#e8edf5;border:1px solid #d7dce5}
+.actionRow{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.actionRow button{padding:9px 10px;font-size:12px}
+.sellerMini{font-weight:800;color:#172033}
+.sellerModalHead{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.sellerModalHead img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #1769ff}
+.chatBox{display:flex;flex-direction:column;height:55vh}
+.chatMessages{flex:1;overflow:auto;padding:8px;background:#f6f8fc;border-radius:12px;margin-bottom:8px}
+.msg{max-width:82%;padding:9px 11px;border-radius:13px;margin:5px 0;word-break:break-word}
+.msg.me{margin-left:auto;background:#1769ff;color:#fff}
+.msg.other{margin-right:auto;background:#fff;border:1px solid #e1e5ec}
+.comment{padding:9px 0;border-bottom:1px solid #eee}
+.adCard{border:2px solid #1769ff}
+.walletGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.balanceBig{font-size:28px;font-weight:900;color:#1769ff}
+.paymentNotice{font-size:12px;color:#6b7280}
+.visaFields{display:grid;grid-template-columns:2fr 1fr 1fr;gap:7px}
+@media(max-width:650px){.visaFields{grid-template-columns:1fr 1fr}.visaFields input:first-child{grid-column:1/-1}}
+.compatNotice{padding:10px;border-radius:10px;background:#eef6ff;color:#174a8b;font-size:12px;margin-top:8px}
+
 </style>
 </head>
 <body>
@@ -97,6 +123,7 @@ padding:9px 12px
   🛡️ Admin</button>
 <button onclick="protectedPage('dashboard')">📊 Dashboard</button>
 <button onclick="protectedPage('orders')">🛒 Orders</button>
+<button onclick="protectedPage('inbox')">💬 Inbox</button>
 <button onclick="protectedPage('referral')">🎁 Referral</button>
 <button onclick="protectedPage('settings')">⚙️ Settings</button>
 <button onclick="logout()" class="danger">🚪 Logout</button>
@@ -112,6 +139,7 @@ padding:9px 12px
 <h1>Gura ugurishe namupaka</h1>
 <p>Zunivo ihuza abaguzi, abacuruzi n'abashaka akazi.</p>
 <button onclick="findNearby()">📍 Ibikwegereye</button>
+<p class="compatNotice">⚡ Zunivo yateguwe ku mobile nkeya n’ibigezweho: images zikoreshwa lazy-load kandi features zidakora kuri browser ishaje zigira fallback.</p>
 </div>
 <div class="panel"><input id="searchBox" placeholder="🔎 Shakisha product..." oninput="renderProducts()"></div>
 <h2>🛍️ Ibicuruzwa</h2>
@@ -298,6 +326,24 @@ padding:9px 12px
   </div>
 </section>
 
+
+<section id="inboxPage" class="page hidden">
+  <div class="panel">
+    <h2>💬 Inbox</h2>
+    <div id="conversationList"><p class="muted">Nta conversations ziraboneka.</p></div>
+  </div>
+  <div class="panel hidden" id="chatPanel">
+    <h3 id="chatTitle">Chat</h3>
+    <div class="chatBox">
+      <div id="chatMessages" class="chatMessages"></div>
+      <div class="smallgrid">
+        <input id="chatInput" placeholder="Andika message...">
+        <button onclick="sendChatMessage()">📤 Ohereza</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="settingsPage" class="page hidden">
 <div class="panel">
 <h2>⚙️ Settings</h2>
@@ -402,6 +448,21 @@ padding:9px 12px
 <button id="payButton" onclick="payNow()">💳 Pay</button><button onclick="submitPayment()">📤 Nohereje Payment</button>
 <button class="secondary" onclick="closePayment()">Funga</button>
 <p id="paymentMessage" class="muted"></p>
+</div></div>
+
+
+<div id="sellerModal" class="modal"><div class="modalbox">
+  <button class="secondary" onclick="closeModal('sellerModal')">← Garuka</button>
+  <div id="sellerDetails"></div>
+</div></div>
+<div id="adModal" class="modal"><div class="modalbox">
+  <h2>📢 Public Ad</h2>
+  <input id="adTitle" placeholder="Ad title">
+  <textarea id="adBody" placeholder="Ad message"></textarea>
+  <input id="adImage" type="url" placeholder="Image URL (optional)">
+  <button onclick="adminCreateAd()">📢 Publish Ad</button>
+  <button class="secondary" onclick="closeModal('adModal')">Funga</button>
+  <p id="adMessage" class="muted"></p>
 </div></div>
 
 <div id="notificationModal" class="modal"><div class="modalbox">
@@ -731,10 +792,13 @@ $("products").innerHTML=list.length?list.map(p=>`
 <div class="price">${money(p.price)}</div>
 <p>${escapeHTML(p.description||"")}</p>
 <p class="muted">📍 ${escapeHTML(p.city||"")}</p>
-<div class="row">
-<button onclick="openProduct('${p.id}')">👀 Reba</button>
+<div id="seller-${p.id}" class="productSeller" onclick="openSellerProfile('${p.seller_id||""}')"><span class="muted">👤 Seller profile</span></div>
+<div class="actionRow">
+<button onclick="openProduct('${p.id}')">👀 View</button>
 <button class="secondary" onclick="likeProduct('${p.id}')">❤️ Like</button>
-<button class="secondary" onclick="buyProduct('${p.id}')">🛒 Gura</button><button class="shareBtn" onclick="shareProduct('${p.id}')">↗️ Share</button>
+<button class="secondary" onclick="buyProduct('${p.id}')">🛒 Buy</button>
+<button class="shareBtn" onclick="shareProduct('${p.id}')">↗️ Share</button>
+<button class="secondary" onclick="messageSeller('${p.seller_id||""}')">💬 Chat</button>
 </div>
 </div></article>`).join(""):`<div class="panel">Nta products zirabonetse.</div>`;
 }
@@ -745,7 +809,22 @@ $("productDetails").innerHTML=`
 <img class="media" src="${escapeHTML(p.image_url||p.media_url||"https://via.placeholder.com/600x400?text=Zunivo")}" alt="">
 <h2>${escapeHTML(p.name)}</h2><div class="price">${money(p.price)}</div>
 <p>${escapeHTML(p.description||"")}</p><p class="muted">📍 ${escapeHTML(p.city||"")}</p>
-<div class="row"><button onclick="buyProduct('${p.id}')">🛒 Gura</button><button class="secondary" onclick="likeProduct('${p.id}')">❤️ Like</button></div>`;
+<div id="sellerMini-${p.id}" class="productSeller" onclick="openSellerProfile('${p.seller_id||""}')"></div>
+<div class="actionRow">
+<button onclick="buyProduct('${p.id}')">🛒 Buy</button>
+<button class="secondary" onclick="likeProduct('${p.id}')">❤️ Like</button>
+<button class="secondary" onclick="openProductComments('${p.id}')">💬 Comments</button>
+<button class="shareBtn" onclick="shareProduct('${p.id}')">↗️ Share</button>
+<button class="secondary" onclick="messageSeller('${p.seller_id||""}')">✉️ Inbox</button>
+</div>
+<div class="panel" style="margin-top:12px;padding:12px">
+<h3 style="margin-top:0">💬 Comments</h3>
+<div id="productComments-${p.id}"><p class="muted">Loading...</p></div>
+<div class="smallgrid">
+<input id="commentInput-${p.id}" placeholder="Andika comment...">
+<button onclick="addProductComment('${p.id}')">Ohereza</button>
+</div>
+</div>`;
 $("productModal").classList.add("show");
 if(user&&p.id&&!String(p.id).startsWith("demo")){
 await supabaseClient.from("product_events").insert({product_id:p.id,user_id:user.id,event_type:"view"});
@@ -1491,6 +1570,223 @@ async function rejectPayment(paymentId){
 
   await loadAdminPayments();
 }
+
+
+/* =========================================================
+   ZUNIVO V2 - SELLER PROFILE / CHAT / COMMENTS / PUBLIC CONTROLS
+   ========================================================= */
+
+let activeChatUserId = null;
+let activeChatProductId = null;
+
+async function openSellerProfile(sellerId){
+  if(!sellerId || String(sellerId).startsWith("demo")){
+    $("sellerDetails").innerHTML = '<div class="panel"><h3>👤 Seller</h3><p class="muted">Seller profile ntiboneka kuri demo product.</p></div>';
+    $("sellerModal").classList.add("show");
+    return;
+  }
+  const {data:p,error:pe}=await supabaseClient.from("profiles")
+    .select("id,name,email,phone,city,about,avatar_url")
+    .eq("id",sellerId).maybeSingle();
+  if(error){$("sellerDetails").innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return;}
+  const name=p?.name||"Zunivo Seller";
+  $("sellerDetails").innerHTML=`
+    <div class="sellerModalHead">
+      <img src="${escapeHTML(p?.avatar_url||"https://via.placeholder.com/120x120?text=Z")}">
+      <div><h2 style="margin:0">${escapeHTML(name)}</h2><div class="muted">${escapeHTML(p?.city||"")}</div></div>
+    </div>
+    <p>${escapeHTML(p?.about||"Nta bisobanuro bya seller.")}</p>
+    <button onclick="messageSeller('${escapeHTML(sellerId)}')">💬 Andikira Inbox</button>
+  `;
+  $("sellerModal").classList.add("show");
+}
+
+async function hydrateSellerMini(sellerId, targetId){
+  if(!sellerId || String(sellerId).startsWith("demo")) return;
+  const {data}=await supabaseClient.from("profiles").select("name,avatar_url,city").eq("id",sellerId).maybeSingle();
+  const el=$(targetId);
+  if(el && data){
+    el.innerHTML=`<img src="${escapeHTML(data.avatar_url||"https://via.placeholder.com/80x80?text=Z")}" alt="">
+      <div><div class="sellerMini">${escapeHTML(data.name||"Seller")}</div><div class="muted">${escapeHTML(data.city||"")}</div></div>`;
+  }
+}
+
+async function hydrateProductSellers(){
+  for(const p of (products||[])){
+    if(p.seller_id) await hydrateSellerMini(p.seller_id,"seller-"+p.id);
+  }
+}
+
+async function messageSeller(sellerId){
+  if(!user){openAuth();return;}
+  if(!sellerId || sellerId===user.id){alert("Uyu ni account yawe.");return;}
+  activeChatUserId=sellerId;
+  activeChatProductId=selectedProduct?.id||null;
+  closeModal("sellerModal");
+  showPage("inbox");
+  await loadConversations();
+  await openConversation(sellerId);
+}
+
+async function loadConversations(){
+  if(!user)return;
+  const box=$("conversationList");
+  if(!box)return;
+  const {data,error}=await supabaseClient.from("messages")
+    .select("sender_id,receiver_id,body,created_at")
+    .or(`sender_id.eq.${user.id},receiver_id.eq.${user.id}`)
+    .order("created_at",{ascending:false});
+  if(error){box.innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return;}
+  const ids=[];
+  for(const m of (data||[])){
+    const id=m.sender_id===user.id?m.receiver_id:m.sender_id;
+    if(id && !ids.includes(id))ids.push(id);
+  }
+  if(!ids.length){box.innerHTML='<p class="muted">Nta conversations ziraboneka.</p>';return;}
+  box.innerHTML=ids.map(id=>`<button class="secondary" style="width:100%;text-align:left" onclick="openConversation('${id}')">💬 ${escapeHTML(id)}</button>`).join("");
+}
+
+async function openConversation(otherId){
+  if(!user)return;
+  activeChatUserId=otherId;
+  $("chatPanel").classList.remove("hidden");
+  $("chatTitle").textContent="💬 Inbox";
+  const {data,error}=await supabaseClient.from("messages")
+    .select("*")
+    .or(`and(sender_id.eq.${user.id},receiver_id.eq.${otherId}),and(sender_id.eq.${otherId},receiver_id.eq.${user.id})`)
+    .order("created_at",{ascending:true});
+  if(error){$("chatMessages").innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return;}
+  $("chatMessages").innerHTML=(data||[]).map(m=>`<div class="msg ${m.sender_id===user.id?"me":"other"}">${escapeHTML(m.body)}</div>`).join("")||'<p class="muted">Tangiza conversation.</p>';
+  $("chatMessages").scrollTop=$("chatMessages").scrollHeight;
+}
+
+async function sendChatMessage(){
+  if(!user||!activeChatUserId)return;
+  const input=$("chatInput"), body=input.value.trim();
+  if(!body)return;
+  const {error}=await supabaseClient.from("messages").insert({
+    sender_id:user.id,receiver_id:activeChatUserId,body
+  });
+  if(error){alert(error.message);return;}
+  input.value="";
+  await openConversation(activeChatUserId);
+}
+
+async function openProductComments(productId){
+  const box=$("productComments-"+productId);
+  if(!box)return;
+  const {data,error}=await supabaseClient.from("product_comments")
+    .select("id,user_id,body,created_at")
+    .eq("product_id",productId).order("created_at",{ascending:true});
+  if(error){box.innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return;}
+  box.innerHTML=(data||[]).map(c=>`<div class="comment"><b>${escapeHTML(String(c.user_id).slice(0,8))}</b><br>${escapeHTML(c.body)}</div>`).join("")||'<p class="muted">Nta comments.</p>';
+}
+
+async function addProductComment(productId){
+  if(!user){openAuth();return;}
+  const input=$("commentInput-"+productId), body=input?.value.trim();
+  if(!body)return;
+  const {error}=await supabaseClient.from("product_comments").insert({product_id:productId,user_id:user.id,body});
+  if(error){alert(error.message);return;}
+  input.value="";
+  await openProductComments(productId);
+}
+
+async function publishProductPublic(id){
+  if(!user)return;
+  const {error}=await supabaseClient.from("products").update({status:"active"}).eq("id",id).eq("seller_id",user.id);
+  if(error)alert(error.message); else {await loadProducts();renderProducts();}
+}
+
+async function removeProductFromPublic(id){
+  if(!user)return;
+  const {error}=await supabaseClient.from("products").update({status:"hidden"}).eq("id",id).eq("seller_id",user.id);
+  if(error)alert(error.message); else {await loadProducts();renderProducts();}
+}
+
+async function deleteMyProduct(id){
+  if(!user)return;
+  if(!confirm("Urashaka gusiba iki gicuruzwa burundu?"))return;
+  const {error}=await supabaseClient.from("products").delete().eq("id",id).eq("seller_id",user.id);
+  if(error)alert(error.message); else {await loadProducts();renderProducts();}
+}
+
+/* Admin-only public ads. */
+async function openAdminAd(){
+  if(!await isZunivoAdmin()){alert("Nturi Admin.");return;}
+  $("adModal").classList.add("show");
+}
+async function adminCreateAd(){
+  if(!await isZunivoAdmin())return;
+  const title=$("adTitle").value.trim(),body=$("adBody").value.trim(),image_url=$("adImage").value.trim();
+  if(!title||!body){$("adMessage").textContent="Uzuza title na message.";return;}
+  const {error}=await supabaseClient.from("public_ads").insert({title,body,image_url:image_url||null,created_by:user.id,status:"published"});
+  $("adMessage").textContent=error?error.message:"Ad yashyizwe public.";
+}
+
+/* Wallet UI. Balance should come from a server-side RPC/view, not client-trusted math. */
+async function loadWallet(){
+  if(!user)return;
+  const {data}=await supabaseClient.rpc("get_my_wallet");
+  if(data){
+    $("walletBalance").textContent=money(data.balance||0);
+    $("walletPending").textContent=money(data.pending||0);
+    $("walletWithdrawn").textContent=money(data.withdrawn||0);
+  }
+}
+function openWalletPay(){
+  if(!user){openAuth();return;}
+  startPayment("wallet_topup",1000,null);
+}
+function openWalletWithdraw(){
+  if(!user){openAuth();return;}
+  showPage("referral");
+  $("withdrawAmount")?.focus();
+}
+function startVisaGateway(){
+  if(!user){openAuth();return;}
+  alert("Visa gateway placeholder: before production, connect a PCI-compliant payment gateway. Do not send/store raw card number or CVV in Supabase.");
+}
+
+/* Extend page loader safely. */
+const _showPageV2 = showPage;
+showPage = function(page){
+  _showPageV2(page);
+  if(page==="inbox") loadConversations();
+  if(page==="dashboard") loadWallet();
+};
+
+/* After products load/render, hydrate seller snippets. */
+const _renderProductsV2 = renderProducts;
+renderProducts = function(){
+  _renderProductsV2();
+  setTimeout(hydrateProductSellers,0);
+};
+
+/* Load comments and seller data when opening a product. */
+const _openProductV2 = openProduct;
+openProduct = async function(id){
+  await _openProductV2(id);
+  const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);
+  if(!p)return;
+  await hydrateSellerMini(p.seller_id,"sellerMini-"+id);
+  await openProductComments(id);
+};
+
+/* Product images: lazy-load on all current product cards. */
+const _renderProductsLazy = renderProducts;
+renderProducts = function(){
+  _renderProductsLazy();
+  document.querySelectorAll("#products img").forEach(img=>img.loading="lazy");
+};
+
+/* Initial wallet refresh after auth. */
+const _refreshUserV2 = refreshUser;
+refreshUser = async function(){
+  await _refreshUserV2();
+  if(user) await loadWallet();
+};
+
 </script>
 </body>
 </html>
