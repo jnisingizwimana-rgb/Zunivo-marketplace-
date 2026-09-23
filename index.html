@@ -987,7 +987,13 @@ function openExam(){refreshExamAccess().then(()=>{$("examButton").classList.cont
 async function submitExam(){
 const answers={q1:"a",q2:"a",q3:"a"};let score=0;
 ["q1","q2","q3"].forEach(q=>{if(document.querySelector(`input[name="${q}"]:checked`)?.value===answers[q])score++});
-if(user)await supabaseClient.from("exam_results").insert({user_id:user.id,score,total:3});
+  if(user)await supabaseClient.from("exam_results").insert({
+  user_id:user.id,
+  score:score,
+  total_questions:3,
+  passed:score>=2,
+  answers:answers
+});
 $("examResult").innerHTML=`<div class="success">Score: <b>${score}/3</b>.</div>`;
 }
 function toggleJobProfile(){$("jobProfileForm").classList.toggle("hidden")}
