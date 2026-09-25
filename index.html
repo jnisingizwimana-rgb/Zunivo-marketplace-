@@ -182,12 +182,14 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
    </div>
   </div>
   <div class="nav">
-   <button data-page="home" onclick="showPage('home')">🏠 Home</button>
-   <button data-page="sell" onclick="protectedPage('sell')">🛒 Sell</button>
-   <button data-page="jobs" onclick="showPage('jobs')">💼 Jobs</button>
-   <button data-page="businessManager" onclick="protectedPage('businessManager')">🏪 Manager</button>
-   <button data-page="analysis" onclick="protectedPage('analysis')">📈 Analysis</button>
-   <button data-page="profile" onclick="protectedPage('profile')">👤 Profile</button>
+   <button data-page="home" onclick="showPage('home')">🏠 <span data-i18n="Home">Home/<span>
+    
+   </span></button>
+   <button data-page="sell" onclick="protectedPage('sell')">🛒 <span data-i18n="Sell">Sell</button>
+   <button data-page="jobs" onclick="showPage('jobs')">💼<span data-i18n="Jobs">Jobs</button>
+   <button data-page="businessManager" onclick="protectedPage('businessManager')">🏪  <span data-i18n="Manager">Manager</button>
+   <button data-page="analysis" onclick="protectedPage('analysis')">📈 <span data-i18n="Analysis">Analysis</button>
+   <button data-page="profile" onclick="protectedPage('profile')">👤 <span data-i18n="Profile">Profile</button>
   </div>
   <div id="profileMenu" class="menu">
    <button onclick="protectedPage('profile')">👤 Profile</button>
