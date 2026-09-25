@@ -12,6 +12,7 @@ button,input,select,textarea{font:inherit}
 button{border:0;border-radius:11px;padding:11px 14px;background:#1769ff;color:#fff;font-weight:700;cursor:pointer}
 button.secondary{background:#eaf1ff;color:#1769ff}
 button.danger{background:#ffe8e8;color:#b42318}
+button.successBtn{background:#159447}
 button:disabled{opacity:.55;cursor:not-allowed}
 input,select,textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #d7dce5;border-radius:11px;background:#fff}
 textarea{min-height:90px;resize:vertical}
@@ -19,14 +20,15 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
 .head{max-width:1120px;margin:auto;padding:10px 14px}
 .top{display:flex;justify-content:center;align-items:center;position:relative}
 .logo{font-size:24px;font-weight:900;color:#1769ff}
-.topActions{position:absolute;right:0;display:flex;gap:8px}
+.topActions{position:absolute;right:0;display:flex;gap:7px}
 .nav{display:flex;gap:7px;overflow:auto;margin-top:10px;justify-content:center}
 .nav button{background:#eef1f5;color:#263247;white-space:nowrap}
 .nav button.active{background:#1769ff;color:#fff}
 .container{max-width:1120px;margin:auto;padding:15px 15px 90px}
 .hero{background:linear-gradient(135deg,#0750d8,#3187ff);color:#fff;padding:25px;border-radius:20px;margin-bottom:15px}
 .hero h1{margin:0 0 8px}.panel{background:#fff;border-radius:17px;padding:17px;margin-bottom:15px;box-shadow:0 3px 15px #0001}
-.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 3px 15px #0001}
 .media{width:100%;height:190px;object-fit:cover;background:#e8edf5;display:block}
 .body{padding:13px}.price{font-size:20px;font-weight:900;color:#1769ff}.muted{font-size:13px;color:#707887}
@@ -34,2076 +36,757 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}
 .stat{background:#f1f5ff;padding:14px;border-radius:13px}.stat b{font-size:22px}
 .modal{position:fixed;inset:0;background:#0008;z-index:500;display:none;align-items:center;justify-content:center;padding:14px}
-.modal.show{display:flex}.modalbox{background:#fff;width:min(680px,100%);max-height:92vh;overflow:auto;border-radius:20px;padding:18px}
-.menu{position:absolute;right:14px;top:60px;width:250px;background:#fff;border-radius:15px;box-shadow:0 8px 30px #0003;padding:8px;display:none}
+.modal.show{display:flex}.modalbox{background:#fff;width:min(720px,100%);max-height:92vh;overflow:auto;border-radius:20px;padding:18px}
+.menu{position:absolute;right:14px;top:60px;width:255px;background:#fff;border-radius:15px;box-shadow:0 8px 30px #0003;padding:8px;display:none}
 .menu.show{display:block}.menu button{width:100%;margin:3px 0;background:#fff;color:#172033;text-align:left}
-.listrow{padding:12px 0;border-bottom:1px solid #eee}.notice{padding:12px;border-radius:12px;background:#fff7d6;color:#745b00}
-.success{padding:12px;border-radius:12px;background:#e7faee;color:#16703c}.error{padding:12px;border-radius:12px;background:#ffe8e8;color:#a61b1b}
+.listrow{padding:12px 0;border-bottom:1px solid #eee}
+.notice{padding:12px;border-radius:12px;background:#fff7d6;color:#745b00}
+.success{padding:12px;border-radius:12px;background:#e7faee;color:#16703c}
+.error{padding:12px;border-radius:12px;background:#ffe8e8;color:#a61b1b}
 .bar{height:12px;background:#e8edf5;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;background:#1769ff}
-.bottom{display:none}.examq{padding:14px;border:1px solid #e2e6ef;border-radius:13px;margin:10px 0}
+.examq{padding:14px;border:1px solid #e2e6ef;border-radius:13px;margin:10px 0}
 .smallgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .status{font-size:12px;font-weight:700;padding:4px 8px;border-radius:15px;background:#eef1f5;display:inline-block}
-@media(max-width:650px){
-header .nav{
-display:flex;
-overflow-x:auto;
-justify-content:flex-start;
-margin-top:10px;
-padding-bottom:3px;
--webkit-overflow-scrolling:touch
-}
-header .nav button{
-display:block;
-flex:0 0 auto;
-font-size:12px;
-padding:9px 12px
-}
-.hero h1{font-size:24px}
-.media{height:170px}
-.top{padding-right:90px}
-.smallgrid{grid-template-columns:1fr}
-}
-
-.avatarWrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:8px 0 14px}.avatar{width:82px;height:82px;border-radius:50%;object-fit:cover;background:#e8edf5;border:3px solid #1769ff}.mediaType{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.mediaType button{background:#eef1f5;color:#263247}.mediaType button.active{background:#1769ff;color:#fff}.shareRow{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.shareBtn{background:#eef1f5!important;color:#263247!important}.loginBox{background:linear-gradient(135deg,#0750d8,#1769ff);color:#fff;border-radius:20px;padding:18px}.loginBox input{background:#fff;color:#172033}.loginBox hr{border:0;border-top:1px solid #ffffff55}.loginDots{display:none;text-align:center;letter-spacing:5px}.loginDots.show{display:block}.loginDots span{display:inline-block;animation:dotPulse 1s infinite}.loginDots span:nth-child(2){animation-delay:.15s}.loginDots span:nth-child(3){animation-delay:.3s}@keyframes dotPulse{0%,70%,100%{opacity:.25}35%{opacity:1}}
-
-/* ZUNIVO V2 - compatibility/performance additions */
-html{font-display:swap}
-img{max-width:100%}
-button,input,select,textarea{touch-action:manipulation}
+.avatarWrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:8px 0 14px}
+.avatar{width:82px;height:82px;border-radius:50%;object-fit:cover;background:#e8edf5;border:3px solid #1769ff}
+.mediaType{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.mediaType button{background:#eef1f5;color:#263247}
+.mediaType button.active{background:#1769ff;color:#fff}
 .productSeller{display:flex;align-items:center;gap:9px;margin:8px 0;cursor:pointer}
 .productSeller img{width:38px;height:38px;border-radius:50%;object-fit:cover;background:#e8edf5;border:1px solid #d7dce5}
-.actionRow{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
-.actionRow button{padding:9px 10px;font-size:12px}
+.actionRow{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.actionRow button{padding:9px 10px;font-size:12px}
 .sellerMini{font-weight:800;color:#172033}
 .sellerModalHead{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .sellerModalHead img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #1769ff}
-.chatBox{display:flex;flex-direction:column;height:55vh}
-.chatMessages{flex:1;overflow:auto;padding:8px;background:#f6f8fc;border-radius:12px;margin-bottom:8px}
+.chatBox{display:flex;flex-direction:column;height:55vh}.chatMessages{flex:1;overflow:auto;padding:8px;background:#f6f8fc;border-radius:12px;margin-bottom:8px}
 .msg{max-width:82%;padding:9px 11px;border-radius:13px;margin:5px 0;word-break:break-word}
-.msg.me{margin-left:auto;background:#1769ff;color:#fff}
-.msg.other{margin-right:auto;background:#fff;border:1px solid #e1e5ec}
+.msg.me{margin-left:auto;background:#1769ff;color:#fff}.msg.other{margin-right:auto;background:#fff;border:1px solid #e1e5ec}
 .comment{padding:9px 0;border-bottom:1px solid #eee}
-.adCard{border:2px solid #1769ff}
-.walletGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.balanceBig{font-size:28px;font-weight:900;color:#1769ff}
-.paymentNotice{font-size:12px;color:#6b7280}
-.visaFields{display:grid;grid-template-columns:2fr 1fr 1fr;gap:7px}
-@media(max-width:650px){.visaFields{grid-template-columns:1fr 1fr}.visaFields input:first-child{grid-column:1/-1}}
+.adCard{border:2px solid #1769ff}.walletGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.balanceBig{font-size:28px;font-weight:900;color:#1769ff}.paymentNotice{font-size:12px;color:#6b7280}
+.revenueGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.revenueCard{padding:15px;border-radius:14px;background:#f1f5ff}
+.plan{border:1px solid #dfe5ef;border-radius:15px;padding:15px}.plan h3{margin-top:0}
+.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{background:#eef1f5;color:#263247;padding:7px 10px;border-radius:20px;font-size:12px}
+.adminTabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
 .compatNotice{padding:10px;border-radius:10px;background:#eef6ff;color:#174a8b;font-size:12px;margin-top:8px}
-
+@media(max-width:650px){
+ header .nav{justify-content:flex-start;padding-bottom:3px;-webkit-overflow-scrolling:touch}
+ .nav button{flex:0 0 auto;font-size:12px;padding:9px 12px}
+ .hero h1{font-size:24px}.media{height:170px}.top{padding-right:90px}.smallgrid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-
 <header>
-<div class="head">
-<div class="top">
-<div class="logo">🛍️ Zunivo Market</div>
-<div class="topActions">
-<button class="secondary" onclick="openNotifications()">🔔</button>
-<button class="secondary" onclick="toggleMenu()">👤</button>
-</div>
-</div>
-  
-  
-<div class="nav">
-<button data-page="home" onclick="showPage('home')">🏠 Home</button>
-<button data-page="sell" onclick="protectedPage('sell')">🛒 Sell</button>
-<button data-page="jobs" onclick="showPage('jobs')">💼 Job</button>
-<button data-page="analysis" onclick="protectedPage('analysis')">📈 Analysis</button>
-<button data-page="profile" onclick="protectedPage('profile')">👤 Profile</button>
-</div>
-
-<div id="profileMenu" class="menu">
-<button onclick="protectedPage('profile')">👤 Profile</button>
-  <button
-  id="adminNavBtn"
-  onclick="showAdminDashboard()"
-    style="display:none">
-  🛡️ Admin</button>
-<button onclick="protectedPage('dashboard')">📊 Dashboard</button>
-<button onclick="protectedPage('orders')">🛒 Orders</button>
-<button onclick="protectedPage('inbox')">💬 Inbox</button>
-<button onclick="protectedPage('referral')">🎁 Referral</button>
-<button onclick="protectedPage('settings')">⚙️ Settings</button>
-<button onclick="logout()" class="danger">🚪 Logout</button>
-</div>
-
-</div>
+ <div class="head">
+  <div class="top">
+   <div class="logo">Zunivo Market 🛍️</div>
+   <div class="topActions">
+    <button class="secondary" onclick="openNotifications()" aria-label="Notifications">🔔</button>
+    <button class="secondary" onclick="toggleMenu()" aria-label="Profile menu">👤</button>
+   </div>
+  </div>
+  <div class="nav">
+   <button data-page="home" onclick="showPage('home')">🏠 Home</button>
+   <button data-page="sell" onclick="protectedPage('sell')">🛒 Sell</button>
+   <button data-page="jobs" onclick="showPage('jobs')">💼 Jobs</button>
+   <button data-page="businessManager" onclick="protectedPage('businessManager')">🏪 Manager</button>
+   <button data-page="analysis" onclick="protectedPage('analysis')">📈 Analysis</button>
+   <button data-page="profile" onclick="protectedPage('profile')">👤 Profile</button>
+  </div>
+  <div id="profileMenu" class="menu">
+   <button onclick="protectedPage('profile')">👤 Profile</button>
+   <button id="adminNavBtn" onclick="showAdminDashboard()" style="display:none">🛡️ Admin</button>
+   <button onclick="protectedPage('dashboard')">📊 Dashboard</button>
+   <button onclick="protectedPage('orders')">🛒 Orders</button>
+   <button onclick="protectedPage('inbox')">💬 Inbox</button>
+   <button onclick="protectedPage('referral')">🎁 Referral</button>
+   <button onclick="protectedPage('settings')">⚙️ Settings</button>
+   <button onclick="logout()" class="danger">🚪 Logout</button>
+  </div>
+ </div>
 </header>
 
 <main class="container">
 
 <section id="homePage" class="page">
-<div class="hero">
-<h1>Gura ugurishe namupaka</h1>
-<p>Zunivo ihuza abaguzi, abacuruzi n'abashaka akazi.</p>
-<button onclick="findNearby()">📍 Ibikwegereye</button>
-<p class="compatNotice">⚡ Zunivo yateguwe ku mobile nkeya n’ibigezweho: images zikoreshwa lazy-load kandi features zidakora kuri browser ishaje zigira fallback.</p>
-</div>
-<div class="panel"><input id="searchBox" placeholder="🔎 Shakisha product..." oninput="renderProducts()"></div>
-<h2>🛍️ Ibicuruzwa</h2>
-<div id="products" class="grid"></div>
+ <div class="hero">
+  <h1>Gura ugurishe namupaka</h1>
+  <p>Zunivo ihuza abaguzi, abacuruzi, abashaka akazi na business.</p>
+  <button onclick="findNearby()">📍 Ibikwegereye</button>
+  <p class="compatNotice">Zunivo yateguwe kuri mobile. Images zikoresha lazy-load kandi features zishobora kubura kuri browser ishaje zigira fallback.</p>
+ </div>
+ <div class="panel">
+  <input id="searchBox" placeholder="🔎 Shakisha product, category cyangwa aho iherereye..." oninput="renderProducts()">
+  <div class="chips" style="margin-top:8px">
+   <button class="chip" onclick="filterCategory('')">Byose</button>
+   <button class="chip" onclick="filterCategory('Telefone')">Telefone</button>
+   <button class="chip" onclick="filterCategory('Imyenda')">Imyenda</button>
+   <button class="chip" onclick="filterCategory('Ibiribwa')">Ibiribwa</button>
+   <button class="chip" onclick="filterCategory('Imodoka')">Imodoka</button>
+   <button class="chip" onclick="filterCategory('Inzu')">Inzu</button>
+  </div>
+ </div>
+ <div id="publicAds"></div>
+ <h2>🛍️ Ibicuruzwa</h2>
+ <div id="products" class="grid"></div>
 </section>
 
 <section id="sellPage" class="page hidden">
-<div class="panel">
-  <button onclick="protectedlage{creater💻)creater
+ <div class="panel">
+  <h2>🏪 Business Account</h2>
+  <p class="muted">Fungura Business Account mbere yo gushyira ibintu ku isoko.</p>
+  <button onclick="toggleBusiness()">➕ Create Business Account</button>
+  <div id="businessForm" class="hidden">
+   <input id="bizName" placeholder="Izina rya business">
+   <input id="bizPhone" placeholder="Phone">
+   <input id="bizLocation" placeholder="Aho business iherereye">
+   <textarea id="bizAbout" placeholder="Sobanura business"></textarea>
+   <button onclick="saveBusiness()">💾 Bika Business Account</button>
+   <p id="businessMessage" class="muted"></p>
+  </div>
+ </div>
 
+ <div class="panel">
+  <h2>➕ Shyira igicuruzwa ku isoko</h2>
+  <input id="productName" placeholder="Izina ry'igicuruzwa">
+  <textarea id="productDescription" placeholder="Sobanura igicuruzwa"></textarea>
+  <input id="productPrice" type="number" min="1" placeholder="Igiciro RWF">
+  <input id="productCity" placeholder="Aho giherereye">
+  <select id="productCategory">
+   <option>Telefone</option><option>Imyenda</option><option>Ibiribwa</option><option>Ibikoresho</option>
+   <option>Imodoka</option><option>Inzu</option><option>Ubwiza</option><option>Services</option><option>Ibindi</option>
+  </select>
+  <div class="panel" style="padding:12px;background:#f7f9fd">
+   <b>📸 Media y'igicuruzwa</b>
+   <div class="mediaType">
+    <button type="button" id="mediaImageBtn" class="active" onclick="setMediaType('image')">🖼️ Image</button>
+    <button type="button" id="mediaVideoBtn" onclick="setMediaType('video')">🎥 Video</button>
+    <button type="button" id="mediaTextBtn" onclick="setMediaType('text')">📝 Text</button>
+   </div>
+   <input id="productMediaFile" type="file" accept="image/*" onchange="previewProductMedia(event)">
+   <textarea id="productMediaText" class="hidden" placeholder="Andika text y'inyongera kuri product..."></textarea>
+   <div id="productMediaPreview"></div>
+  </div>
+  <p class="notice">Fee yo gushyira product ku isoko: <b>1,000 RWF</b>.</p>
+  <button onclick="publishProduct()">💳 Ishyura 1,000 RWF → Shyira ku isoko</button>
+  <p id="sellMessage" class="muted"></p>
+ </div>
 
-<div id="businessForm" class="hidden">
-<input id="bizName" placeholder="Izina rya business">
-<input id="bizPhone" placeholder="Phone">
-<input id="bizLocation" placeholder="Aho business iherereye">
-<textarea id="bizAbout" placeholder="Sobanura business"></textarea>
-<button onclick="saveBusiness()">💾 Bika Business Account</button>
-<p id="businessMessage" class="muted"></p>
-</div>
-</div>
-
-<div class="panel">
-<h2>➕ Shyira igicuruzwa ku isoko</h2>
-<input id="productName" placeholder="Izina ry'igicuruzwa">
-<textarea id="productDescription" placeholder="Sobanura igicuruzwa"></textarea>
-<input id="productPrice" type="number" min="0" placeholder="Igiciro RWF">
-<input id="productCity" placeholder="Aho giherereye">
-<select id="productCategory">
-<option>Telefone</option><option>Imyenda</option><option>Ibiribwa</option><option>Ibikoresho</option>
-<option>Imodoka</option><option>Inzu</option><option>Ubwiza</option><option>Ibindi</option>
-</select>
-<div class="panel" style="padding:12px;background:#f7f9fd">
-<b>📸 Media y'igicuruzwa</b>
-<div class="mediaType">
-<button type="button" id="mediaImageBtn" class="active" onclick="setMediaType('image')">🖼️ Image</button>
-<button type="button" id="mediaVideoBtn" onclick="setMediaType('video')">🎥 Video</button>
-<button type="button" id="mediaTextBtn" onclick="setMediaType('text')">📝 Text</button>
-</div>
-<input id="productMediaFile" type="file" accept="image/*" onchange="previewProductMedia(event)">
-<textarea id="productMediaText" class="hidden" placeholder="Andika text y'inyongera kuri product..."></textarea>
-<div id="productMediaPreview"></div>
-</div>
-<p class="notice">Fee yo gushyira product ku isoko: <b>1,000 RWF</b>.</p>
-<button onclick="publishProduct()">💳 Ishyura 1,000 RWF → Shyira ku isoko</button>
-<p id="sellMessage" class="muted"></p>
-</div>
+ <div class="panel">
+  <h3>🚀 Promotions</h3>
+  <p class="muted">Nyuma yo kugira product public ushobora kuyizamura muri Featured/Sponsored.</p>
+  <div class="smallgrid">
+   <button onclick="startPayment('featured_product',500)">⭐ Featured 500 RWF</button>
+   <button onclick="startPayment('boost_product',1000)">🚀 Boost 1,000 RWF</button>
+  </div>
+ </div>
 </section>
 
 <section id="jobsPage" class="page hidden">
-<div class="panel">
-<h2>💼 Shaka Akazi</h2>
-<p>Uzuza umwirondoro wawe wuzuye kugira ngo Zunivo ibashe kuguhuza n'imirimo.</p>
-<button onclick="toggleJobProfile()">📝 Uzuza Umwirondoro</button>
-<div id="jobProfileForm" class="hidden">
-<input id="jobName" placeholder="Amazina yose">
-<input id="jobPhone" placeholder="Phone number">
-<input id="jobEmail" type="email" placeholder="Email">
-<input id="jobLocation" placeholder="Aho utuye / ukorera">
-<select id="schoolType"><option>Primary</option><option>Secondary</option><option>TVET</option><option>University</option><option>Other</option></select>
-<input id="education" placeholder="Ibyo wize">
-<input id="certificate" placeholder="Impamyabumenyi / certificate">
-<input id="field" placeholder="Field / ubwoko bw'amashuri">
-<input id="experience" placeholder="Uburambe bw'akazi">
-<input id="skills" placeholder="Skills">
-<input id="languages" placeholder="Indimi">
-<input id="availability" placeholder="Igihe ushobora gutangiriraho">
-<textarea id="jobAbout" placeholder="Umwirondoro wuzuye: ibyo ushoboye, experience, achievements..."></textarea>
-<input id="cvUrl" type="url" placeholder="CV URL niba uyifite">
-<button onclick="saveJobProfile()">💾 Bika Umwirondoro</button>
-<p id="jobProfileMessage" class="muted"></p>
-</div>
-</div>
+ <div class="panel">
+  <h2>💼 Shaka Akazi</h2>
+  <p>Uzuza umwirondoro wawe wuzuye kugira ngo Zunivo ibashe kuguhuza n'imirimo.</p>
+  <button onclick="toggleJobProfile()">📝 Uzuza Umwirondoro</button>
+  <div id="jobProfileForm" class="hidden">
+   <input id="jobName" placeholder="Amazina yose"><input id="jobPhone" placeholder="Phone number">
+   <input id="jobEmail" type="email" placeholder="Email"><input id="jobLocation" placeholder="Aho utuye / ukorera">
+   <select id="schoolType"><option>Primary</option><option>Secondary</option><option>TVET</option><option>University</option><option>Other</option></select>
+   <input id="education" placeholder="Ibyo wize"><input id="certificate" placeholder="Impamyabumenyi / certificate">
+   <input id="field" placeholder="Field / ubwoko bw'amashuri"><input id="experience" placeholder="Uburambe bw'akazi">
+   <input id="skills" placeholder="Skills"><input id="languages" placeholder="Indimi">
+   <input id="availability" placeholder="Igihe ushobora gutangiriraho">
+   <textarea id="jobAbout" placeholder="Umwirondoro wuzuye: ibyo ushoboye, experience, achievements..."></textarea>
+   <input id="cvUrl" type="url" placeholder="CV URL niba uyifite">
+   <label style="display:flex;gap:8px;align-items:center;margin:8px 0"><input id="jobProfilePublic" type="checkbox" style="width:auto"> 🌐 Shyira Job Profile public</label>
+   <button onclick="saveJobProfile()">💾 Bika Umwirondoro</button> <button class="secondary" onclick="shareMyJobProfile()">↗️ Share Profile</button>
+   <p id="jobProfileMessage" class="muted"></p>
+  </div>
+ </div>
+ <div class="panel">
+  <h3>🔎 Reba ibisubizo by'akazi</h3>
+  <p>Fee yo kureba jobs: <b>1,000 RWF</b>.</p>
+  <p class="notice">Jobs zifunguka gusa iyo payment ya 1,000 RWF yemejwe (verified).</p>
+  <button onclick="startPayment('job_search',1000)">💳 Pay 1,000 RWF → Reba Jobs</button>
+  <div id="jobResults" class="hidden"><h3>Jobs zihuye nawe</h3><div id="jobList"></div></div>
+ </div>
+ <div class="panel">
+  <h3>🧑‍💼 Employer / Company</h3>
+  <p>Company ishobora kwishyura kugira ngo ishyire job public, featured cyangwa ibone service yo gushaka candidates.</p>
+  <div class="smallgrid">
+   <button onclick="startPayment('job_posting',2000)">📢 Post Job 2,000 RWF</button>
+   <button onclick="startPayment('featured_job',5000)">⭐ Featured Job 5,000 RWF</button>
+  </div>
+ </div>
+ <div id="examPanel" class="panel hidden">
+  <h3>📝 Online Exam</h3>
+  <p class="notice">Ikizamini gifunguka gusa iyo payment yacyo yemejwe kandi hashize amasaha 24.</p>
+  <button onclick="startPayment('exam',1000)">💳 Pay 1,000 RWF → Prepare Exam</button>
+  <div id="examWaiting" class="hidden notice"></div>
+  <button id="examButton" class="hidden" onclick="openExam()">🔐 Fungura Exam</button>
+ </div>
+</section>
 
-<div class="panel">
-<h3>🔎 Reba ibisubizo by'akazi</h3>
-<p>Fee yo kureba jobs: <b>1,000 RWF</b>.</p>
-<p class="notice">Jobs zifunguka gusa iyo payment ya 1,000 RWF <b>yemejwe (verified)</b>.</p>
-<button onclick="startPayment('job_search',1000)">💳 Pay 1,000 RWF → Reba Jobs</button>
-<div id="jobResults" class="hidden">
-<h3>Jobs zihuye nawe</h3>
-<div id="jobList"></div>
-</div>
-</div>
-
-<div id="examPanel" class="panel hidden">
-<h3>📝 Online Exam</h3>
-<p class="notice">Ikizamini gifunguka gusa iyo payment yacyo yemejwe kandi hashize amasaha 24.</p>
-<button onclick="startPayment('exam',1000)">💳 Pay 1,000 RWF → Prepare Exam</button>
-<div id="examWaiting" class="hidden notice"></div>
-<button id="examButton" class="hidden" onclick="openExam()">🔐 Fungura Exam</button>
-</div>
+<section id="businessManagerPage" class="page hidden">
+ <div class="panel"><h2>🏪 Business Manager Account</h2><p class="muted">Owner cyangwa manager asuzuma business, products, jobs, payments, public/private status, reports na activity.</p><div class="stats"><div class="stat">Products<br><b id="bmProducts">0</b></div><div class="stat">Jobs<br><b id="bmJobs">0</b></div><div class="stat">Payments<br><b id="bmPayments">0</b></div><div class="stat">Exam results<br><b id="bmExams">0</b></div></div></div>
+ <div class="panel"><h3>👤 Manager account</h3><p class="muted">Manager agomba kuba afite Zunivo account ye. Owner ni we umuha ububasha; password ntishyirwa muri HTML.</p><input id="bmManagerEmail" type="email" placeholder="Email ya manager"><input id="bmManagerName" placeholder="Izina rya manager"><button onclick="saveBusinessManager()">💾 Bika Manager</button><p id="bmManagerMessage" class="muted"></p></div>
+ <div class="panel"><h3>🏪 Business profile</h3><input id="bmBizName" placeholder="Izina rya business"><input id="bmBizPhone" placeholder="Phone"><input id="bmBizLocation" placeholder="Aho business iherereye"><textarea id="bmBizAbout" placeholder="About business"></textarea><div class="smallgrid"><button onclick="saveManagerBusinessProfile()">💾 Bika business</button><button class="secondary" onclick="toggleBusinessPublic()">🌐 Public / Private</button><button class="secondary" onclick="shareBusinessProfile()">↗️ Share business</button></div><p id="bmBizMessage" class="muted"></p></div>
+ <div class="panel"><h3>📢 Shyiraho Job Public</h3><p class="muted">Manager/Employer akora job, akishyura posting fee, payment verified ikayishyira public.</p><input id="bmJobTitle" placeholder="Job title"><input id="bmJobCompany" placeholder="Company"><input id="bmJobLocation" placeholder="Location"><select id="bmJobType"><option>Full time</option><option>Part time</option><option>Contract</option><option>Internship</option><option>Remote</option></select><input id="bmJobSalary" placeholder="Salary (optional)"><textarea id="bmJobDescription" placeholder="Job description, requirements, skills..."></textarea><button onclick="createBusinessJob()">💳 Bika Job → Public</button><p id="bmJobMessage" class="muted"></p></div>
+ <div class="panel"><h3>📝 Public Job Profile</h3><p class="muted">Umuntu ashyira profile ye public, akabona link yo kuyisangiza employers.</p><div class="smallgrid"><button onclick="setMyJobProfilePublic(true)">🌐 Shyira Public</button><button class="secondary" onclick="setMyJobProfilePublic(false)">🔒 Kura Public</button><button class="secondary" onclick="shareMyJobProfile()">↗️ Share Profile</button></div><p id="bmProfileMessage" class="muted"></p></div>
+ <div class="panel"><h3>🎓 Exam & Results</h3><p class="muted">Manager areba exam results z'abakandida biremewe; Admin ni we ugumana authority ya nyuma kuri verification/payment.</p><button onclick="loadBusinessExamReview()">🔎 Reba Exam Results</button><div id="bmExamReview"></div></div>
+ <div class="panel"><h3>🧾 Business activity</h3><div id="bmActivity">Kanda Refresh kureba ibikorwa.</div><button class="secondary" onclick="loadBusinessManagerDashboard()">🔄 Refresh</button></div>
 </section>
 
 <section id="analysisPage" class="page hidden">
-<div class="panel">
-<h2>📈 Analysis</h2>
-<div class="stats">
-<div class="stat">Views<br><b id="aViews">0</b></div>
-<div class="stat">Clicks<br><b id="aClicks">0</b></div>
-<div class="stat">Likes<br><b id="aLikes">0</b></div>
-<div class="stat">Orders<br><b id="aOrders">0</b></div>
-</div>
-<h3>Sales performance</h3>
-<p>Products & activity</p><div class="bar"><i id="bar1" style="width:0%"></i></div>
-<p>Product clicks</p><div class="bar"><i id="bar2" style="width:0%"></i></div>
-<p>Orders</p><div class="bar"><i id="bar3" style="width:0%"></i></div>
-<p>Sales</p><div class="bar"><i id="bar4" style="width:0%"></i></div>
-</div>
+ <div class="panel"><h2>📈 Analysis</h2>
+  <div class="stats">
+   <div class="stat">Views<br><b id="aViews">0</b></div><div class="stat">Clicks<br><b id="aClicks">0</b></div>
+   <div class="stat">Likes<br><b id="aLikes">0</b></div><div class="stat">Orders<br><b id="aOrders">0</b></div>
+  </div>
+  <h3>Sales performance</h3>
+  <p>Products & activity</p><div class="bar"><i id="bar1" style="width:0%"></i></div>
+  <p>Product clicks</p><div class="bar"><i id="bar2" style="width:0%"></i></div>
+  <p>Orders</p><div class="bar"><i id="bar3" style="width:0%"></i></div>
+  <p>Sales</p><div class="bar"><i id="bar4" style="width:0%"></i></div>
+ </div>
 </section>
 
 <section id="profilePage" class="page hidden">
-<div class="panel">
-<h2>👤 Profile</h2>
-<div class="avatarWrap">
-<img id="profileAvatar" class="avatar" src="https://via.placeholder.com/160x160?text=Z" alt="Profile picture">
-<div><b>📸 Profile picture</b><input id="profilePhoto" type="file" accept="image/*" onchange="previewProfilePhoto(event)"><small class="muted">Hitamo ifoto yo kuri telefone.</small></div>
-</div>
-<input id="profileName" placeholder="Amazina">
-<input id="profileEmail" placeholder="Email">
-<input id="profilePhone" placeholder="Phone">
-<input id="profileCity" placeholder="Aho uherereye">
-<textarea id="profileAbout" placeholder="About"></textarea>
-<button onclick="saveProfile()">💾 Bika Profile</button>
-<p id="profileMessage" class="muted"></p>
-</div>
+ <div class="panel"><h2>👤 Profile</h2>
+  <div class="avatarWrap"><img id="profileAvatar" class="avatar" src="https://via.placeholder.com/160x160?text=Z" alt="Profile picture">
+   <div><b>Profile picture</b><input id="profilePhoto" type="file" accept="image/*" onchange="previewProfilePhoto(event)">
+   <small class="muted">Hitamo ifoto yo kuri telefone.</small></div>
+  </div>
+  <input id="profileName" placeholder="Amazina"><input id="profileEmail" placeholder="Email">
+  <input id="profilePhone" placeholder="Phone"><input id="profileCity" placeholder="Aho uherereye">
+  <textarea id="profileAbout" placeholder="About"></textarea>
+  <button onclick="saveProfile()">💾 Bika Profile</button><p id="profileMessage" class="muted"></p>
+ </div>
 </section>
 
 <section id="dashboardPage" class="page hidden">
-<div class="panel">
-<h2>📊 Dashboard</h2>
-<div class="stats">
-<div class="stat">Products<br><b id="statProducts">0</b></div>
-<div class="stat">Orders<br><b id="statOrders">0</b></div>
-<div class="stat">Sales<br><b id="statSales">0 RWF</b></div>
-<div class="stat">Views<br><b id="statViews">0</b></div>
-</div>
-</div>
+ <div class="panel"><h2>📊 Dashboard</h2>
+  <div class="stats">
+   <div class="stat">Products<br><b id="statProducts">0</b></div><div class="stat">Orders<br><b id="statOrders">0</b></div>
+   <div class="stat">Sales<br><b id="statSales">0 RWF</b></div><div class="stat">Views<br><b id="statViews">0</b></div>
+  </div>
+ </div>
+ <div class="panel"><h3>💰 Wallet</h3>
+  <div class="walletGrid">
+   <div class="stat">Balance<br><b id="walletBalance">0 RWF</b></div>
+   <div class="stat">Pending<br><b id="walletPending">0 RWF</b></div>
+   <div class="stat">Withdrawn<br><b id="walletWithdrawn">0 RWF</b></div>
+  </div>
+  <div class="actionRow">
+   <button onclick="openWalletPay()">➕ Add/Pay</button>
+   <button class="secondary" onclick="openWalletWithdraw()">💸 Withdraw</button>
+   <button class="secondary" onclick="startVisaGateway()">💳 Visa</button>
+  </div>
+  <p class="paymentNotice">Wallet balance igomba kuva kuri server/RPC. Ntukishingire ku mibare ya client gusa.</p>
+ </div>
+ <div class="panel"><h3>💼 Zunivo Business Plans</h3>
+  <div class="grid">
+   <div class="plan"><h3>Free</h3><p>Basic seller account</p><button onclick="alert('Free plan')">Current</button></div>
+   <div class="plan"><h3>Business</h3><p>5,000 RWF / month</p><button onclick="startPayment('business_subscription',5000)">Subscribe</button></div>
+   <div class="plan"><h3>Pro</h3><p>15,000 RWF / month</p><button onclick="startPayment('pro_subscription',15000)">Subscribe</button></div>
+  </div>
+ </div>
+ <div class="panel"><h3>💡 Services Zunivo ishobora kwishyuzaho</h3>
+  <div class="chips">
+   <span class="chip">Product listing</span><span class="chip">Featured product</span><span class="chip">Ads</span>
+   <span class="chip">Job posting</span><span class="chip">CV service</span><span class="chip">Verified business</span>
+   <span class="chip">Delivery commission</span><span class="chip">Service booking commission</span>
+  </div>
+ </div>
 </section>
 
-<section id="ordersPage" class="page hidden">
-<div class="panel"><h2>🛒 Orders</h2><div id="ordersList"><p class="muted">Nta orders ziriho.</p></div></div>
-</section>
-
+<section id="ordersPage" class="page hidden"><div class="panel"><h2>🛒 Orders</h2><div id="ordersList"><p class="muted">Nta orders ziriho.</p></div></div></section>
 
 <section id="referralPage" class="page hidden">
-  <div class="panel">
-    <h2>🎁 Referral Program</h2>
-    <p>Injiza inshuti muri Zunivo ukoresheje referral code yawe. Iyo umuntu mushya yinjiye akoresheje code yawe, bonus ni <b>500 RWF</b>.</p>
-
-    <div class="notice">
-      <b>Referral Code yawe:</b>
-      <div style="font-size:24px;font-weight:900;margin:8px 0" id="myReferralCode">...</div>
-      <button onclick="copyReferralCode()">📋 Copy Code</button>
-      <button class="secondary" onclick="copyReferralLink()">🔗 Copy Link</button><button class="shareBtn" onclick="shareReferral()">↗️ Share</button>
-    </div>
-
-    <div class="stats" style="margin-top:15px">
-      <div class="stat">Referrals<br><b id="refCount">0</b></div>
-      <div class="stat">Bonus<br><b id="refBalance">0 RWF</b></div>
-    </div>
-
-    <h3>➕ Injiza referral code</h3>
-    <input id="referralInput" placeholder="Andika referral code">
-    <button onclick="applyReferralCode()">🎁 Koresha Code</button>
-    <p id="referralMessage" class="muted"></p>
+ <div class="panel"><h2>🎁 Referral Program</h2>
+  <p>Iyo umuntu mushya yinjiye akoresheje referral code yawe, bonus ni <b>500 RWF</b> hashingiwe kuri rules za database.</p>
+  <div class="notice"><b>Referral Code yawe:</b><div style="font-size:24px;font-weight:900;margin:8px 0" id="myReferralCode">...</div>
+   <button onclick="copyReferralCode()">📋 Copy Code</button><button class="secondary" onclick="copyReferralLink()">🔗 Copy Link</button><button class="secondary" onclick="shareReferral()">↗️ Share</button>
   </div>
-
-  <div class="panel">
-    <h2>💸 Withdraw</h2>
-    <p>Withdraw amafaranga ya referral umaze kubona. Minimum withdrawal: <b>5,000 RWF</b>.</p>
-    <input id="withdrawAmount" type="number" min="5000" step="500" placeholder="Amount RWF">
-    <select id="withdrawMethod">
-      <option value="mtn">MTN Mobile Money</option>
-      <option value="equity">Equity Bank</option>
-    </select>
-    <input id="withdrawAccount" placeholder="MTN phone cyangwa Equity account">
-    <button onclick="requestWithdrawal()">💸 Saba Withdraw</button>
-    <p id="withdrawMessage" class="muted"></p>
-  </div>
-
-  <div class="panel">
-    <h3>📜 Withdrawal History</h3>
-    <div id="withdrawalList"><p class="muted">Nta withdrawals ziraboneka.</p></div>
-  </div>
+  <div class="stats" style="margin-top:15px"><div class="stat">Referrals<br><b id="refCount">0</b></div><div class="stat">Bonus<br><b id="refBalance">0 RWF</b></div></div>
+  <h3>➕ Injiza referral code</h3><input id="referralInput" placeholder="Andika referral code"><button onclick="applyReferralCode()">🎁 Koresha Code</button>
+  <p id="referralMessage" class="muted"></p>
+ </div>
+ <div class="panel"><h2>💸 Withdraw</h2><p>Minimum withdrawal: <b>5,000 RWF</b>.</p>
+  <input id="withdrawAmount" type="number" min="5000" step="500" placeholder="Amount RWF">
+  <select id="withdrawMethod"><option value="mtn">MTN Mobile Money</option><option value="equity">Equity Bank</option></select>
+  <input id="withdrawAccount" placeholder="MTN phone cyangwa Equity account"><button onclick="requestWithdrawal()">💸 Saba Withdraw</button>
+  <p id="withdrawMessage" class="muted"></p>
+ </div>
+ <div class="panel"><h3>📜 Withdrawal History</h3><div id="withdrawalList"><p class="muted">Nta withdrawals ziraboneka.</p></div></div>
 </section>
-
 
 <section id="inboxPage" class="page hidden">
-  <div class="panel">
-    <h2>💬 Inbox</h2>
-    <div id="conversationList"><p class="muted">Nta conversations ziraboneka.</p></div>
-  </div>
-  <div class="panel hidden" id="chatPanel">
-    <h3 id="chatTitle">Chat</h3>
-    <div class="chatBox">
-      <div id="chatMessages" class="chatMessages"></div>
-      <div class="smallgrid">
-        <input id="chatInput" placeholder="Andika message...">
-        <button onclick="sendChatMessage()">📤 Ohereza</button>
-      </div>
-    </div>
-  </div>
+ <div class="panel"><h2>💬 Inbox</h2><div id="conversationList"><p class="muted">Nta conversations ziraboneka.</p></div></div>
+ <div class="panel hidden" id="chatPanel"><h3 id="chatTitle">Chat</h3><div class="chatBox">
+  <div id="chatMessages" class="chatMessages"></div><div class="smallgrid"><input id="chatInput" placeholder="Andika message..."><button onclick="sendChatMessage()">📤 Ohereza</button></div>
+ </div></div>
 </section>
 
-<section id="settingsPage" class="page hidden">
-<div class="panel">
-<h2>⚙️ Settings</h2>
-<button onclick="alert('Notifications setting')">🔔 Notifications</button>
-<button class="secondary" onclick="alert('Language: Kinyarwanda')">🌐 Kinyarwanda)<English"(France".</button>
-<button class="secondary" onclick="alert('Payment verification ikorwa na Supabase/Edge Function cyangwa admin verification.')">💳 Payment Settings</button>
-</div>
+<section id="settingsPage" class="page hidden"><div class="panel"><h2>⚙️ Settings</h2>
+ <button onclick="alert('Notifications setting')">🔔 Notifications</button>
+ <button class="secondary" onclick="alert('Language: Kinyarwanda')">🌐 Language</button>
+ <button class="secondary" onclick="alert('Payment verification ikorwa na Supabase/RPC cyangwa admin verification.')">💳 Payment Settings</button>
+</div></section>
+
+<section id="adminPage" class="page hidden">
+ <div class="panel"><h2>🛡️ Zunivo Admin Dashboard</h2><p>Payments, withdrawals, exams, ads n'imibare ya revenue.</p><div id="adminMessage"></div></div>
+ <div class="adminTabs">
+  <button onclick="showAdminTab('payments')">💳 Payments</button><button class="secondary" onclick="showAdminTab('withdrawals')">💸 Withdrawals</button>
+  <button class="secondary" onclick="showAdminTab('exams')">📝 Exam Results</button><button class="secondary" onclick="showAdminTab('revenue')">💰 Revenue</button>
+  <button class="secondary" onclick="openAdminAd()">📢 New Ad</button>
+ </div>
+ <div class="panel"><button onclick="loadAdminPayments()">🔄 Refresh</button> <button class="secondary" onclick="showPage('home')">🏠 Home</button></div>
+ <div id="adminPaymentSection" class="panel"><div id="adminPaymentList">Loading...</div></div>
+ <div id="adminWithdrawalSection" class="panel hidden"><div id="adminWithdrawalList"></div></div>
+ <div id="adminExamSection" class="panel hidden"><div id="adminExamList"></div></div>
+ <div id="adminRevenueSection" class="panel hidden">
+  <h3>💰 Revenue overview</h3><div class="revenueGrid">
+   <div class="revenueCard">Payments verified<br><b id="revVerified">0 RWF</b></div>
+   <div class="revenueCard">Listing fees<br><b id="revListing">0 RWF</b></div>
+   <div class="revenueCard">Jobs<br><b id="revJobs">0 RWF</b></div>
+   <div class="revenueCard">Ads / Promotions<br><b id="revAds">0 RWF</b></div>
+   <div class="revenueCard">Subscriptions<br><b id="revSubs">0 RWF</b></div>
+   <div class="revenueCard">Other<br><b id="revOther">0 RWF</b></div>
+  </div>
+  <p class="muted">Iyi dashboard ibara payments ziri muri Supabase; commission nyayo, delivery n'izindi revenue streams zisaba tables/RPC zabyo.</p>
+ </div>
 </section>
+</main>
 
-<section id="adminPage" class="page" style="display:none;">
-
-  <div class="page-header">
-    <h2>🛡️ Admin Payment Dashboard</h2>
-    <p>Reba kandi wemeze amafaranga abakiriya bishyuye.</p>
-  </div>
-
-  <div id="adminMessage" style="margin:10px 0;font-weight:600;"></div>
-  <div class="adminTabs">
-    <button onclick="showAdminTab('payments')">💳 Payments</button>
-    <button class="secondary" onclick="showAdminTab('withdrawals')">💸 Withdrawals</button>
-    <button class="secondary" onclick="showAdminTab('exams')">📝 Exam Results</button>
-  </div>
-
-  <div style="
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:15px;
-  ">
-
-    <button
-      onclick="loadAdminPayments()"
-      style="
-        padding:12px 16px;
-        border:0;
-        border-radius:10px;
-        cursor:pointer;
-      ">
-      🔄 Refresh
-    </button>
-
-    <button
-      onclick="showPage('home')"
-      style="
-        padding:12px 16px;
-        border:0;
-        border-radius:10px;
-        cursor:pointer;
-      ">
-      🏠 Home
-    </button>
-
-  </div>
-
-  <div id="adminPaymentSection"><div id="adminPaymentList">
-
-    <div style="
-      padding:20px;
-      text-align:center;
-    ">
-      Loading...
-    </div>
-    
-  </div>
-<div id="adminWithdrawalSection" class="hidden"><div id="adminWithdrawalList"></div></div>
-<div id="adminExamSection" class="hidden"><div id="adminExamList"></div></div>
-</section>
-  
-<div id="authModal" class="modal"><div class="modalbox"><div class="loginBox">
-<h2>🔐 Kwinjira muri Zunivo</h2>
-<button style="width:100%" onclick="googleLogin()">🔵 Continue with Google</button>
-<hr>
-<input id="authEmail" type="email" placeholder="Email">
-<input id="authPassword" type="password" placeholder="Password">
-<button onclick="emailLogin()">📧 Injira</button>
-<button class="secondary" onclick="emailSignup()">📝 Sign Up</button>
-<hr>
-<input id="authPhone" placeholder="+2507...">
-<button class="secondary" onclick="sendPhoneOTP()">📱 Ohereza OTP</button>
-<input id="authOtp" placeholder="6-digit OTP">
-<button onclick="verifyPhoneOTP()">✅ Verify OTP</button>
-<div id="loginDots" class="loginDots">● ● ●</div>
-<p id="authMessage" class="muted"></p>
-<button class="danger" onclick="closeAuth()">Funga</button>
+<div id="authModal" class="modal"><div class="modalbox"><div class="loginBox" style="background:linear-gradient(135deg,#0750d8,#1769ff);color:#fff;border-radius:20px;padding:18px">
+ <h2>🔐 Kwinjira muri Zunivo</h2><button style="width:100%" onclick="googleLogin()">🔵 Continue with Google</button><hr>
+ <input id="authEmail" type="email" placeholder="Email"><input id="authPassword" type="password" placeholder="Password">
+ <button onclick="emailLogin()">📧 Injira</button><button class="secondary" onclick="emailSignup()">📝 Sign Up</button><hr>
+ <input id="authPhone" placeholder="+2507..."><button class="secondary" onclick="sendPhoneOTP()">📱 Ohereza OTP</button>
+ <input id="authOtp" placeholder="6-digit OTP"><button onclick="verifyPhoneOTP()">✅ Verify OTP</button>
+ <p id="authMessage" class="muted"></p><button class="danger" onclick="closeAuth()">Funga</button>
 </div></div></div>
 
-<div id="paymentModal" class="modal">
-<div class="modalbox">
-<h2>💳 Kwishyura</h2>
-<p id="paymentDescription"></p>
-<div class="panel">
-<label><input type="radio" name="paymentMethod" value="mtn" checked> 📱 MTN Mobile Money</label>
-<label><input type="radio" name="paymentMethod" value="equity"> 🏦 Equity Bank</label>
-<p class="muted">Hitamo uburyo bwo kwishyura, ukande <b>Pay</b> kugira ngo utangire payment.</p>
-<label><input type="radio" name="paymentMethod" value="visa"> 💳 Visa Card</label>
-<p class="muted">Visa payment ikorwa na payment gateway yemewe. Ntitubika card/CVV muri database.</p>
-</div>
-<button id="payButton" onclick="payNow()">💳 Pay</button><button onclick="submitPayment()">📤 Nohereje Payment</button>
-<button class="secondary" onclick="closePayment()">Funga</button>
-<p id="paymentMessage" class="muted"></p>
+<div id="paymentModal" class="modal"><div class="modalbox"><h2>💳 Kwishyura</h2><p id="paymentDescription"></p>
+ <div class="panel"><label><input type="radio" name="paymentMethod" value="mtn" checked> MTN Mobile Money</label>
+ <label><input type="radio" name="paymentMethod" value="equity"> Equity Bank</label>
+ <label><input type="radio" name="paymentMethod" value="visa"> Visa Card</label>
+ <p class="muted">Visa gateway nyayo igomba kuba PCI-compliant; Zunivo ntigomba kubika raw card/CVV.</p></div>
+ <button id="payButton" onclick="payNow()">Pay</button><button onclick="submitPayment()">📤 Nohereje Payment</button>
+ <button class="secondary" onclick="closePayment()">Funga</button><p id="paymentMessage" class="muted"></p>
 </div></div>
 
-
-<div id="sellerModal" class="modal"><div class="modalbox">
-  <button class="secondary" onclick="closeModal('sellerModal')">← Garuka</button>
-  <div id="sellerDetails"></div>
+<div id="sellerModal" class="modal"><div class="modalbox"><button class="secondary" onclick="closeModal('sellerModal')">← Garuka</button><div id="sellerDetails"></div></div></div>
+<div id="adModal" class="modal"><div class="modalbox"><h2>📢 Public Ad</h2>
+ <input id="adTitle" placeholder="Ad title"><textarea id="adBody" placeholder="Ad message"></textarea><input id="adImage" type="url" placeholder="Image URL (optional)">
+ <button onclick="adminCreateAd()">📢 Publish Ad</button><button class="secondary" onclick="closeModal('adModal')">Funga</button><p id="adMessage" class="muted"></p>
 </div></div>
-<div id="adModal" class="modal"><div class="modalbox">
-  <h2>📢 Public Ad</h2>
-  <input id="adTitle" placeholder="Ad title">
-  <textarea id="adBody" placeholder="Ad message"></textarea>
-  <input id="adImage" type="url" placeholder="Image URL (optional)">
-  <button onclick="adminCreateAd()">📢 Publish Ad</button>
-  <button class="secondary" onclick="closeModal('adModal')">Funga</button>
-  <p id="adMessage" class="muted"></p>
+<div id="notificationModal" class="modal"><div class="modalbox"><h2>🔔 Notifications</h2><div id="notificationList"><p class="muted">Nta notifications.</p></div><button class="secondary" onclick="closeModal('notificationModal')">Funga</button></div></div>
+<div id="productModal" class="modal"><div class="modalbox"><button class="secondary" onclick="closeModal('productModal')">← Garuka</button><div id="productDetails"></div></div></div>
+<div id="examModal" class="modal"><div class="modalbox"><h2>📝 Online Exam</h2>
+ <div class="examq"><b>1. Ni iki cy'ingenzi mu kazi ko gukorana n'abakiriya?</b><br><label><input type="radio" name="q1" value="a"> Kubumva no kubafasha neza</label><br><label><input type="radio" name="q1" value="b"> Kubirengagiza</label></div>
+ <div class="examq"><b>2. Communication nziza iba imeze ite?</b><br><label><input type="radio" name="q2" value="a"> Isobanutse kandi yubaha abandi</label><br><label><input type="radio" name="q2" value="b"> Irimo amakimbirane</label></div>
+ <div class="examq"><b>3. Umukozi agomba kubika amakuru y'umukiriya ate?</b><br><label><input type="radio" name="q3" value="a"> Mu buryo bwizewe kandi bwubahiriza privacy</label><br><label><input type="radio" name="q3" value="b"> Kuyasangira na buri wese</label></div>
+ <button onclick="submitExam()">📤 Submit Exam</button><button class="secondary" onclick="closeModal('examModal')">Funga</button><div id="examResult"></div>
 </div></div>
-
-<div id="notificationModal" class="modal"><div class="modalbox">
-<h2>🔔 Notifications</h2><div id="notificationList"><p class="muted">Nta notifications.</p></div>
-<button class="secondary" onclick="closeModal('notificationModal')">Funga</button>
-</div></div>
-
-<div id="productModal" class="modal"><div class="modalbox">
-<button class="secondary" onclick="closeModal('productModal')">← Garuka</button>
-<div id="productDetails"></div>
-</div></div>
-
-<div id="examModal" class="modal"><div class="modalbox">
-<h2>📝 Online Exam</h2>
-<div class="examq"><b>1. Ni iki cy'ingenzi mu kazi ko gukorana n'abakiriya?</b><br>
-<label><input type="radio" name="q1" value="a"> Kubumva no kubafasha neza</label><br>
-<label><input type="radio" name="q1" value="b"> Kubirengagiza</label></div>
-<div class="examq"><b>2. Communication nziza iba imeze ite?</b><br>
-<label><input type="radio" name="q2" value="a"> Isobanutse kandi yubaha abandi</label><br>
-<label><input type="radio" name="q2" value="b"> Irimo amakimbirane</label></div>
-<div class="examq"><b>3. Umukozi agomba kubika amakuru y'umukiriya ate?</b><br>
-<label><input type="radio" name="q3" value="a"> Mu buryo bwizewe kandi bwubahiriza privacy</label><br>
-<label><input type="radio" name="q3" value="b"> Kuyasangira na buri wese</label></div>
-<button onclick="submitExam()">📤 Submit Exam</button>
-<button class="secondary" onclick="closeModal('examModal')">Funga</button>
-<div id="examResult"></div>
-</div></div>
-
-
-<section id="revenuePage" class="page hidden">
-
-  <div class="card">
-    <h2>💰 Zunivo Business</h2>
-    <p class="muted">
-      Koresha Zunivo mu kwamamaza, guteza imbere products
-      no kubona Business tools.
-    </p>
-  </div>
-
-  <!-- FEATURED PRODUCT -->
-
-  <div class="card">
-    <h3>🚀 Boost Product</h3>
-    <p class="muted">
-      Hitamo product ushaka kuzamura ikagaragara cyane.
-    </p>
-
-```
-<select id="boostProductSelect">
-  <option value="">Hitamo product</option>
-</select>
-
-<div class="revenue-plans">
-
-  <button class="revenue-plan"
-    onclick="startProductBoost('featured_product_1d')">
-    <b>500 RWF</b>
-    <span>1 Day</span>
-  </button>
-
-  <button class="revenue-plan"
-    onclick="startProductBoost('featured_product_3d')">
-    <b>1,000 RWF</b>
-    <span>3 Days</span>
-  </button>
-
-  <button class="revenue-plan"
-    onclick="startProductBoost('featured_product_7d')">
-    <b>3,000 RWF</b>
-    <span>7 Days</span>
-  </button>
-
-  <button class="revenue-plan"
-    onclick="startProductBoost('featured_product_30d')">
-    <b>10,000 RWF</b>
-    <span>30 Days</span>
-  </button>
-
-</div>
-
-<div id="boostMessage" class="muted"></div>
-```
-
-  </div>
-
-  <!-- ADVERTISING -->
-
-  <div class="card">
-
-```
-<h3>📢 Kwamamaza kuri Zunivo</h3>
-
-<input
-  id="revenueAdTitle"
-  type="text"
-  placeholder="Ad title">
-
-<textarea
-  id="revenueAdBody"
-  placeholder="Andika ubutumwa bw'iyamamaza"></textarea>
-
-<input
-  id="revenueAdImage"
-  type="url"
-  placeholder="Image URL (optional)">
-
-<select id="revenueAdPlacement">
-  <option value="home">Homepage</option>
-  <option value="products">Products</option>
-  <option value="jobs">Jobs</option>
-</select>
-
-<div class="revenue-plans">
-
-  <button class="revenue-plan"
-    onclick="buyZunivoAd('ad_7d')">
-    <b>10,000 RWF</b>
-    <span>7 Days</span>
-  </button>
-
-  <button class="revenue-plan"
-    onclick="buyZunivoAd('ad_30d')">
-    <b>30,000 RWF</b>
-    <span>30 Days</span>
-  </button>
-
-</div>
-
-<div id="adRevenueMessage" class="muted"></div>
-```
-
-  </div>
-
-  <!-- BUSINESS PRO -->
-
-  <div class="card">
-
-```
-<h3>🏪 Business Pro</h3>
-
-<p>
-  <b>15,000 RWF / month</b>
-</p>
-
-<ul>
-  <li>📊 Advanced analytics</li>
-  <li>🚀 Product promotion</li>
-  <li>🏪 Business tools</li>
-  <li>📢 Advertising tools</li>
-  <li>⭐ More visibility</li>
-</ul>
-
-<button onclick="buyBusinessPro()">
-  💳 Tangira Business Pro
-</button>
-
-<div id="businessRevenueMessage"></div>
-```
-
-  </div>
-
-  <!-- SELLER REVENUE -->
-
-  <div class="card">
-
-```
-<h3>📈 Seller Revenue</h3>
-
-<div class="stats-grid">
-
-  <div>
-    <b id="myRevenueEarned">0 RWF</b>
-    <span>Earned</span>
-  </div>
-
-  <div>
-    <b id="myRevenuePending">0 RWF</b>
-    <span>Pending</span>
-  </div>
-
-  <div>
-    <b id="myRevenueWithdrawn">0 RWF</b>
-    <span>Withdrawn</span>
-  </div>
-
-</div>
-```
-
-  </div>
-
-</section>
-
-<!-- =========================================================
-     ADMIN REVENUE DASHBOARD
-     ========================================================= -->
-
-<section id="adminRevenueSection" class="page hidden">
-
-  <div class="card">
-
-```
-<h2>📊 Zunivo Revenue Dashboard</h2>
-
-<div id="adminRevenueMessage" class="muted">
-  Loading...
-</div>
-
-<div class="stats-grid">
-
-  <div>
-    <b id="revToday">0 RWF</b>
-    <span>Today</span>
-  </div>
-
-  <div>
-    <b id="rev7Days">0 RWF</b>
-    <span>7 Days</span>
-  </div>
-
-  <div>
-    <b id="rev30Days">0 RWF</b>
-    <span>30 Days</span>
-  </div>
-
-  <div>
-    <b id="revAllTime">0 RWF</b>
-    <span>All Time</span>
-  </div>
-
-</div>
-```
-
-  </div>
-
-  <div class="card">
-
-```
-<h3>💰 Revenue Sources</h3>
-
-<div class="listrow">
-  Product Listing
-  <b id="revProductListing">0 RWF</b>
-</div>
-
-<div class="listrow">
-  Order Commission
-  <b id="revOrderCommission">0 RWF</b>
-</div>
-
-<div class="listrow">
-  Advertising
-  <b id="revAdvertising">0 RWF</b>
-</div>
-
-<div class="listrow">
-  Jobs
-  <b id="revJobs">0 RWF</b>
-</div>
-
-<div class="listrow">
-  Featured Products
-  <b id="revFeatured">0 RWF</b>
-</div>
-
-<div class="listrow">
-  Business Subscriptions
-  <b id="revSubscriptions">0 RWF</b>
-</div>
-
-<div class="listrow">
-  Services
-  <b id="revServices">0 RWF</b>
-</div>
-
-<div class="listrow">
-  Other
-  <b id="revOther">0 RWF</b>
-</div>
-```
-
-  </div>
-
-</section>
-
-<style>
-
-.revenue-plans{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:15px;
-}
-
-.revenue-plan{
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #ddd;
-  background:#fff;
-  cursor:pointer;
-}
-
-.revenue-plan b,
-.revenue-plan span{
-  display:block;
-}
-
-.revenue-plan span{
-  margin-top:4px;
-  color:#777;
-}
-
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-top:15px;
-}
-
-.stats-grid > div{
-  padding:15px;
-  border-radius:12px;
-  background:#f5f7fb;
-}
-
-.stats-grid b,
-.stats-grid span{
-  display:block;
-}
-
-.stats-grid span{
-  margin-top:5px;
-  color:#777;
-}
-
-@media(max-width:600px){
-  .revenue-plans{
-    grid-template-columns:1fr;
-  }
-}
-
-</style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-function showAdminTab(t){
-  $("adminPaymentSection").classList.toggle(
-    "hidden",
-    t !== "payments"
-  );
-
-  $("adminWithdrawalSection").classList.toggle(
-    "hidden",
-    t !== "withdrawals"
-  );
-
-  $("adminExamSection").classList.toggle(
-    "hidden",
-    t !== "exams"
-  );
-
-  if(t === "withdrawals"){
-    loadAdminWithdrawals();
-  }
-
-  if(t === "exams"){
-    loadAdminExams();
-  }
-}
- 
-async function loadAdminWithdrawals(){
- if(!await isZunivoAdmin())return;const b=$("adminWithdrawalList");b.innerHTML="⏳ Loading...";
- const {data,error}=await supabaseClient.rpc("admin_get_withdrawals");
- if(error){b.innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return}
- b.innerHTML=data?.length?data.map(w=>`<div class="card" style="padding:14px;margin-bottom:10px"><b>${money(w.amount)}</b> · ${escapeHTML(w.method||"")} · <span class="status">${escapeHTML(w.status||"")}</span><p class="muted">${escapeHTML(w.account||"")}</p>${w.status==="pending"?`<button onclick="adminProcessWithdrawal('${w.id}','approve')">✅ Approve</button> <button class="danger" onclick="adminProcessWithdrawal('${w.id}','reject')">❌ Reject</button>`:""}${w.status==="approved"?`<button onclick="adminProcessWithdrawal('${w.id}','paid')">💸 Mark Paid</button>`:""}</div>`).join(""):"<p class='muted'>Nta withdrawal requests.</p>";
-}
-async function adminProcessWithdrawal(id,a){const fn=a==="approve"?"admin_approve_withdrawal":a==="paid"?"admin_mark_withdrawal_paid":"admin_reject_withdrawal";const {error}=await supabaseClient.rpc(fn,{p_withdrawal_id:id});if(error){alert(error.message);return}loadAdminWithdrawals();}
-async function loadAdminExams(){
- if(!await isZunivoAdmin())return;const b=$("adminExamList");b.innerHTML="⏳ Loading...";
- const {data,error}=await supabaseClient.rpc("admin_get_exam_results");
- if(error){b.innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return}
- b.innerHTML=data?.length?data.map(r=>`<div class="listrow">Score: <b>${escapeHTML(String(r.score??""))}/${escapeHTML(String(r.total??""))}</b> · ${escapeHTML(r.user_id||"")}<br><span class="muted">${r.created_at?new Date(r.created_at).toLocaleString():""}</span></div>`).join(""):"<p class='muted'>Nta exam results.</p>";
-}
-</script>
 <script>
 const SUPABASE_URL="https://brretfrzuvyjrsbsjjml.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_aGs2zQzGZxOJYfuEznsvsQ_hyCkIXzY";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
-auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
-});
-
-let user=null,products=[],paymentPurpose=null,selectedProduct=null;
+const ZUNIVO_ADMIN_EMAIL="jnisingizwimana@gmail.com";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+let user=null,products=[],paymentPurpose=null,selectedProduct=null,productMediaType="image",productMediaFile=null,activeChatUserId=null,activeChatProductId=null;
 const demoProducts=[
 {id:"demo1",name:"Smartphone",description:"Smartphone nziza",price:120000,city:"Kigali",category:"Telefone",image_url:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=900",status:"active"},
-{id:"demo2",name:"Inkweto",description:"Inkweto nshya",price:25000,city:"Kigali",category:"Imyenda",image_url:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900",status:"active"}
-];
+{id:"demo2",name:"Inkweto",description:"Inkweto nshya",price:25000,city:"Kigali",category:"Imyenda",image_url:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900",status:"active"}];
 const demoJobs=[
 {title:"Sales Assistant",location:"Kigali",type:"Full time",salary:"250,000 RWF"},
 {title:"Customer Support",location:"Kigali / Remote",type:"Full time",salary:""},
-{title:"Digital Marketing Assistant",location:"Kigali",type:"Part time",salary:""}
-];
+{title:"Digital Marketing Assistant",location:"Kigali",type:"Part time",salary:""}];
 
 function $(id){return document.getElementById(id)}
 function money(n){return Number(n||0).toLocaleString("en-US")+" RWF"}
 function escapeHTML(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
- 
-  async function refreshUser(){
-  const {data} =
-    await supabaseClient.auth.getUser();
-
-  user = data.user || null;
-
-  await updateAdminUI();
-
-}
-
-async function init(){
-
-  const {data} =
-    await supabaseClient.auth.getSession();
-
-  user = data.session?.user || null;
-
-  // Check admin immediately
-  await updateAdminUI();
-
-  supabaseClient.auth.onAuthStateChange(
-    (_event, session) => {
-
-      user = session?.user || null;
-
-      setTimeout(async () => {
-
-        // Update Admin button after login/logout
-        await updateAdminUI();
-
-        if(user){
-          await loadProfile();
-        }
-
-        renderProducts();
-
-      }, 0);
-    }
-  );
-
-  await loadProducts();
-
-  if(user){
-    await loadProfile();
-  }
-
-  renderProducts();
-
-  if(user){
-    await refreshJobAccess();
-  }
-}
-
-init();
-
-function showPage(page){
-document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));
-const el=$(page+"Page");if(el)el.classList.remove("hidden");
-document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
-window.scrollTo(0,0);
-if(page==="dashboard")loadDashboard();
-if(page==="analysis")loadAnalysis();
-if(page==="orders")loadOrders();
-if(page==="jobs")refreshJobAccess();
-if(page==="referral")loadReferralDashboard();
-$("profileMenu").classList.remove("show");
-}
-function protectedPage(page){if(!user){openAuth();return}showPage(page)}
-function toggleMenu(){$("profileMenu").classList.toggle("show")}
+function filterCategory(c){$("searchBox").value=c;renderProducts()}
+function closeModal(id){$(id)?.classList.remove("show")}
 function openAuth(){$("authModal").classList.add("show")}
 function closeAuth(){$("authModal").classList.remove("show")}
-function closeModal(id){$(id).classList.remove("show")}
+function toggleMenu(){$("profileMenu").classList.toggle("show")}
 function openNotifications(){$("notificationModal").classList.add("show")}
-
-async function googleLogin(){setLoginLoading(true);
-const {error}=await supabaseClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:window.location.origin+window.location.pathname}});
-if(error)$("authMessage").textContent=error.message;
+function protectedPage(page){if(!user){openAuth();return}showPage(page)}
+function showPage(page){
+ document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));
+ const el=$(page+"Page");if(el)el.classList.remove("hidden");
+ document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+ $("profileMenu")?.classList.remove("show");window.scrollTo(0,0);
+ if(page==="dashboard"){loadDashboard();loadWallet()}
+ if(page==="analysis")loadAnalysis();
+ if(page==="orders")loadOrders();
+ if(page==="jobs"){refreshJobAccess();refreshExamAccess()}
+ if(page==="referral")loadReferralDashboard();
+ if(page==="inbox")loadConversations();
+ if(page==="businessManager")loadBusinessManagerDashboard();
 }
-async function emailSignup(){setLoginLoading(true);
-const email=$("authEmail").value.trim(),password=$("authPassword").value;
-if(!email||password.length<6){$("authMessage").textContent="Email na password (min 6) byuzuze.";return}
-const {data,error}=await supabaseClient.auth.signUp({email,password});
-$("authMessage").textContent=error?error.message:(data.user?"Account yakozwe. Reba email yawe niba confirmation isabwa.":"Reba email yawe.");setLoginLoading(false);
+function setLoginLoading(on){$("authMessage").textContent=on?"Turimo gutunganya...":$("authMessage").textContent}
+async function isZunivoAdmin(){return !!user&&String(user.email||"").toLowerCase().trim()===ZUNIVO_ADMIN_EMAIL.toLowerCase()}
+async function updateAdminUI(){$("adminNavBtn").style.display=await isZunivoAdmin()?"block":"none"}
+async function refreshUser(){const {data}=await supabaseClient.auth.getUser();user=data.user||null;await updateAdminUI();if(user){await loadProfile();await loadWallet()}}
+async function init(){
+ const {data}=await supabaseClient.auth.getSession();user=data.session?.user||null;await updateAdminUI();
+ supabaseClient.auth.onAuthStateChange((_event,session)=>{user=session?.user||null;setTimeout(async()=>{await updateAdminUI();if(user)await loadProfile();renderProducts()},0)});
+ await loadProducts();renderProducts();if(user){await loadProfile();await refreshJobAccess();await refreshExamAccess()}
+ loadPublicAds();
 }
-async function emailLogin(){setLoginLoading(true);
-const email=$("authEmail").value.trim(),password=$("authPassword").value;
-const {error}=await supabaseClient.auth.signInWithPassword({email,password});
-if(error){$("authMessage").textContent=error.message;setLoginLoading(false)}else{closeAuth();setLoginLoading(false)}
+init();
+
+async function googleLogin(){
+ setLoginLoading(true);
+ const {error}=await supabaseClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:window.location.origin+window.location.pathname}});
+ if(error){$("authMessage").textContent=error.message;setLoginLoading(false)}
 }
-async function sendPhoneOTP(){setLoginLoading(true);
-const phone=$("authPhone").value.trim();
-if(!phone){$("authMessage").textContent="Andika phone nka +2507...";return}
-const {error}=await supabaseClient.auth.signInWithOtp({phone});
-$("authMessage").textContent=error?error.message:"OTP yoherejwe kuri phone yawe.";setLoginLoading(false);
+async function emailSignup(){
+ const email=$("authEmail").value.trim(),password=$("authPassword").value;
+ if(!email||password.length<6){$("authMessage").textContent="Email na password (min 6) byuzuze.";return}
+ setLoginLoading(true);const {data,error}=await supabaseClient.auth.signUp({email,password});
+ $("authMessage").textContent=error?error.message:(data.user?"Account yakozwe. Reba email niba confirmation isabwa.":"Reba email yawe.");setLoginLoading(false)
 }
-async function verifyPhoneOTP(){setLoginLoading(true);
-const phone=$("authPhone").value.trim(),token=$("authOtp").value.trim();
-const {error}=await supabaseClient.auth.verifyOtp({phone,token,type:"sms"});
-$("authMessage").textContent=error?error.message:"Phone verified.";setLoginLoading(false);
-if(!error)closeAuth();
+async function emailLogin(){
+ const email=$("authEmail").value.trim(),password=$("authPassword").value;
+ if(!email||!password){$("authMessage").textContent="Uzuza email na password.";return}
+ setLoginLoading(true);const {error}=await supabaseClient.auth.signInWithPassword({email,password});
+ if(error)$("authMessage").textContent=error.message;else closeAuth();setLoginLoading(false)
 }
-
-async function logout(){
-
-  await supabaseClient.auth.signOut();
-
-  user = null;
-
-  await updateAdminUI();
-
-  showPage("home");
+async function sendPhoneOTP(){
+ const phone=$("authPhone").value.trim();if(!phone){$("authMessage").textContent="Andika phone nka +2507...";return}
+ setLoginLoading(true);const {error}=await supabaseClient.auth.signInWithOtp({phone});$("authMessage").textContent=error?error.message:"OTP yoherejwe.";setLoginLoading(false)
 }
-  
+async function verifyPhoneOTP(){
+ const phone=$("authPhone").value.trim(),token=$("authOtp").value.trim();setLoginLoading(true);
+ const {error}=await supabaseClient.auth.verifyOtp({phone,token,type:"sms"});$("authMessage").textContent=error?error.message:"Phone verified.";setLoginLoading(false);if(!error)closeAuth()
+}
+async function logout(){await supabaseClient.auth.signOut();user=null;await updateAdminUI();showPage("home")}
 
-let productMediaType="image";
-let productMediaFile=null;
-
-function previewProfilePhoto(e){const f=e.target.files?.[0];if(f)$("profileAvatar").src=URL.createObjectURL(f);}
+function previewProfilePhoto(e){const f=e.target.files?.[0];if(f)$("profileAvatar").src=URL.createObjectURL(f)}
 function setMediaType(t){
- productMediaType=t;
- ["image","video","text"].forEach(x=>{const b=$("media"+x.charAt(0).toUpperCase()+x.slice(1)+"Btn");if(b)b.classList.toggle("active",x===t);});
- $("productMediaFile").classList.toggle("hidden",t==="text");
- $("productMediaText").classList.toggle("hidden",t!=="text");
- $("productMediaFile").accept=t==="video"?"video/*":"image/*";
- $("productMediaPreview").innerHTML="";
- productMediaFile=null;
+ productMediaType=t;["image","video","text"].forEach(x=>$("media"+x.charAt(0).toUpperCase()+x.slice(1)+"Btn")?.classList.toggle("active",x===t));
+ $("productMediaFile").classList.toggle("hidden",t==="text");$("productMediaText").classList.toggle("hidden",t!=="text");
+ $("productMediaFile").accept=t==="video"?"video/*":"image/*";$("productMediaPreview").innerHTML="";productMediaFile=null
 }
-function previewProductMedia(e){productMediaFile=e.target.files?.[0]||null;if(!productMediaFile)return;const u=URL.createObjectURL(productMediaFile);$("productMediaPreview").innerHTML=productMediaType==="video"?`<video class="media" controls src="${u}"></video>`:`<img class="media" src="${u}" alt="">`;}
+function previewProductMedia(e){productMediaFile=e.target.files?.[0]||null;if(!productMediaFile)return;const u=URL.createObjectURL(productMediaFile);$("productMediaPreview").innerHTML=productMediaType==="video"?`<video class="media" controls src="${u}"></video>`:`<img class="media" src="${u}" alt="">`}
 async function uploadProductMedia(){
-
-  if(productMediaType === "text"){
-    return {
-      url:"",
-      text:$("productMediaText").value.trim()
-    };
-  }
-
-  if(!productMediaFile){
-    return {
-      url:"",
-      text:""
-    };
-  }
-
-  const ext =
-    (productMediaFile.name.split(".").pop() || "bin")
-    .toLowerCase();
-
-  const bucket =
-    productMediaType === "video"
-      ? "product-videos"
-      : "product-images";
-
-  const path =
-    `products/${user.id}/${Date.now()}-${Math.random()
-      .toString(36)
-      .slice(2)}.${ext}`;
-
-  const {error} =
-    await supabaseClient
-      .storage
-      .from(bucket)
-      .upload(path, productMediaFile, {
-        upsert:false
-      });
-
-  if(error) throw error;
-
-  const publicUrl =
-    supabaseClient
-      .storage
-      .from(bucket)
-      .getPublicUrl(path)
-      .data
-      .publicUrl;
-
-  return {
-    url:publicUrl,
-    text:""
-  };
+ if(productMediaType==="text")return{url:"",text:$("productMediaText").value.trim()};
+ if(!productMediaFile)return{url:"",text:""};
+ const ext=(productMediaFile.name.split(".").pop()||"bin").toLowerCase(),bucket=productMediaType==="video"?"product-videos":"product-images";
+ const path=`products/${user.id}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+ const {error}=await supabaseClient.storage.from(bucket).upload(path,productMediaFile,{upsert:false});if(error)throw error;
+ return{url:supabaseClient.storage.from(bucket).getPublicUrl(path).data.publicUrl,text:""}
 }
 async function uploadProfilePhoto(){
-  const f = $("profilePhoto")?.files?.[0];
-
-  if(!f || !user) return "";
-
-  const ext =
-    (f.name.split(".").pop() || "jpg").toLowerCase();
-
-  const path =
-    `profiles/${user.id}/avatar-${Date.now()}.${ext}`;
-
-  const {error} =
-    await supabaseClient
-      .storage
-      .from("profile-pictures")
-      .upload(path, f, {upsert:true});
-
-  if(error) throw error;
-
-  return supabaseClient
-    .storage
-    .from("profile-pictures")
-    .getPublicUrl(path)
-    .data
-    .publicUrl;
+ const f=$("profilePhoto")?.files?.[0];if(!f||!user)return"";
+ const ext=(f.name.split(".").pop()||"jpg").toLowerCase(),path=`profiles/${user.id}/avatar-${Date.now()}.${ext}`;
+ const {error}=await supabaseClient.storage.from("profile-pictures").upload(path,f,{upsert:true});if(error)throw error;
+ return supabaseClient.storage.from("profile-pictures").getPublicUrl(path).data.publicUrl
 }
-async function shareItem(title,url){try{if(navigator.share){await navigator.share({title,text:title,url});return}await navigator.clipboard.writeText(url);alert("Link yakopiwe.");}catch(e){}}
-function shareProduct(id){const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);if(p)shareItem(p.name||"Zunivo Product",location.href.split("?")[0]+"?product="+encodeURIComponent(id));}
-function shareReferral(){const c=$("myReferralCode")?.textContent?.trim()||"";shareItem("Zunivo Referral "+c,location.href.split("?")[0]+"?ref="+encodeURIComponent(c));}
-async function payNow(){
- if(!user){openAuth();return} const p=paymentPurpose;if(!p)return;
- const m=document.querySelector('input[name="paymentMethod"]:checked')?.value||"mtn";
- $("payButton").disabled=true;$("paymentMessage").innerHTML='<span class="notice">⏳ Turimo gutegura Pay...</span>';
- try{
-  if(m==="mtn") location.href="tel:"+encodeURIComponent("*182*8*1*2233481#");
-  else $("paymentMessage").innerHTML='<span class="notice">🏦 Koresha Equity Mobile Banking/App, urangize payment, hanyuma ukande “Nohereje Payment”.</span>';
- }finally{setTimeout(()=>{$("payButton").disabled=false},2500);}
-}
-function setLoginLoading(on){$("loginDots")?.classList.toggle("show",on);}
+
 async function loadProducts(){
-try{
-const {data,error}=await supabaseClient.from("products").select("*").eq("status","active").order("created_at",{ascending:false});
-products=!error&&data?data:demoProducts;
-}catch(e){products=demoProducts}
+ try{const {data,error}=await supabaseClient.from("products").select("*").eq("status","active").order("created_at",{ascending:false});products=!error&&data?data:demoProducts}
+ catch(e){products=demoProducts}
 }
 function renderProducts(){
-const q=($("searchBox")?.value||"").toLowerCase().trim();
-const list=(products.length?products:demoProducts).filter(p=>!q||[p.name,p.category,p.city,p.description].join(" ").toLowerCase().includes(q));
-$("products").innerHTML=list.length?list.map(p=>`
-<article class="card">
-<img class="media" src="${escapeHTML(p.image_url||p.media_url||"https://via.placeholder.com/600x400?text=Zunivo")}" alt="">
-<div class="body">
-<span class="badge">${escapeHTML(p.category||"Ibindi")}</span>
-<h3>${escapeHTML(p.name)}</h3>
-<div class="price">${money(p.price)}</div>
-<p>${escapeHTML(p.description||"")}</p>
-<p class="muted">📍 ${escapeHTML(p.city||"")}</p>
-<div id="seller-${p.id}" class="productSeller" onclick="openSellerProfile('${p.seller_id||""}')"><span class="muted">👤 Seller profile</span></div>
-<div class="actionRow">
-<button onclick="openProduct('${p.id}')">👀 View</button>
-<button class="secondary" onclick="likeProduct('${p.id}')">❤️ Like</button>
-<button class="secondary" onclick="buyProduct('${p.id}')">🛒 Buy</button>
-<button class="shareBtn" onclick="shareProduct('${p.id}')">↗️ Share</button>
-<button class="secondary" onclick="messageSeller('${p.seller_id||""}')">💬 Chat</button>
-</div>
-</div></article>`).join(""):`<div class="panel">Nta products zirabonetse.</div>`;
+ const q=($("searchBox")?.value||"").toLowerCase().trim();
+ const list=(products.length?products:demoProducts).filter(p=>!q||[p.name,p.category,p.city,p.description].join(" ").toLowerCase().includes(q));
+ $("products").innerHTML=list.length?list.map(p=>`
+ <article class="card">
+  ${p.media_type==="video"&&p.media_url?`<video class="media" controls src="${escapeHTML(p.media_url)}"></video>`:`<img class="media" loading="lazy" src="${escapeHTML(p.image_url||p.media_url||"https://via.placeholder.com/600x400?text=Zunivo")}" alt="">`}
+  <div class="body"><span class="badge">${escapeHTML(p.category||"Ibindi")}</span><h3>${escapeHTML(p.name)}</h3><div class="price">${money(p.price)}</div>
+  <p>${escapeHTML(p.description||"")}</p><p class="muted">📍 ${escapeHTML(p.city||"")}</p>
+  <div id="seller-${p.id}" class="productSeller" onclick="openSellerProfile('${escapeHTML(p.seller_id||"")}')"><span class="muted">Seller profile</span></div>
+  <div class="actionRow"><button onclick="openProduct('${p.id}')">👀 View</button><button class="secondary" onclick="likeProduct('${p.id}')">❤️ Like</button><button class="secondary" onclick="buyProduct('${p.id}')">🛒 Buy</button><button class="secondary" onclick="shareProduct('${p.id}')">↗️ Share</button><button class="secondary" onclick="messageSeller('${escapeHTML(p.seller_id||"")}')">💬 Chat</button></div>
+ </div></article>`).join(""):`<div class="panel">Nta products zirabonetse.</div>`;
+ setTimeout(hydrateProductSellers,0)
 }
 async function openProduct(id){
-const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);if(!p)return;
-selectedProduct=p;
-$("productDetails").innerHTML=`
-<img class="media" src="${escapeHTML(p.image_url||p.media_url||"https://via.placeholder.com/600x400?text=Zunivo")}" alt="">
-<h2>${escapeHTML(p.name)}</h2><div class="price">${money(p.price)}</div>
-<p>${escapeHTML(p.description||"")}</p><p class="muted">📍 ${escapeHTML(p.city||"")}</p>
-<div id="sellerMini-${p.id}" class="productSeller" onclick="openSellerProfile('${p.seller_id||""}')"></div>
-<div class="actionRow">
-<button onclick="buyProduct('${p.id}')">🛒 Buy</button>
-<button class="secondary" onclick="likeProduct('${p.id}')">❤️ Like</button>
-<button class="secondary" onclick="openProductComments('${p.id}')">💬 Comments</button>
-<button class="shareBtn" onclick="shareProduct('${p.id}')">↗️ Share</button>
-<button class="secondary" onclick="messageSeller('${p.seller_id||""}')">✉️ Inbox</button>
-</div>
-<div class="panel" style="margin-top:12px;padding:12px">
-<h3 style="margin-top:0">💬 Comments</h3>
-<div id="productComments-${p.id}"><p class="muted">Loading...</p></div>
-<div class="smallgrid">
-<input id="commentInput-${p.id}" placeholder="Andika comment...">
-<button onclick="addProductComment('${p.id}')">Ohereza</button>
-</div>
-</div>`;
-$("productModal").classList.add("show");
-if(user&&p.id&&!String(p.id).startsWith("demo")){
-await supabaseClient.from("product_events").insert({product_id:p.id,user_id:user.id,event_type:"view"});
-}
+ const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);if(!p)return;selectedProduct=p;
+ $("productDetails").innerHTML=`
+ ${p.media_type==="video"&&p.media_url?`<video class="media" controls src="${escapeHTML(p.media_url)}"></video>`:`<img class="media" src="${escapeHTML(p.image_url||p.media_url||"https://via.placeholder.com/600x400?text=Zunivo")}" alt="">`}
+ <h2>${escapeHTML(p.name)}</h2><div class="price">${money(p.price)}</div><p>${escapeHTML(p.description||"")}</p><p class="muted">📍 ${escapeHTML(p.city||"")}</p>
+ <div id="sellerMini-${p.id}" class="productSeller" onclick="openSellerProfile('${escapeHTML(p.seller_id||"")}')"></div>
+ <div class="actionRow"><button onclick="buyProduct('${p.id}')">🛒 Buy</button><button class="secondary" onclick="likeProduct('${p.id}')">❤️ Like</button><button class="secondary" onclick="shareProduct('${p.id}')">↗️ Share</button><button class="secondary" onclick="messageSeller('${escapeHTML(p.seller_id||"")}')">✉️ Inbox</button></div>
+ ${user&&p.seller_id===user.id&&!String(id).startsWith("demo")?`<div class="panel"><b>Product owner controls</b><div class="actionRow"><button class="secondary" onclick="publishProductPublic('${id}')">🌐 Public</button><button class="secondary" onclick="removeProductFromPublic('${id}')">🙈 Remove public</button><button class="danger" onclick="deleteMyProduct('${id}')">🗑️ Delete</button></div></div>`:""}
+ <div class="panel"><h3>💬 Comments</h3><div id="productComments-${p.id}"><p class="muted">Loading...</p></div><div class="smallgrid"><input id="commentInput-${p.id}" placeholder="Andika comment..."><button onclick="addProductComment('${p.id}')">Ohereza</button></div></div>`;
+ $("productModal").classList.add("show");
+ if(user&&!String(id).startsWith("demo"))await supabaseClient.from("product_events").insert({product_id:p.id,user_id:user.id,event_type:"view"});
+ await hydrateSellerMini(p.seller_id,"sellerMini-"+p.id);await openProductComments(id)
 }
 async function likeProduct(id){
-if(!user){openAuth();return}
-if(String(id).startsWith("demo")){alert("Like izabikwa kuri product nyayo iri muri Supabase.");return}
-const {data}=await supabaseClient.from("product_likes").select("id").eq("product_id",id).eq("user_id",user.id).maybeSingle();
-if(data)await supabaseClient.from("product_likes").delete().eq("id",data.id);
-else await supabaseClient.from("product_likes").insert({product_id:id,user_id:user.id});
+ if(!user){openAuth();return}if(String(id).startsWith("demo")){alert("Like izabikwa kuri product nyayo.");return}
+ const {data}=await supabaseClient.from("product_likes").select("id").eq("product_id",id).eq("user_id",user.id).maybeSingle();
+ if(data)await supabaseClient.from("product_likes").delete().eq("id",data.id);else await supabaseClient.from("product_likes").insert({product_id:id,user_id:user.id})
 }
-function buyProduct(id){
-const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);if(!p)return;
-if(!user){openAuth();return}
-if(String(id).startsWith("demo")){alert("Iyi ni demo product. Shyiraho product nyayo muri Sell kugira ngo orders zikore.");return}
-startPayment("order",Number(p.price),p.id);
-}
+function buyProduct(id){const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);if(!p)return;if(!user){openAuth();return}if(String(id).startsWith("demo")){alert("Iyi ni demo product. Shyiraho product nyayo.");return}startPayment("order",Number(p.price),p.id)}
+function shareItem(title,url){try{if(navigator.share){navigator.share({title,text:title,url});return}navigator.clipboard?.writeText(url);alert("Link yakopiwe.")}catch(e){}}
+function shareProduct(id){const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);if(p)shareItem(p.name||"Zunivo Product",location.href.split("?")[0]+"?product="+encodeURIComponent(id))}
+function shareReferral(){const c=$("myReferralCode")?.textContent?.trim()||"";shareItem("Zunivo Referral "+c,location.href.split("?")[0]+"?ref="+encodeURIComponent(c))}
 
 async function loadProfile(){
-if(!user)return;
-const {data}=await supabaseClient.from("profiles").select("*").eq("id",user.id).maybeSingle();
-if(data){
-$("profileName").value=data.name||user.user_metadata?.name||"";
-$("profileEmail").value=data.email||user.email||"";
-$("profilePhone").value=data.phone||user.phone||"";
-$("profileCity").value=data.city||"";
-$("profileAbout").value=data.about||"";if(data.avatar_url)$("profileAvatar").src=data.avatar_url;
-}
+ if(!user)return;const {data}=await supabaseClient.from("profiles").select("*").eq("id",user.id).maybeSingle();
+ if(data){$("profileName").value=data.name||user.user_metadata?.name||"";$("profileEmail").value=data.email||user.email||"";$("profilePhone").value=data.phone||user.phone||"";$("profileCity").value=data.city||"";$("profileAbout").value=data.about||"";if(data.avatar_url)$("profileAvatar").src=data.avatar_url}
 }
 async function saveProfile(){
-if(!user){openAuth();return}
-let avatarUrl="";try{avatarUrl=await uploadProfilePhoto()}catch(e){$("profileMessage").textContent="Ifoto ntiyabitswe: "+e.message;return}
-const payload={id:user.id,name:$("profileName").value.trim(),email:$("profileEmail").value.trim(),phone:$("profilePhone").value.trim(),city:$("profileCity").value.trim(),about:$("profileAbout").value.trim()};
-if(avatarUrl)payload.avatar_url=avatarUrl;
-const {error}=await supabaseClient.from("profiles").upsert(payload);
-$("profileMessage").textContent=error?error.message:"Profile yabitswe neza.";
+ if(!user){openAuth();return}let avatarUrl="";try{avatarUrl=await uploadProfilePhoto()}catch(e){$("profileMessage").textContent="Ifoto ntiyabitswe: "+e.message;return}
+ const payload={id:user.id,name:$("profileName").value.trim(),email:$("profileEmail").value.trim(),phone:$("profilePhone").value.trim(),city:$("profileCity").value.trim(),about:$("profileAbout").value.trim()};if(avatarUrl)payload.avatar_url=avatarUrl;
+ const {error}=await supabaseClient.from("profiles").upsert(payload);$("profileMessage").textContent=error?error.message:"Profile yabitswe neza."
 }
-
 function toggleBusiness(){$("businessForm").classList.toggle("hidden")}
 async function saveBusiness(){
-if(!user){openAuth();return}
-const payload={owner_id:user.id,name:$("bizName").value.trim(),phone:$("bizPhone").value.trim(),location:$("bizLocation").value.trim(),about:$("bizAbout").value.trim()};
-if(!payload.name){$("businessMessage").textContent="Andika izina rya business.";return}
-const {error}=await supabaseClient.from("businesses").insert(payload);
-$("businessMessage").textContent=error?error.message:"Business Account yakozwe neza.";
+ if(!user){openAuth();return}const payload={owner_id:user.id,name:$("bizName").value.trim(),phone:$("bizPhone").value.trim(),location:$("bizLocation").value.trim(),about:$("bizAbout").value.trim()};
+ if(!payload.name){$("businessMessage").textContent="Andika izina rya business.";return}const {error}=await supabaseClient.from("businesses").insert(payload);$("businessMessage").textContent=error?error.message:"Business Account yakozwe neza."
 }
-
 async function publishProduct(){
-if(!user){openAuth();return}
-const name=$("productName").value.trim(),price=Number($("productPrice").value);
-if(!name||!price){$("sellMessage").textContent="Uzuza product name n'igiciro.";return}
-let media={url:"",text:""};try{media=await uploadProductMedia()}catch(e){$("sellMessage").textContent="Media ntiyabitswe: "+e.message;return}
-const {data,error}=await supabaseClient.from("products").insert({
-seller_id:user.id,name,description:$("productDescription").value.trim(),price,
-city:$("productCity").value.trim(),category:$("productCategory").value,
-image_url:media.url,status:"pending_payment",media_type:productMediaType,media_text:media.text||null
-}).select().single();
-if(error){$("sellMessage").textContent=error.message;return}
-window.pendingListingId=data.id;
-startPayment("listing",1000,data.id);
+ if(!user){openAuth();return}const name=$("productName").value.trim(),price=Number($("productPrice").value);if(!name||price<=0){$("sellMessage").textContent="Uzuza product name n'igiciro.";return}
+ let media={url:"",text:""};try{media=await uploadProductMedia()}catch(e){$("sellMessage").textContent="Media ntiyabitswe: "+e.message;return}
+ const {data,error}=await supabaseClient.from("products").insert({seller_id:user.id,name,description:$("productDescription").value.trim(),price,city:$("productCity").value.trim(),category:$("productCategory").value,image_url:media.url,status:"pending_payment",media_type:productMediaType,media_text:media.text||null}).select().single();
+ if(error){$("sellMessage").textContent=error.message;return}startPayment("listing",1000,data.id)
 }
 
 function startPayment(purpose,amount,productId=null){
-if(!user){openAuth();return}
-paymentPurpose={type:purpose,productId,amount:Number(amount)};
-$("paymentDescription").innerHTML=`Payment: <b>${escapeHTML(purpose)}</b><br>Amount: <b>${money(amount)}</b>`;
-$("paymentMessage").textContent="";
-$("paymentModal").classList.add("show");
+ if(!user){openAuth();return}paymentPurpose={type:purpose,productId,amount:Number(amount)};$("paymentDescription").innerHTML=`Payment: <b>${escapeHTML(purpose)}</b><br>Amount: <b>${money(amount)}</b>`;$("paymentMessage").textContent="";$("paymentModal").classList.add("show")
 }
 function closePayment(){$("paymentModal").classList.remove("show")}
+async function payNow(){
+ if(!user){openAuth();return}const p=paymentPurpose;if(!p)return;const m=document.querySelector('input[name="paymentMethod"]:checked')?.value||"mtn";$("payButton").disabled=true;
+ try{
+  if(m==="mtn"){location.href="tel:"+encodeURIComponent("*182*8*1*2233481#")}
+  else if(m==="equity")$("paymentMessage").innerHTML='<span class="notice">Koresha Equity Mobile Banking/App urangize payment, hanyuma ukande “Nohereje Payment”.</span>';
+  else startVisaGateway()
+ }finally{setTimeout(()=>$("payButton").disabled=false,2500)}
+}
 async function submitPayment(){
-  if(!user){
-    openAuth();
-    return;
-  }
-
-  const method =
-    document.querySelector('input[name="paymentMethod"]:checked')?.value || "mtn";
-
-  const p = paymentPurpose;
-
-  if(!p){
-    $("paymentMessage").innerHTML =
-      '<span class="error">Payment information ntabwo ibonetse.</span>';
-    return;
-  }
-
-  const row = {
-    user_id: user.id,
-    purpose: p.type,
-    amount: p.amount,
-    method: method,
-    status: "pending",
-    transaction_reference: "ZUNIVO-" + Date.now() + "-" + Math.random().toString(36).substring(2, 8),
-    product_id: p.productId || null
-  };
-
-  const {data,error} = await supabaseClient
-    .from("payments")
-    .insert(row)
-    .select()
-    .single();
-
-  if(error){
-    $("paymentMessage").innerHTML =
-      `<span class="error">${escapeHTML(error.message)}</span>`;
-    return;
-  }
-
-  $("paymentMessage").innerHTML =
-    `<span class="success">
-      Payment request #${escapeHTML(data.id)}
-      yabitswe. Tegereza verification.
-    </span>`;
-
-  if(p.type==="listing"){
-    $("sellMessage").textContent =
-      "Payment request yoherejwe. Product izajya public gusa payment imaze verified.";
-  }
-
-  if(p.type==="job_search"){
-    await refreshJobAccess();
-  }
-  
-  if(p.type==="exam"){
-    await refreshExamAccess();
-  }
+ if(!user){openAuth();return}const p=paymentPurpose;if(!p){$("paymentMessage").innerHTML='<span class="error">Payment information ntabwo ibonetse.</span>';return}
+ const method=document.querySelector('input[name="paymentMethod"]:checked')?.value||"mtn";
+ const row={user_id:user.id,purpose:p.type,amount:p.amount,method,status:"pending",transaction_reference:"ZUNIVO-"+Date.now()+"-"+Math.random().toString(36).substring(2,8),product_id:p.productId||null};
+ const {data,error}=await supabaseClient.from("payments").insert(row).select().single();
+ if(error){$("paymentMessage").innerHTML=`<span class="error">${escapeHTML(error.message)}</span>`;return}
+ $("paymentMessage").innerHTML=`<span class="success">Payment request #${escapeHTML(data.id)} yabitswe. Tegereza verification.</span>`;
+ if(p.type==="listing")$("sellMessage").textContent="Payment request yoherejwe. Product izajya public gusa payment imaze verified.";
+ if(p.type==="job_search")await refreshJobAccess();if(p.type==="exam")await refreshExamAccess()
 }
+
 async function refreshJobAccess(){
-if(!user)return;
-  
-const {data,error}=await supabaseClient.rpc("has_verified_job_access",{p_user_id:user.id});
-if(!error&&data===true){
-  showJobs();
-}else{ 
-  $("jobResults").classList.add("hidden");
-  }
+ if(!user)return;const {data,error}=await supabaseClient.rpc("has_verified_job_access",{p_user_id:user.id});
+ if(!error&&data===true)showJobs();else $("jobResults").classList.add("hidden")
 }
-function showJobs(){
-$("jobResults").classList.remove("hidden");
-$("jobList").innerHTML=demoJobs.map(j=>`<div class="listrow"><b>${escapeHTML(j.title)}</b><br><span class="muted">${escapeHTML(j.location)} · ${escapeHTML(j.type)} ${j.salary?"· "+escapeHTML(j.salary):""}</span></div>`).join("");
-$("examPanel").classList.remove("hidden");
-}
-function showExam(){if(!user){openAuth();return}showJobs();$("examPanel").scrollIntoView({behavior:"smooth"})}
-
+function showJobs(){$("jobResults").classList.remove("hidden");$("jobList").innerHTML=demoJobs.map(j=>`<div class="listrow"><b>${escapeHTML(j.title)}</b><br><span class="muted">${escapeHTML(j.location)} · ${escapeHTML(j.type)} ${j.salary?"· "+escapeHTML(j.salary):""}</span></div>`).join("");$("examPanel").classList.remove("hidden")}
 async function refreshExamAccess(){
-if(!user)return;
-const {data,error}=await supabaseClient.rpc("exam_access_status",{p_user_id:user.id});
-if(error){$("examWaiting").textContent="Exam access status ntibashije kuboneka. Reba SQL setup.";return}
-$("examPanel").classList.remove("hidden");
-if(data?.can_open===true){
-$("examWaiting").classList.add("hidden");$("examButton").classList.remove("hidden");
-}else{
-$("examButton").classList.add("hidden");$("examWaiting").classList.remove("hidden");
-$("examWaiting").textContent=data?.message||"Exam izafunguka nyuma y'amasaha 24 payment imaze verified.";
+ if(!user)return;const {data,error}=await supabaseClient.rpc("exam_access_status",{p_user_id:user.id});$("examPanel").classList.remove("hidden");
+ if(error){$("examWaiting").classList.remove("hidden");$("examWaiting").textContent="Exam access status ntibashije kuboneka. Reba SQL setup.";return}
+ if(data?.can_open===true){$("examWaiting").classList.add("hidden");$("examButton").classList.remove("hidden")}
+ else{$("examButton").classList.add("hidden");$("examWaiting").classList.remove("hidden");$("examWaiting").textContent=data?.message||"Exam izafunguka nyuma y'amasaha 24 payment imaze verified."}
 }
-}
-function openExam(){refreshExamAccess().then(()=>{$("examButton").classList.contains("hidden")?null:$("examModal").classList.add("show")})}
+function openExam(){refreshExamAccess().then(()=>{if(!$("examButton").classList.contains("hidden"))$("examModal").classList.add("show")})}
 async function submitExam(){
-const answers={q1:"a",q2:"a",q3:"a"};let score=0;
-["q1","q2","q3"].forEach(q=>{if(document.querySelector(`input[name="${q}"]:checked`)?.value===answers[q])score++});
-  if(user)await supabaseClient.from("exam_results").insert({
-  user_id:user.id,
-  score:score,
-  total_questions:3,
-  passed:score>=2,
-  answers:answers
-});
-$("examResult").innerHTML=`<div class="success">Score: <b>${score}/3</b>.</div>`;
+ const answers={q1:"a",q2:"a",q3:"a"};let score=0;["q1","q2","q3"].forEach(q=>{if(document.querySelector(`input[name="${q}"]:checked`)?.value===answers[q])score++});
+ if(user){const {error}=await supabaseClient.from("exam_results").insert({user_id:user.id,score,total_questions:3,passed:score>=2,answers});if(error){$("examResult").innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}}
+ $("examResult").innerHTML=`<div class="success">Score: <b>${score}/3</b>.</div>`
 }
 function toggleJobProfile(){$("jobProfileForm").classList.toggle("hidden")}
 async function saveJobProfile(){
-if(!user){openAuth();return}
-const payload={user_id:user.id,full_name:$("jobName").value.trim(),phone:$("jobPhone").value.trim(),email:$("jobEmail").value.trim(),location:$("jobLocation").value.trim(),school_type:$("schoolType").value,education:$("education").value.trim(),certificate:$("certificate").value.trim(),field:$("field").value.trim(),experience:$("experience").value.trim(),skills:$("skills").value.trim(),languages:$("languages").value.trim(),availability:$("availability").value.trim(),about:$("jobAbout").value.trim(),cv_url:$("cvUrl").value.trim()};
-const {error}=await supabaseClient.from("job_profiles").upsert(payload,{onConflict:"user_id"});
-$("jobProfileMessage").textContent=error?error.message:"Job profile yabitswe neza.";
+ if(!user){openAuth();return}
+ const payload={user_id:user.id,full_name:$("jobName").value.trim(),phone:$("jobPhone").value.trim(),email:$("jobEmail").value.trim(),location:$("jobLocation").value.trim(),school_type:$("schoolType").value,education:$("education").value.trim(),certificate:$("certificate").value.trim(),field:$("field").value.trim(),experience:$("experience").value.trim(),skills:$("skills").value.trim(),languages:$("languages").value.trim(),availability:$("availability").value.trim(),about:$("jobAbout").value.trim(),cv_url:$("cvUrl").value.trim(),is_public:!!$("jobProfilePublic")?.checked};
+ const {error}=await supabaseClient.from("job_profiles").upsert(payload,{onConflict:"user_id"});$("jobProfileMessage").textContent=error?error.message:"Job profile yabitswe neza."
 }
 
+function businessManagerReady(){return !!user}
+async function getMyBusiness(){
+ if(!user)return null;
+ const {data,error}=await supabaseClient.from("businesses").select("*").eq("owner_id",user.id).order("created_at",{ascending:false}).limit(1).maybeSingle();
+ return error?null:data;
+}
+async function loadBusinessManagerDashboard(){
+ if(!user){return}
+ const biz=await getMyBusiness();
+ if(biz){$("bmBizName").value=biz.name||"";$("bmBizPhone").value=biz.phone||"";$("bmBizLocation").value=biz.location||"";$("bmBizAbout").value=biz.about||"";}
+ try{const {count}=await supabaseClient.from("products").select("id",{count:"exact",head:true}).eq("seller_id",user.id);$("bmProducts").textContent=count||0}catch(e){}
+ try{const {count}=await supabaseClient.from("payments").select("id",{count:"exact",head:true}).eq("user_id",user.id);$("bmPayments").textContent=count||0}catch(e){}
+ try{const {count}=await supabaseClient.from("exam_results").select("id",{count:"exact",head:true}).eq("user_id",user.id);$("bmExams").textContent=count||0}catch(e){}
+ $("bmActivity").innerHTML='<div class="listrow">Account: <b>active</b></div><div class="listrow">Business: <b>'+escapeHTML(biz?.name||"Nta business iraboneka")+'</b></div><div class="listrow">Public controls: <b>Products / Business / Job Profile</b></div>';
+}
+async function saveBusinessManager(){
+ if(!user){openAuth();return}
+ const email=$("bmManagerEmail").value.trim(),name=$("bmManagerName").value.trim();
+ if(!email){$("bmManagerMessage").textContent="Andika email ya manager.";return}
+ const biz=await getMyBusiness(); if(!biz){$("bmManagerMessage").textContent="Banza ukore Business Account.";return}
+ const {error}=await supabaseClient.from("business_managers").upsert({business_id:biz.id,manager_email:email,manager_name:name,status:"pending",created_by:user.id},{onConflict:"business_id,manager_email"});
+ $("bmManagerMessage").textContent=error?"Manager setup isaba table business_managers muri SQL v2: "+error.message:"Manager request yabitswe. Manager agomba gukora/login account ye.";
+}
+async function saveManagerBusinessProfile(){
+ if(!user){openAuth();return} const biz=await getMyBusiness(); if(!biz){$("bmBizMessage").textContent="Nta Business Account ibonetse.";return}
+ const payload={name:$("bmBizName").value.trim(),phone:$("bmBizPhone").value.trim(),location:$("bmBizLocation").value.trim(),about:$("bmBizAbout").value.trim()};
+ const {error}=await supabaseClient.from("businesses").update(payload).eq("id",biz.id).eq("owner_id",user.id); $("bmBizMessage").textContent=error?error.message:"Business profile yabitswe.";
+}
+async function toggleBusinessPublic(){
+ const biz=await getMyBusiness();if(!biz){alert("Nta Business Account.");return}
+ const next=biz.is_public===true?false:true; const {error}=await supabaseClient.from("businesses").update({is_public:next}).eq("id",biz.id).eq("owner_id",user.id);
+ $("bmBizMessage").textContent=error?"SQL ya businesses igomba kuba ifite is_public: "+error.message:(next?"Business iri PUBLIC.":"Business yakuwe PUBLIC.");
+}
+async function shareBusinessProfile(){const biz=await getMyBusiness();if(!biz){alert("Nta Business Account.");return}shareItem(biz.name||"Zunivo Business",location.href.split("?")[0]+"?business="+encodeURIComponent(biz.id))}
+async function createBusinessJob(){
+ if(!user){openAuth();return} const title=$("bmJobTitle").value.trim(); if(!title){$("bmJobMessage").textContent="Andika job title.";return}
+ const row={owner_id:user.id,title,company:$("bmJobCompany").value.trim(),location:$("bmJobLocation").value.trim(),job_type:$("bmJobType").value,salary:$("bmJobSalary").value.trim(),description:$("bmJobDescription").value.trim(),status:"pending_payment",is_public:false};
+ const {data,error}=await supabaseClient.from("jobs").insert(row).select().single(); if(error){$("bmJobMessage").textContent="Jobs table/columns ntibirahuza: "+error.message;return}
+ $("bmJobMessage").textContent="Job yabitswe. Noneho kanda payment ya 2,000 RWF."; startPayment("job_posting",2000,data.id);
+}
+async function setMyJobProfilePublic(v){
+ if(!user){openAuth();return} const {error}=await supabaseClient.from("job_profiles").update({is_public:v}).eq("user_id",user.id);$("bmProfileMessage").textContent=error?"Job profile public setting isaba column is_public muri SQL v2: "+error.message:(v?"Job Profile iri PUBLIC.":"Job Profile yakuwe PUBLIC.");
+}
+async function shareMyJobProfile(){if(!user){openAuth();return}shareItem("Zunivo Job Profile",location.href.split("?")[0]+"?jobprofile="+encodeURIComponent(user.id))}
+async function loadBusinessExamReview(){
+ if(!user){openAuth();return} const box=$("bmExamReview");box.innerHTML="⏳ Loading...";
+ const {data,error}=await supabaseClient.from("exam_results").select("*").eq("user_id",user.id).order("created_at",{ascending:false}).limit(20);
+ box.innerHTML=error?'<div class="error">'+escapeHTML(error.message)+'</div>':(data?.length?data.map(x=>'<div class="listrow">Score: <b>'+escapeHTML(x.score||0)+'/'+escapeHTML(x.total_questions||0)+'</b> · '+escapeHTML(x.passed?'Passed':'Not passed')+'</div>').join(""):"<p class='muted'>Nta exam result ibonetse kuri iyi account.</p>");
+}
 function findNearby(){
-if(!navigator.geolocation){alert("Browser yawe ntabwo yemera location.");return}
-navigator.geolocation.getCurrentPosition(async pos=>{
-const {latitude,longitude}=pos.coords;
-if(!user){alert(`Location yawe ni ${latitude.toFixed(4)}, ${longitude.toFixed(4)}. Injira kugira ngo ikoreshwe muri Zunivo.`);return}
-await supabaseClient.from("profiles").upsert({id:user.id,latitude,longitude});
-alert("Location yabitswe. Products zifite latitude/longitude zishobora gutondekwa hakurikijwe aho uri.");
-},()=>alert("Emera Location permission muri browser kugira ngo Zunivo ibone ibikwegereye."));
+ if(!navigator.geolocation){alert("Browser yawe ntabwo yemera location.");return}
+ navigator.geolocation.getCurrentPosition(async pos=>{const {latitude,longitude}=pos.coords;if(!user){alert("Injira kugira ngo location ikoreshwe muri Zunivo.");return}await supabaseClient.from("profiles").upsert({id:user.id,latitude,longitude});alert("Location yabitswe.")},()=>alert("Emera Location permission muri browser."))
 }
-
 async function loadOrders(){
-if(!user){$("ordersList").innerHTML="<p class='muted'>Injira kugira ngo urebe orders.</p>";return}
-const {data,error}=await supabaseClient.from("orders").select("*,products(name)").eq("buyer_id",user.id).order("created_at",{ascending:false});
-if(error){$("ordersList").innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}
-$("ordersList").innerHTML=data?.length?data.map(o=>`<div class="listrow"><b>${escapeHTML(o.products?.name||"Product")}</b><br>${money(o.amount)} · <span class="status">${escapeHTML(o.status)}</span></div>`).join(""):"<p class='muted'>Nta orders ziriho.</p>";
+ if(!user){$("ordersList").innerHTML="<p class='muted'>Injira kugira ngo urebe orders.</p>";return}
+ const {data,error}=await supabaseClient.from("orders").select("*,products(name)").eq("buyer_id",user.id).order("created_at",{ascending:false});
+ if(error){$("ordersList").innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}
+ $("ordersList").innerHTML=data?.length?data.map(o=>`<div class="listrow"><b>${escapeHTML(o.products?.name||"Product")}</b><br>${money(o.amount)} · <span class="status">${escapeHTML(o.status)}</span></div>`).join(""):"<p class='muted'>Nta orders ziriho.</p>"
 }
-
 async function loadDashboard(){
-if(!user)return;
-const {count:pc}=await supabaseClient.from("products").select("id",{count:"exact",head:true}).eq("seller_id",user.id);
-const {count:oc}=await supabaseClient.from("orders").select("id",{count:"exact",head:true}).eq("seller_id",user.id);
-const {data:sales}=await supabaseClient.from("orders").select("amount").eq("seller_id",user.id).eq("status","paid");
-$("statProducts").textContent=pc||0;$("statOrders").textContent=oc||0;
-$("statSales").textContent=money((sales||[]).reduce((a,b)=>a+Number(b.amount||0),0));
-$("statViews").textContent="—";
+ if(!user)return;const {count:pc}=await supabaseClient.from("products").select("id",{count:"exact",head:true}).eq("seller_id",user.id);
+ const {count:oc}=await supabaseClient.from("orders").select("id",{count:"exact",head:true}).eq("seller_id",user.id);
+ const {data:sales}=await supabaseClient.from("orders").select("amount").eq("seller_id",user.id).eq("status","paid");
+ $("statProducts").textContent=pc||0;$("statOrders").textContent=oc||0;$("statSales").textContent=money((sales||[]).reduce((a,b)=>a+Number(b.amount||0),0));$("statViews").textContent="—"
+}
+async function loadAnalysis(){
+ if(!user)return;const {data:events}=await supabaseClient.from("product_events").select("event_type,products!inner(seller_id)").eq("products.seller_id",user.id);
+ const {data:likes}=await supabaseClient.from("product_likes").select("id,products!inner(seller_id)").eq("products.seller_id",user.id);const {count:orders}=await supabaseClient.from("orders").select("id",{count:"exact",head:true}).eq("seller_id",user.id);
+ const views=(events||[]).filter(x=>x.event_type==="view").length,clicks=(events||[]).filter(x=>x.event_type==="click").length;
+ $("aViews").textContent=views;$("aClicks").textContent=clicks;$("aLikes").textContent=(likes||[]).length;$("aOrders").textContent=orders||0;
+ $("bar1").style.width=Math.min(100,views?70:0)+"%";$("bar2").style.width=Math.min(100,clicks?60:0)+"%";$("bar3").style.width=Math.min(100,(orders||0)*10)+"%";$("bar4").style.width=Math.min(100,(orders||0)*10)+"%"
 }
 
-async function loadAnalysis(){
-if(!user)return;
-const {data:events}=await supabaseClient.from("product_events").select("event_type,products!inner(seller_id)").eq("products.seller_id",user.id);
-const {data:likes}=await supabaseClient.from("product_likes").select("id,products!inner(seller_id)").eq("products.seller_id",user.id);
-const {count:orders}=await supabaseClient.from("orders").select("id",{count:"exact",head:true}).eq("seller_id",user.id);
-const views=(events||[]).filter(x=>x.event_type==="view").length,clicks=(events||[]).filter(x=>x.event_type==="click").length;
-$("aViews").textContent=views;$("aClicks").textContent=clicks;$("aLikes").textContent=(likes||[]).length;$("aOrders").textContent=orders||0;
-$("bar1").style.width=Math.min(100,views?70:0)+"%";
-$("bar2").style.width=Math.min(100,clicks?60:0)+"%";
-$("bar3").style.width=Math.min(100,(orders||0)*10)+"%";
-$("bar4").style.width=Math.min(100,(orders||0)*10)+"%";
+async function loadReferralDashboard(){
+ if(!user)return;const {data:profile}=await supabaseClient.from("profiles").select("referral_code").eq("id",user.id).maybeSingle();
+ if(profile?.referral_code)$("myReferralCode").textContent=profile.referral_code;else{const code="ZUN"+user.id.replace(/-/g,"").substring(0,8).toUpperCase();const {error}=await supabaseClient.from("profiles").update({referral_code:code}).eq("id",user.id);$("myReferralCode").textContent=error?"Ntabwo yabonetse":code}
+ const {count}=await supabaseClient.from("referrals").select("id",{count:"exact",head:true}).eq("referrer_id",user.id);$("refCount").textContent=count||0;
+ const {data:wallet}=await supabaseClient.from("referral_wallets").select("balance").eq("user_id",user.id).maybeSingle();$("refBalance").textContent=money(wallet?.balance||0);await loadWithdrawals()
+}
+async function copyReferralCode(){const c=$("myReferralCode").textContent.trim();if(!c||c==="...")return;try{await navigator.clipboard.writeText(c);$("referralMessage").textContent="Referral code yakopiwe."}catch(e){$("referralMessage").textContent="Code: "+c}}
+async function copyReferralLink(){const c=$("myReferralCode").textContent.trim();if(!c||c==="...")return;const link=location.origin+location.pathname+"?ref="+encodeURIComponent(c);try{await navigator.clipboard.writeText(link);$("referralMessage").textContent="Referral link yakopiwe."}catch(e){$("referralMessage").textContent=link}}
+async function applyReferralCode(){
+ if(!user){openAuth();return}const code=$("referralInput").value.trim().toUpperCase();if(!code){$("referralMessage").textContent="Andika referral code.";return}
+ const {data,error}=await supabaseClient.rpc("apply_referral_code",{p_code:code});if(error){$("referralMessage").innerHTML=`<span class="error">${escapeHTML(error.message)}</span>`;return}
+ $("referralMessage").innerHTML=`<span class="success">${escapeHTML(data?.message||"Referral code yakoreshejwe neza.")}</span>`;$("referralInput").value="";await loadReferralDashboard()
+}
+async function requestWithdrawal(){
+ if(!user){openAuth();return}const amount=Number($("withdrawAmount").value),method=$("withdrawMethod").value,account=$("withdrawAccount").value.trim();
+ if(!amount||amount<5000){$("withdrawMessage").textContent="Minimum withdrawal ni 5,000 RWF.";return}if(!account){$("withdrawMessage").textContent="Andika phone cyangwa account.";return}
+ const {data,error}=await supabaseClient.rpc("request_referral_withdrawal",{p_amount:amount,p_method:method,p_account:account});
+ if(error){$("withdrawMessage").innerHTML=`<span class="error">${escapeHTML(error.message)}</span>`;return}
+ $("withdrawMessage").innerHTML='<span class="success">Withdrawal request yoherejwe. Tegereza Admin verification.</span>';$("withdrawAmount").value="";$("withdrawAccount").value="";await loadReferralDashboard()
+}
+async function loadWithdrawals(){
+ if(!user)return;const {data,error}=await supabaseClient.from("withdrawals").select("*").eq("user_id",user.id).order("created_at",{ascending:false});
+ if(error){$("withdrawalList").innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}
+ $("withdrawalList").innerHTML=data?.length?data.map(w=>`<div class="listrow"><b>${money(w.amount)}</b> · ${escapeHTML(w.method||"")} · <span class="status">${escapeHTML(w.status||"pending")}</span><br><span class="muted">${escapeHTML(w.account||"")} · ${w.created_at?new Date(w.created_at).toLocaleString():""}</span></div>`).join(""):"<p class='muted'>Nta withdrawals ziraboneka.</p>"
+}
+
+async function openSellerProfile(sellerId){
+ if(!sellerId||String(sellerId).startsWith("demo")){$("sellerDetails").innerHTML='<div class="panel"><h3>Seller</h3><p class="muted">Profile ntiboneka kuri demo product.</p></div>';$("sellerModal").classList.add("show");return}
+ const {data:p,error}=await supabaseClient.from("profiles").select("id,name,email,phone,city,about,avatar_url").eq("id",sellerId).maybeSingle();
+ if(error){$("sellerDetails").innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}
+ $("sellerDetails").innerHTML=`<div class="sellerModalHead"><img src="${escapeHTML(p?.avatar_url||"https://via.placeholder.com/120x120?text=Z")}"><div><h2 style="margin:0">${escapeHTML(p?.name||"Zunivo Seller")}</h2><div class="muted">${escapeHTML(p?.city||"")}</div></div></div><p>${escapeHTML(p?.about||"Nta bisobanuro bya seller.")}</p><button onclick="messageSeller('${escapeHTML(sellerId)}')">💬 Andikira Inbox</button>`;$("sellerModal").classList.add("show")
+}
+async function hydrateSellerMini(sellerId,targetId){
+ if(!sellerId||String(sellerId).startsWith("demo"))return;const {data}=await supabaseClient.from("profiles").select("name,avatar_url,city").eq("id",sellerId).maybeSingle();const el=$(targetId);
+ if(el&&data)el.innerHTML=`<img src="${escapeHTML(data.avatar_url||"https://via.placeholder.com/80x80?text=Z")}" alt=""><div><div class="sellerMini">${escapeHTML(data.name||"Seller")}</div><div class="muted">${escapeHTML(data.city||"")}</div></div>`
+}
+async function hydrateProductSellers(){for(const p of products||[]){if(p.seller_id)await hydrateSellerMini(p.seller_id,"seller-"+p.id)}}
+async function messageSeller(sellerId){
+ if(!user){openAuth();return}if(!sellerId||sellerId===user.id){alert("Uyu ni account yawe.");return}
+ activeChatUserId=sellerId;activeChatProductId=selectedProduct?.id||null;closeModal("sellerModal");showPage("inbox");await loadConversations();await openConversation(sellerId)
+}
+async function loadConversations(){
+ if(!user)return;const box=$("conversationList");if(!box)return;const {data,error}=await supabaseClient.from("messages").select("sender_id,receiver_id,body,created_at").or(`sender_id.eq.${user.id},receiver_id.eq.${user.id}`).order("created_at",{ascending:false});
+ if(error){box.innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}const ids=[];for(const m of data||[]){const id=m.sender_id===user.id?m.receiver_id:m.sender_id;if(id&&!ids.includes(id))ids.push(id)}
+ box.innerHTML=ids.length?ids.map(id=>`<button class="secondary" style="width:100%;text-align:left" onclick="openConversation('${escapeHTML(id)}')">💬 ${escapeHTML(id)}</button>`).join(""):"<p class='muted'>Nta conversations ziraboneka.</p>"
+}
+async function openConversation(otherId){
+ if(!user)return;activeChatUserId=otherId;$("chatPanel").classList.remove("hidden");$("chatTitle").textContent="💬 Inbox";
+ const {data,error}=await supabaseClient.from("messages").select("*").or(`and(sender_id.eq.${user.id},receiver_id.eq.${otherId}),and(sender_id.eq.${otherId},receiver_id.eq.${user.id})`).order("created_at",{ascending:true});
+ if(error){$("chatMessages").innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}
+ $("chatMessages").innerHTML=(data||[]).map(m=>`<div class="msg ${m.sender_id===user.id?"me":"other"}">${escapeHTML(m.body)}</div>`).join("")||'<p class="muted">Tangiza conversation.</p>';$("chatMessages").scrollTop=$("chatMessages").scrollHeight
+}
+async function sendChatMessage(){
+ if(!user||!activeChatUserId)return;const input=$("chatInput"),body=input.value.trim();if(!body)return;
+ const {error}=await supabaseClient.from("messages").insert({sender_id:user.id,receiver_id:activeChatUserId,body});if(error){alert(error.message);return}input.value="";await openConversation(activeChatUserId)
+}
+async function openProductComments(productId){
+ const box=$("productComments-"+productId);if(!box)return;const {data,error}=await supabaseClient.from("product_comments").select("id,user_id,body,created_at").eq("product_id",productId).order("created_at",{ascending:true});
+ if(error){box.innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}
+ box.innerHTML=(data||[]).map(c=>`<div class="comment"><b>${escapeHTML(String(c.user_id).slice(0,8))}</b><br>${escapeHTML(c.body)}</div>`).join("")||'<p class="muted">Nta comments.</p>'
+}
+async function addProductComment(productId){
+ if(!user){openAuth();return}const input=$("commentInput-"+productId),body=input?.value.trim();if(!body)return;const {error}=await supabaseClient.from("product_comments").insert({product_id:productId,user_id:user.id,body});if(error){alert(error.message);return}input.value="";await openProductComments(productId)
+}
+async function publishProductPublic(id){if(!user)return;const {error}=await supabaseClient.from("products").update({status:"active"}).eq("id",id).eq("seller_id",user.id);if(error)alert(error.message);else{await loadProducts();renderProducts()}}
+async function removeProductFromPublic(id){if(!user)return;const {error}=await supabaseClient.from("products").update({status:"hidden"}).eq("id",id).eq("seller_id",user.id);if(error)alert(error.message);else{await loadProducts();renderProducts()}}
+async function deleteMyProduct(id){if(!user||!confirm("Urashaka gusiba iki gicuruzwa burundu?"))return;const {error}=await supabaseClient.from("products").delete().eq("id",id).eq("seller_id",user.id);if(error)alert(error.message);else{await loadProducts();renderProducts();closeModal("productModal")}}
+
+async function loadPublicAds(){
+ const box=$("publicAds");if(!box)return;const {data,error}=await supabaseClient.from("public_ads").select("*").eq("status","published").order("created_at",{ascending:false}).limit(5);if(error||!data?.length){box.innerHTML="";return}
+ box.innerHTML=data.map(a=>`<div class="panel adCard"><span class="badge">📢 Sponsored</span><h3>${escapeHTML(a.title||"Ad")}</h3><p>${escapeHTML(a.body||"")}</p>${a.image_url?`<img class="media" loading="lazy" src="${escapeHTML(a.image_url)}" alt="">`:""}</div>`).join("")
+}
+async function openAdminAd(){if(!await isZunivoAdmin()){alert("Nturi Admin.");return}$("adModal").classList.add("show")}
+async function adminCreateAd(){
+ if(!await isZunivoAdmin())return;const title=$("adTitle").value.trim(),body=$("adBody").value.trim(),image_url=$("adImage").value.trim();if(!title||!body){$("adMessage").textContent="Uzuza title na message.";return}
+ const {error}=await supabaseClient.from("public_ads").insert({title,body,image_url:image_url||null,created_by:user.id,status:"published"});$("adMessage").textContent=error?error.message:"Ad yashyizwe public.";if(!error){$("adTitle").value="";$("adBody").value="";loadPublicAds()}
+}
+
+async function loadWallet(){
+ if(!user)return;const {data,error}=await supabaseClient.rpc("get_my_wallet");if(!error&&data){$("walletBalance").textContent=money(data.balance||0);$("walletPending").textContent=money(data.pending||0);$("walletWithdrawn").textContent=money(data.withdrawn||0)}
+}
+function openWalletPay(){if(!user){openAuth();return}startPayment("wallet_topup",1000)}
+function openWalletWithdraw(){if(!user){openAuth();return}showPage("referral");$("withdrawAmount")?.focus()}
+function startVisaGateway(){if(!user){openAuth();return}alert("Visa gateway placeholder. Before production connect a PCI-compliant gateway; ntubike cyangwa ngo ubike raw card number/CVV muri Supabase.")}
+
+async function showAdminDashboard(){if(!await isZunivoAdmin()){alert("Nturi Admin wa Zunivo.");return}showPage("admin");await loadAdminPayments()}
+function showAdminTab(t){
+ $("adminPaymentSection").classList.toggle("hidden",t!=="payments");$("adminWithdrawalSection").classList.toggle("hidden",t!=="withdrawals");
+ $("adminExamSection").classList.toggle("hidden",t!=="exams");$("adminRevenueSection").classList.toggle("hidden",t!=="revenue");
+ if(t==="withdrawals")loadAdminWithdrawals();if(t==="exams")loadAdminExams();if(t==="revenue")loadAdminRevenue()
+}
+async function loadAdminPayments(){
+ if(!await isZunivoAdmin())return;const box=$("adminPaymentList");box.innerHTML="⏳ Turimo gushaka payments...";
+ const {data,error}=await supabaseClient.rpc("admin_get_payments");if(error){box.innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}
+ if(!data?.length){box.innerHTML="<p class='muted'>Nta payments ziraboneka.</p>";return}
+ box.innerHTML=data.map(p=>`<div class="card" style="padding:14px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><b>${money(p.amount)}</b><span class="status">${escapeHTML(p.status||"pending")}</span></div><hr><div><b>Purpose:</b> ${escapeHTML(p.purpose||"-")}</div><div><b>Method:</b> ${escapeHTML(p.method||"-")}</div><div style="word-break:break-all"><b>Reference:</b> ${escapeHTML(p.transaction_reference||"-")}</div><div><b>Date:</b> ${p.created_at?new Date(p.created_at).toLocaleString():"-"}</div>${p.status==="pending"?`<div class="actionRow"><button class="successBtn" onclick="verifyPayment('${p.id}')">Verify ✅</button><button class="danger" onclick="rejectPayment('${p.id}')">Reject ❌</button></div>`:""}</div>`).join("")
+}
+async function verifyPayment(id){if(!await isZunivoAdmin())return;if(!confirm("Urashaka kwemeza iyi payment?"))return;const {error}=await supabaseClient.rpc("admin_verify_payment",{p_payment_id:id});if(error){alert("Payment ntiyemejwe: "+error.message);return}alert("Payment yemejwe neza.");loadAdminPayments()}
+async function rejectPayment(id){if(!await isZunivoAdmin())return;if(!confirm("Urashaka kwanga iyi payment?"))return;const {error}=await supabaseClient.rpc("admin_reject_payment",{p_payment_id:id});if(error){alert("Payment ntiyanzwe: "+error.message);return}alert("Payment yangiwe.");loadAdminPayments()}
+async function loadAdminWithdrawals(){
+ if(!await isZunivoAdmin())return;const b=$("adminWithdrawalList");b.innerHTML="⏳ Loading...";const {data,error}=await supabaseClient.rpc("admin_get_withdrawals");if(error){b.innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}
+ b.innerHTML=data?.length?data.map(w=>`<div class="card" style="padding:14px;margin-bottom:10px"><b>${money(w.amount)}</b> · ${escapeHTML(w.method||"")} · <span class="status">${escapeHTML(w.status||"")}</span><p class="muted">${escapeHTML(w.account||"")}</p>${w.status==="pending"?`<button onclick="adminProcessWithdrawal('${w.id}','approve')">Approve</button> <button class="danger" onclick="adminProcessWithdrawal('${w.id}','reject')">Reject</button>`:""}${w.status==="approved"?`<button onclick="adminProcessWithdrawal('${w.id}','paid')">Mark Paid</button>`:""}</div>`).join(""):"<p class='muted'>Nta withdrawal requests.</p>"
+}
+async function adminProcessWithdrawal(id,a){const fn=a==="approve"?"admin_approve_withdrawal":a==="paid"?"admin_mark_withdrawal_paid":"admin_reject_withdrawal";const {error}=await supabaseClient.rpc(fn,{p_withdrawal_id:id});if(error){alert(error.message);return}loadAdminWithdrawals()}
+async function loadAdminExams(){
+ if(!await isZunivoAdmin())return;const b=$("adminExamList");b.innerHTML="⏳ Loading...";const {data,error}=await supabaseClient.rpc("admin_get_exam_results");if(error){b.innerHTML=`<div class="error">${escapeHTML(error.message)}</div>`;return}
+ b.innerHTML=data?.length?data.map(r=>`<div class="listrow">Score: <b>${escapeHTML(String(r.score??""))}/${escapeHTML(String(r.total??r.total_questions??""))}</b> · ${escapeHTML(r.user_id||"")}<br><span class="muted">${r.created_at?new Date(r.created_at).toLocaleString():""}</span></div>`).join(""):"<p class='muted'>Nta exam results.</p>"
+}
+async function loadAdminRevenue(){
+ if(!await isZunivoAdmin())return;const {data,error}=await supabaseClient.from("payments").select("amount,purpose,status").eq("status","verified");
+ if(error){$("adminMessage").textContent=error.message;return}let total=0,listing=0,jobs=0,ads=0,subs=0,other=0;
+ for(const p of data||[]){const a=Number(p.amount||0);total+=a;const s=String(p.purpose||"");if(s==="listing")listing+=a;else if(s.includes("job"))jobs+=a;else if(s.includes("ad")||s.includes("featured")||s.includes("boost"))ads+=a;else if(s.includes("subscription"))subs+=a;else other+=a}
+ $("revVerified").textContent=money(total);$("revListing").textContent=money(listing);$("revJobs").textContent=money(jobs);$("revAds").textContent=money(ads);$("revSubs").textContent=money(subs);$("revOther").textContent=money(other)
 }
 
 document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal").forEach(m=>m.classList.remove("show"))});
-  
-// =========================================================
-// ZUNIVO REFERRAL + WITHDRAW
-// =========================================================
-
-async function loadReferralDashboard(){
-  if(!user)return;
-
-  const {data:profile} = await supabaseClient
-    .from("profiles")
-    .select("referral_code")
-    .eq("id",user.id)
-    .maybeSingle();
-
-  if(profile?.referral_code){
-    $("myReferralCode").textContent = profile.referral_code;
-  }else{
-    const code = "ZUN" + user.id.replace(/-/g,"").substring(0,8).toUpperCase();
-    const {error} = await supabaseClient
-      .from("profiles")
-      .update({referral_code:code})
-      .eq("id",user.id);
-
-    $("myReferralCode").textContent = error ? "Ntabwo yabonetse" : code;
-  }
-
-  const {count} = await supabaseClient
-    .from("referrals")
-    .select("id",{count:"exact",head:true})
-    .eq("referrer_id",user.id);
-
-  $("refCount").textContent = count || 0;
-
-  const {data:wallet} = await supabaseClient
-    .from("referral_wallets")
-    .select("balance")
-    .eq("user_id",user.id)
-    .maybeSingle();
-
-  $("refBalance").textContent = money(wallet?.balance || 0);
-
-  await loadWithdrawals();
-}
-
-async function copyReferralCode(){
-  const code=$("myReferralCode").textContent.trim();
-  if(!code || code==="...")return;
-  try{
-    await navigator.clipboard.writeText(code);
-    $("referralMessage").textContent="Referral code yakopiwe.";
-  }catch(e){
-    $("referralMessage").textContent="Code: "+code;
-  }
-}
-
-async function copyReferralLink(){
-  const code=$("myReferralCode").textContent.trim();
-  if(!code || code==="...")return;
-  const link=window.location.origin+window.location.pathname+"?ref="+encodeURIComponent(code);
-  try{
-    await navigator.clipboard.writeText(link);
-    $("referralMessage").textContent="Referral link yakopiwe.";
-  }catch(e){
-    $("referralMessage").textContent=link;
-  }
-}
-
-async function applyReferralCode(){
-  if(!user){openAuth();return}
-
-  const code=$("referralInput").value.trim().toUpperCase();
-  if(!code){
-    $("referralMessage").textContent="Andika referral code.";
-    return;
-  }
-
-  const {data,error}=await supabaseClient.rpc("apply_referral_code",{p_code:code});
-
-  if(error){
-    $("referralMessage").innerHTML='<span class="error">'+escapeHTML(error.message)+'</span>';
-    return;
-  }
-
-  $("referralMessage").innerHTML='<span class="success">'+
-    escapeHTML(data?.message || "Referral code yakoreshejwe neza.")+
-    '</span>';
-
-  $("referralInput").value="";
-  await loadReferralDashboard();
-}
-
-async function requestWithdrawal(){
-  if(!user){openAuth();return}
-
-  const amount=Number($("withdrawAmount").value);
-  const method=$("withdrawMethod").value;
-  const account=$("withdrawAccount").value.trim();
-
-  if(!amount || amount<5000){
-    $("withdrawMessage").textContent="Minimum withdrawal ni 5,000 RWF.";
-    return;
-  }
-
-  if(!account){
-    $("withdrawMessage").textContent="Andika phone cyangwa account.";
-    return;
-  }
-
-  const {data,error}=await supabaseClient.rpc("request_referral_withdrawal",{
-    p_amount:amount,
-    p_method:method,
-    p_account:account
-  });
-
-  if(error){
-    $("withdrawMessage").innerHTML='<span class="error">'+escapeHTML(error.message)+'</span>';
-    return;
-  }
-
-  $("withdrawMessage").innerHTML='<span class="success">Withdrawal request yoherejwe. Tegereza Admin verification.</span>';
-  $("withdrawAmount").value="";
-  $("withdrawAccount").value="";
-  await loadReferralDashboard();
-}
-
-async function loadWithdrawals(){
-  if(!user)return;
-
-  const {data,error}=await supabaseClient
-    .from("withdrawals")
-    .select("*")
-    .eq("user_id",user.id)
-    .order("created_at",{ascending:false});
-
-  if(error){
-    $("withdrawalList").innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';
-    return;
-  }
-
-  $("withdrawalList").innerHTML=data?.length
-    ? data.map(w=>`
-      <div class="listrow">
-        <b>${money(w.amount)}</b>
-        · ${escapeHTML(w.method||"")}
-        · <span class="status">${escapeHTML(w.status||"pending")}</span><br>
-        <span class="muted">${escapeHTML(w.account||"")} · ${w.created_at?new Date(w.created_at).toLocaleString():""}</span>
-      </div>
-    `).join("")
-    : '<p class="muted">Nta withdrawals ziraboneka.</p>';
-}
-
-
-// =========================================================
-// ZUNIVO ADMIN PAYMENT DASHBOARD
-// =========================================================
-
-const ZUNIVO_ADMIN_EMAIL = "jnisingizwimana@gmail.com";
-
-
-// ---------------------------------------------------------
-// CHECK ADMIN
-// ---------------------------------------------------------
-
-async function isZunivoAdmin(){
-
-  if(!user){
-    return false;
-  }
-
-  const email = (
-    user.email ||
-    ""
-  ).toLowerCase()
-   .trim();
-
-  return email === ZUNIVO_ADMIN_EMAIL;
-}
-
-
-// ---------------------------------------------------------
-// SHOW / HIDE ADMIN BUTTON
-// ---------------------------------------------------------
-
-async function updateAdminUI(){
-
-  const adminBtn = document.getElementById("adminNavBtn");
-
-  if(!adminBtn){
-    return;
-  }
-
-  const admin = await isZunivoAdmin();
-
-  adminBtn.style.display =
-    admin ? "inline-flex" : "none";
-}
-
-
-// ---------------------------------------------------------
-// OPEN ADMIN DASHBOARD
-// ---------------------------------------------------------
-
-async function showAdminDashboard(){
-
-  const admin = await isZunivoAdmin();
-
-  if(!admin){
-
-    alert("Nturi Admin wa Zunivo.");
-
-    return;
-  }
-
-  // Hide normal pages
-  document.querySelectorAll(".page").forEach(page => {
-    page.style.display = "none";
-  });
-
-  const adminPage =
-    document.getElementById("adminPage");
-
-  if(adminPage){
-    adminPage.style.display = "block";
-  }
-
-  await loadAdminPayments();
-}
-
-
-// ---------------------------------------------------------
-// LOAD PAYMENTS
-// ---------------------------------------------------------
-
-async function loadAdminPayments(){
-
-  const admin = await isZunivoAdmin();
-
-  if(!admin){
-
-    document.getElementById("adminMessage").textContent =
-      "Nturi Admin.";
-
-    return;
-  }
-
-  const box =
-    document.getElementById("adminPaymentList");
-
-  const message =
-    document.getElementById("adminMessage");
-
-  box.innerHTML =
-    `<div style="padding:20px;text-align:center;">
-      ⏳ Turimo gushaka payments...
-    </div>`;
-
-  message.textContent = "";
-
-  const {data,error} =
-    await supabaseClient.rpc(
-      "admin_get_payments"
-    );
-
-  if(error){
-
-    box.innerHTML = "";
-
-    message.textContent =
-      "❌ " + error.message;
-
-    return;
-  }
-
-  if(!data || data.length === 0){
-
-    box.innerHTML = `
-      <div style="
-        padding:25px;
-        text-align:center;
-        background:#f5f5f5;
-        border-radius:14px;
-      ">
-        💳 Nta payments ziraboneka.
-      </div>
-    `;
-
-    return;
-  }
-
-  box.innerHTML =
-    data.map(payment => {
-
-      const status =
-        payment.status || "pending";
-
-      let statusText = "⏳ Pending";
-
-      if(status === "verified"){
-        statusText = "✅ Verified";
-      }
-
-      if(status === "rejected"){
-        statusText = "❌ Rejected";
-      }
-
-      const amount =
-        Number(payment.amount || 0)
-          .toLocaleString("en-US");
-
-      const created =
-        payment.created_at
-          ? new Date(payment.created_at)
-              .toLocaleString()
-          : "-";
-
-      const reference =
-        payment.transaction_reference || "-";
-
-      const method =
-        payment.method || "-";
-
-      const purpose =
-        payment.purpose || "-";
-
-      return `
-
-        <div style="
-          background:#fff;
-          border:1px solid #ddd;
-          border-radius:16px;
-          padding:16px;
-          margin-bottom:12px;
-          box-shadow:0 2px 8px rgba(0,0,0,.06);
-        ">
-
-          <div style="
-            display:flex;
-            justify-content:space-between;
-            gap:10px;
-            flex-wrap:wrap;
-          ">
-
-            <strong>
-              💰 ${amount} RWF
-            </strong>
-
-            <strong>
-              ${statusText}
-            </strong>
-
-          </div>
-
-          <hr>
-
-          <div>
-            <b>Purpose:</b>
-            ${purpose}
-          </div>
-
-          <div>
-            <b>Method:</b>
-            ${method}
-          </div>
-
-          <div style="
-            word-break:break-all;
-          ">
-            <b>Reference:</b>
-            ${reference}
-          </div>
-
-          <div>
-            <b>Date:</b>
-            ${created}
-          </div>
-
-          ${
-            status === "pending"
-
-            ? `
-
-              <div style="
-                display:flex;
-                gap:10px;
-                margin-top:15px;
-              ">
-
-                <button
-                  onclick="verifyPayment('${payment.id}')"
-                  style="
-                    flex:1;
-                    padding:12px;
-                    border:0;
-                    border-radius:10px;
-                    cursor:pointer;
-                    background:#16a34a;
-                    color:#fff;
-                    font-weight:700;
-                  ">
-                  ✅ Verify
-                </button>
-
-                <button
-                  onclick="rejectPayment('${payment.id}')"
-                  style="
-                    flex:1;
-                    padding:12px;
-                    border:0;
-                    border-radius:10px;
-                    cursor:pointer;
-                    background:#dc2626;
-                    color:#fff;
-                    font-weight:700;
-                  ">
-                  ❌ Reject
-                </button>
-
-              </div>
-
-            `
-
-            : ""
-
-          }
-
-        </div>
-
-      `;
-
-    }).join("");
-}
-
-
-// ---------------------------------------------------------
-// VERIFY PAYMENT
-// ---------------------------------------------------------
-
-async function verifyPayment(paymentId){
-
-  const admin = await isZunivoAdmin();
-
-  if(!admin){
-
-    alert("Nturi Admin.");
-
-    return;
-  }
-
-  const ok =
-    confirm(
-      "Urashaka kwemeza iyi payment?"
-    );
-
-  if(!ok){
-    return;
-  }
-
-  const {data,error} =
-    await supabaseClient.rpc(
-      "admin_verify_payment",
-      {
-        p_payment_id: paymentId
-      }
-    );
-
-  if(error){
-
-    alert(
-      "❌ Payment ntiyemejwe:\n" +
-      error.message
-    );
-
-    return;
-  }
-
-  alert(
-    "✅ Payment yemejwe neza."
-  );
-
-  await loadAdminPayments();
-}
-
-
-// ---------------------------------------------------------
-// REJECT PAYMENT
-// ---------------------------------------------------------
-
-async function rejectPayment(paymentId){
-
-  const admin = await isZunivoAdmin();
-
-  if(!admin){
-
-    alert("Nturi Admin.");
-
-    return;
-  }
-
-  const ok =
-    confirm(
-      "Urashaka kwanga iyi payment?"
-    );
-
-  if(!ok){
-    return;
-  }
-
-  const {data,error} =
-    await supabaseClient.rpc(
-      "admin_reject_payment",
-      {
-        p_payment_id: paymentId
-      }
-    );
-
-  if(error){
-
-    alert(
-      "❌ Payment ntiyanzwe:\n" +
-      error.message
-    );
-
-    return;
-  }
-
-  alert(
-    "❌ Payment yangiwe."
-  );
-
-  await loadAdminPayments();
-}
-
-
-/* =========================================================
-   ZUNIVO V2 - SELLER PROFILE / CHAT / COMMENTS / PUBLIC CONTROLS
-   ========================================================= */
-
-let activeChatUserId = null;
-let activeChatProductId = null;
-
-async function openSellerProfile(sellerId){
-  if(!sellerId || String(sellerId).startsWith("demo")){
-    $("sellerDetails").innerHTML = '<div class="panel"><h3>👤 Seller</h3><p class="muted">Seller profile ntiboneka kuri demo product.</p></div>';
-    $("sellerModal").classList.add("show");
-    return;
-  }
-  const {data:p,error:pe}=await supabaseClient.from("profiles")
-    .select("id,name,email,phone,city,about,avatar_url")
-    .eq("id",sellerId).maybeSingle();
-  if(error){$("sellerDetails").innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return;}
-  const name=p?.name||"Zunivo Seller";
-  $("sellerDetails").innerHTML=`
-    <div class="sellerModalHead">
-      <img src="${escapeHTML(p?.avatar_url||"https://via.placeholder.com/120x120?text=Z")}">
-      <div><h2 style="margin:0">${escapeHTML(name)}</h2><div class="muted">${escapeHTML(p?.city||"")}</div></div>
-    </div>
-    <p>${escapeHTML(p?.about||"Nta bisobanuro bya seller.")}</p>
-    <button onclick="messageSeller('${escapeHTML(sellerId)}')">💬 Andikira Inbox</button>
-  `;
-  $("sellerModal").classList.add("show");
-}
-
-async function hydrateSellerMini(sellerId, targetId){
-  if(!sellerId || String(sellerId).startsWith("demo")) return;
-  const {data}=await supabaseClient.from("profiles").select("name,avatar_url,city").eq("id",sellerId).maybeSingle();
-  const el=$(targetId);
-  if(el && data){
-    el.innerHTML=`<img src="${escapeHTML(data.avatar_url||"https://via.placeholder.com/80x80?text=Z")}" alt="">
-      <div><div class="sellerMini">${escapeHTML(data.name||"Seller")}</div><div class="muted">${escapeHTML(data.city||"")}</div></div>`;
-  }
-}
-
-async function hydrateProductSellers(){
-  for(const p of (products||[])){
-    if(p.seller_id) await hydrateSellerMini(p.seller_id,"seller-"+p.id);
-  }
-}
-
-async function messageSeller(sellerId){
-  if(!user){openAuth();return;}
-  if(!sellerId || sellerId===user.id){alert("Uyu ni account yawe.");return;}
-  activeChatUserId=sellerId;
-  activeChatProductId=selectedProduct?.id||null;
-  closeModal("sellerModal");
-  showPage("inbox");
-  await loadConversations();
-  await openConversation(sellerId);
-}
-
-async function loadConversations(){
-  if(!user)return;
-  const box=$("conversationList");
-  if(!box)return;
-  const {data,error}=await supabaseClient.from("messages")
-    .select("sender_id,receiver_id,body,created_at")
-    .or(`sender_id.eq.${user.id},receiver_id.eq.${user.id}`)
-    .order("created_at",{ascending:false});
-  if(error){box.innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return;}
-  const ids=[];
-  for(const m of (data||[])){
-    const id=m.sender_id===user.id?m.receiver_id:m.sender_id;
-    if(id && !ids.includes(id))ids.push(id);
-  }
-  if(!ids.length){box.innerHTML='<p class="muted">Nta conversations ziraboneka.</p>';return;}
-  box.innerHTML=ids.map(id=>`<button class="secondary" style="width:100%;text-align:left" onclick="openConversation('${id}')">💬 ${escapeHTML(id)}</button>`).join("");
-}
-
-async function openConversation(otherId){
-  if(!user)return;
-  activeChatUserId=otherId;
-  $("chatPanel").classList.remove("hidden");
-  $("chatTitle").textContent="💬 Inbox";
-  const {data,error}=await supabaseClient.from("messages")
-    .select("*")
-    .or(`and(sender_id.eq.${user.id},receiver_id.eq.${otherId}),and(sender_id.eq.${otherId},receiver_id.eq.${user.id})`)
-    .order("created_at",{ascending:true});
-  if(error){$("chatMessages").innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return;}
-  $("chatMessages").innerHTML=(data||[]).map(m=>`<div class="msg ${m.sender_id===user.id?"me":"other"}">${escapeHTML(m.body)}</div>`).join("")||'<p class="muted">Tangiza conversation.</p>';
-  $("chatMessages").scrollTop=$("chatMessages").scrollHeight;
-}
-
-async function sendChatMessage(){
-  if(!user||!activeChatUserId)return;
-  const input=$("chatInput"), body=input.value.trim();
-  if(!body)return;
-  const {error}=await supabaseClient.from("messages").insert({
-    sender_id:user.id,receiver_id:activeChatUserId,body
-  });
-  if(error){alert(error.message);return;}
-  input.value="";
-  await openConversation(activeChatUserId);
-}
-
-async function openProductComments(productId){
-  const box=$("productComments-"+productId);
-  if(!box)return;
-  const {data,error}=await supabaseClient.from("product_comments")
-    .select("id,user_id,body,created_at")
-    .eq("product_id",productId).order("created_at",{ascending:true});
-  if(error){box.innerHTML='<div class="error">'+escapeHTML(error.message)+'</div>';return;}
-  box.innerHTML=(data||[]).map(c=>`<div class="comment"><b>${escapeHTML(String(c.user_id).slice(0,8))}</b><br>${escapeHTML(c.body)}</div>`).join("")||'<p class="muted">Nta comments.</p>';
-}
-
-async function addProductComment(productId){
-  if(!user){openAuth();return;}
-  const input=$("commentInput-"+productId), body=input?.value.trim();
-  if(!body)return;
-  const {error}=await supabaseClient.from("product_comments").insert({product_id:productId,user_id:user.id,body});
-  if(error){alert(error.message);return;}
-  input.value="";
-  await openProductComments(productId);
-}
-
-async function publishProductPublic(id){
-  if(!user)return;
-  const {error}=await supabaseClient.from("products").update({status:"active"}).eq("id",id).eq("seller_id",user.id);
-  if(error)alert(error.message); else {await loadProducts();renderProducts();}
-}
-
-async function removeProductFromPublic(id){
-  if(!user)return;
-  const {error}=await supabaseClient.from("products").update({status:"hidden"}).eq("id",id).eq("seller_id",user.id);
-  if(error)alert(error.message); else {await loadProducts();renderProducts();}
-}
-
-async function deleteMyProduct(id){
-  if(!user)return;
-  if(!confirm("Urashaka gusiba iki gicuruzwa burundu?"))return;
-  const {error}=await supabaseClient.from("products").delete().eq("id",id).eq("seller_id",user.id);
-  if(error)alert(error.message); else {await loadProducts();renderProducts();}
-}
-
-/* Admin-only public ads. */
-async function openAdminAd(){
-  if(!await isZunivoAdmin()){alert("Nturi Admin.");return;}
-  $("adModal").classList.add("show");
-}
-async function adminCreateAd(){
-  if(!await isZunivoAdmin())return;
-  const title=$("adTitle").value.trim(),body=$("adBody").value.trim(),image_url=$("adImage").value.trim();
-  if(!title||!body){$("adMessage").textContent="Uzuza title na message.";return;}
-  const {error}=await supabaseClient.from("public_ads").insert({title,body,image_url:image_url||null,created_by:user.id,status:"published"});
-  $("adMessage").textContent=error?error.message:"Ad yashyizwe public.";
-}
-
-/* Wallet UI. Balance should come from a server-side RPC/view, not client-trusted math. */
-async function loadWallet(){
-  if(!user)return;
-  const {data}=await supabaseClient.rpc("get_my_wallet");
-  if(data){
-    $("walletBalance").textContent=money(data.balance||0);
-    $("walletPending").textContent=money(data.pending||0);
-    $("walletWithdrawn").textContent=money(data.withdrawn||0);
-  }
-}
-function openWalletPay(){
-  if(!user){openAuth();return;}
-  startPayment("wallet_topup",1000,null);
-}
-function openWalletWithdraw(){
-  if(!user){openAuth();return;}
-  showPage("referral");
-  $("withdrawAmount")?.focus();
-}
-function startVisaGateway(){
-  if(!user){openAuth();return;}
-  alert("Visa gateway placeholder: before production, connect a PCI-compliant payment gateway. Do not send/store raw card number or CVV in Supabase.");
-}
-
-/* Extend page loader safely. */
-const _showPageV2 = showPage;
-showPage = function(page){
-  _showPageV2(page);
-  if(page==="inbox") loadConversations();
-  if(page==="dashboard") loadWallet();
-};
-
-/* After products load/render, hydrate seller snippets. */
-const _renderProductsV2 = renderProducts;
-renderProducts = function(){
-  _renderProductsV2();
-  setTimeout(hydrateProductSellers,0);
-};
-
-/* Load comments and seller data when opening a product. */
-const _openProductV2 = openProduct;
-openProduct = async function(id){
-  await _openProductV2(id);
-  const p=products.find(x=>x.id===id)||demoProducts.find(x=>x.id===id);
-  if(!p)return;
-  await hydrateSellerMini(p.seller_id,"sellerMini-"+id);
-  await openProductComments(id);
-};
-
-/* Product images: lazy-load on all current product cards. */
-const _renderProductsLazy = renderProducts;
-renderProducts = function(){
-  _renderProductsLazy();
-  document.querySelectorAll("#products img").forEach(img=>img.loading="lazy");
-};
-
-/* Initial wallet refresh after auth. */
-const _refreshUserV2 = refreshUser;
-refreshUser = async function(){
-  await _refreshUserV2();
-  if(user) await loadWallet();
-};
-
 </script>
 </body>
 </html>
