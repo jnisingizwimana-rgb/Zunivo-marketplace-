@@ -344,6 +344,69 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
   <div id="examWaiting" class="hidden notice"></div>
   <button id="examButton" class="hidden" onclick="openExam()">🔐 Fungura Exam</button>
  </div>
+ <div id="adminExamManagerSection" class="panel hidden">
+
+ <h3>📝 <span data-i18n="create_exam">Kora Online Exam</span></h3>
+
+ <input
+   id="adminExamTitle"
+   data-i18n-placeholder="exam_title"
+   placeholder="Exam title">
+
+ <textarea
+   id="adminExamDescription"
+   data-i18n-placeholder="exam_description"
+   placeholder="Exam description"></textarea>
+
+ <div class="smallgrid">
+  <input
+   id="adminExamDuration"
+   type="number"
+   min="1"
+   value="30"
+   data-i18n-placeholder="duration"
+   placeholder="Duration (minutes)">
+
+  <input
+   id="adminExamPassing"
+   type="number"
+   min="1"
+   max="100"
+   value="50"
+   data-i18n-placeholder="passing_score"
+   placeholder="Passing score (%)">
+ </div>
+
+ <div class="examAdminActions">
+  <button onclick="addAdminExamQuestion()">
+   ➕ <span data-i18n="add_question">Ongeramo Question</span>
+  </button>
+ </div>
+
+ <div id="adminExamQuestions"></div>
+
+ <div class="examAdminActions">
+  <button onclick="saveAdminExam('draft')">
+   💾 <span data-i18n="save_draft">Save Draft</span>
+  </button>
+
+  <button class="successBtn" onclick="saveAdminExam('published')">
+   🌐 <span data-i18n="publish">Publish</span>
+  </button>
+
+  <button class="secondary" onclick="loadAdminExamManager()">
+   🔄 Refresh
+  </button>
+ </div>
+
+ <div id="adminExamManagerMessage" class="muted"></div>
+
+ <hr>
+
+ <h3>📚 Existing Exams</h3>
+ <div id="adminExamManagerList"></div>
+
+</div>
 </section>
 
 <section id="businessManagerPage" class="page hidden">
