@@ -203,14 +203,14 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
  👤 <span data-i18n="profile">Profile</span>
 </button>
   <div id="profileMenu" class="menu">
-   <button onclick="protectedPage('profile')">👤 Profile</button>
-   <button id="adminNavBtn" onclick="showAdminDashboard()" style="display:none">🛡️ Admin</button>
-   <button onclick="protectedPage('dashboard')">📊 Dashboard</button>
-   <button onclick="protectedPage('orders')">🛒 Orders</button>
-   <button onclick="protectedPage('inbox')">💬 Inbox</button>
-   <button onclick="protectedPage('referral')">🎁 Referral</button>
-   <button onclick="protectedPage('settings')">⚙️ Settings</button>
-   <button onclick="logout()" class="danger">🚪 Logout</button>
+   <button onclick="protectedPage('profile')">👤<span data-i18n="Profile</button>
+   <button id="adminNavBtn" onclick="showAdminDashboard()" style="display:none">🛡️<span data-i18n="admin">Admin</span></button>
+   <button onclick="protectedPage('dashboard')">📊<span data-i18n="dashboard">Dashboard</span></button>
+   <button onclick="protectedPage('orders')">🛒<span data-i18n="orders">Orders</span></button>
+   <button onclick="protectedPage('inbox')">💬<span data-i18n="inbox">Inbox</span></button>
+   <button onclick="protectedPage('referral')">🎁<span data-i18n="referral">Referral</span></button>
+   <button onclick="protectedPage('settings')">⚙️<span data-i18n="settings">Settings</span></button>
+   <button onclick="logout()" class="danger">🚪<span data-i18n="logout">Logout</span></button>
   <button class="secondary" onclick="showAdminTab('exams')">
  📝 <span data-i18n="exam_results">Exam Results</span>
 </button>
@@ -222,7 +222,7 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
  </div>
 </header>
 
-<main class="container">
+<main class="container"><span data-i18n="
 
 <section id="homePage" class="page">
  <div class="hero">
