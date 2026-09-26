@@ -182,15 +182,26 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
    </div>
   </div>
   <div class="nav">
-   <button data-page="home" onclick="showPage('home')">🏠 <span data-i18n="Home">Home/<span>
+   <button data-page="home" onclick="showPage('home')">
+ 🏠 <span data-i18n="home">Home</span>
+</button>
     
    </span></button>
-   <button data-page="sell" onclick="protectedPage('sell')">🛒 <span data-i18n="Sell">Sell</button>
-   <button data-page="jobs" onclick="showPage('jobs')">💼<span data-i18n="Jobs">Jobs</button>
-   <button data-page="businessManager" onclick="protectedPage('businessManager')">🏪  <span data-i18n="Manager">Manager</button>
-   <button data-page="analysis" onclick="protectedPage('analysis')">📈 <span data-i18n="Analysis">Analysis</button>
-   <button data-page="profile" onclick="protectedPage('profile')">👤 <span data-i18n="Profile">Profile</button>
-  </div>
+   <button data-page="sell" onclick="protectedPage('sell')">
+ 🛒 <span data-i18n="sell">Sell</span>
+</button>
+   <button data-page="jobs" onclick="showPage('jobs')">
+ 💼 <span data-i18n="jobs">Jobs</span>
+</button>
+ <button data-page="businessmanager" onclick="protectedPage(businessmanager')">
+🏪 <span data-i18n="businessmanager">businessmanager</span>
+
+   <button data-page="analysis" onclick="protectedPage('analysis')">
+ 📈 <span data-i18n="analysis">Analysis</span>
+</button>
+   <button data-page="profile" onclick="protectedPage('profile')">
+ 👤 <span data-i18n="profile">Profile</span>
+</button>
   <div id="profileMenu" class="menu">
    <button onclick="protectedPage('profile')">👤 Profile</button>
    <button id="adminNavBtn" onclick="showAdminDashboard()" style="display:none">🛡️ Admin</button>
@@ -200,6 +211,13 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
    <button onclick="protectedPage('referral')">🎁 Referral</button>
    <button onclick="protectedPage('settings')">⚙️ Settings</button>
    <button onclick="logout()" class="danger">🚪 Logout</button>
+  <button class="secondary" onclick="showAdminTab('exams')">
+ 📝 <span data-i18n="exam_results">Exam Results</span>
+</button>
+
+<button class="secondary" onclick="showAdminTab('examManager')">
+ ➕ <span data-i18n="new_exam">New Online Exam</span>
+</button>
   </div>
  </div>
 </header>
@@ -214,7 +232,11 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
   <p class="compatNotice">Zunivo yateguwe kuri mobile. Images zikoresha lazy-load kandi features zishobora kubura kuri browser ishaje zigira fallback.</p>
  </div>
  <div class="panel">
-  <input id="searchBox" placeholder="🔎 Shakisha product, category cyangwa aho iherereye..." oninput="renderProducts()">
+<input
+ id="searchBox"
+ data-i18n-placeholder="search"
+ placeholder="🔎 Shakisha product, category cyangwa aho iherereye..."
+ oninput="renderProducts()">
   <div class="chips" style="margin-top:8px">
    <button class="chip" onclick="filterCategory('')">Byose</button>
    <button class="chip" onclick="filterCategory('Telefone')">Telefone</button>
@@ -225,7 +247,7 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
   </div>
  </div>
  <div id="publicAds"></div>
- <h2>🛍️ Ibicuruzwa</h2>
+ <h2 data-i18n="products">🛍️ Ibicuruzwa</h2>
  <div id="products" class="grid"></div>
 </section>
 
