@@ -119,8 +119,8 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
   <p class="compatNotice">Zunivo yateguwe kuri mobile. Images zikoresha lazy-load kandi features zishobora kubura kuri browser ishaje zigira fallback.</p>
  </div>
  <div class="panel">
-  <input id="searchBox" placeholder="🔎 Shakisha product, category cyangwa aho iherereye..." oninput="renderProducts()">
-  <div class="chips" style="margin-top:8px">
+<input id="searchBox" data-i18n-placeholder="search" placeholder="🔎 Shakisha product, category cyangwa aho iherereye..." oninput="renderProducts()">
+     <div class="chips" style="margin-top:8px">
    <button class="chip" onclick="filterCategory('')">Byose</button>
    <button class="chip" onclick="filterCategory('Telefone')">Telefone</button>
    <button class="chip" onclick="filterCategory('Imyenda')">Imyenda</button>
@@ -130,7 +130,7 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
   </div>
  </div>
  <div id="publicAds"></div>
- <h2>🛍️ Ibicuruzwa</h2>
+ <h2 data-i18n="products">🛍️ Ibicuruzwa</h2>
  <div id="products" class="grid"></div>
 </section>
 
