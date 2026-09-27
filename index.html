@@ -92,8 +92,11 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
 <button data-page="home" onclick="showPage('home')"> 🏠 <span data-i18n="home">Home</span> </button>
      <button data-page="sell" onclick="protectedPage('sell')"> 🛒 <span data-i18n="sell">Sell</span> </button>                                                                                                  
    <button data-page="jobs" onclick="showPage('jobs')"> 💼 <span data-i18n="jobs">Jobs</span> </button>
-   <button data-page="businessManager" onclick="protectedPage('businessManager')">🏪 <span data-i18n="businessmanager">businessManager</span </button>
-   <button data-page="analysis" onclick="protectedPage('analysis')"> 📈 <span data-i18n="analysis">Analysis</span> </button>
+
+     <button data-page="businessManager" onclick="protectedPage('businessManager')">
+  🏪 <span data-i18n="manager">Manager</span>
+</button> 
+      <button data-page="analysis" onclick="protectedPage('analysis')"> 📈 <span data-i18n="analysis">Analysis</span> </button>
  <button data-page="profile" onclick="protectedPage('profile')"> 👤 <span data-i18n="profile">Profile</span> </button>
   </div>
   <div id="profileMenu" class="menu">
@@ -136,7 +139,7 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
 
 <section id="sellPage" class="page hidden">
  <div class="panel">
-  <h2>🏪 Business Account</h2>
+  <h2>data-i18n="business Account_title">🏪 Business Account</h2>
   <p class="muted">Fungura Business Account mbere yo gushyira ibintu ku isoko.</p>
   <button onclick="toggleBusiness()">➕ Create Business Account</button>
   <div id="businessForm" class="hidden">
@@ -332,20 +335,35 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
 
 <section id="settingsPage" class="page hidden"> <div class="panel"> <h2 data-i18n="settings_title">⚙️ Settings</h2> <button onclick="alert(t('notifications_setting'))"> 🔔 <span data-i18n="notifications">Notifications</span> </button> <div class="languageBox"> <span class="langBadge">🌐 <span data-i18n="language">Language</span></span> <select id="languageSelect" onchange="changeLanguage(this.value)"> <option value="rw">🇷🇼 Kinyarwanda</option> <option value="en">🇬🇧 English</option> <option value="fr">🇫🇷 Français</option> <option value="sw">🇹🇿 Kiswahili</option> <option value="es">🇪🇸 Español</option> <option value="pt">🇵🇹 Português</option> <option value="de">🇩🇪 Deutsch</option> <option value="ar">🇸🇦 العربية</option> </select> </div> <button class="secondary" onclick="alert(t('payment_settings'))"> 💳 <span data-i18n="payment_settings_title">Payment Settings</span> </button> <p class="muted" data-i18n="language_saved"> Ururimi wahisemo ruzabikwa kuri iki gikoresho. </p> </div> </section>
 
-    <div class="panel"><h2>⚙️ Settings</h2>
- <button onclick="alert('Notifications setting')">🔔 Notifications</button>
- <button class="secondary" onclick="alert('Language: Kinyarwanda')">🌐 Language</button>
- <button class="secondary" onclick="alert('Payment verification ikorwa na Supabase/RPC cyangwa admin verification.')">💳 Payment Settings</button>
-</div></section>
 
 <section id="adminPage" class="page hidden">
  <div class="panel"><h2>🛡️ Zunivo Admin Dashboard</h2><p>Payments, withdrawals, exams, ads n'imibare ya revenue.</p><div id="adminMessage"></div></div>
  <div class="adminTabs">
   <button onclick="showAdminTab('payments')">💳 Payments</button><button class="secondary" onclick="showAdminTab('withdrawals')">💸 Withdrawals</button>
-  
-<button class="secondary" onclick="showAdminTab('exams')"> 📝 <span data-i18n="create_exam">Create Exam </span> </button> <button class="secondary" onclick="showAdminTab('examManager')"> ➕ <span data-i18n="new_exam">New Online Exam</span> </button>
+<div class="adminTabs">
+  <button onclick="showAdminTab('payments')">💳 Payments</button>
 
-<button class="secondary" onclick="showAdminTab('exams')"> 📝 <span data-i18n="exam_results">Exam Results</span> </button> <button class="secondary" onclick="showAdminTab('examManager')"> ➕ <span data-i18n="new_exam">New Online Exam</span> </button>
+  <button class="secondary" onclick="showAdminTab('withdrawals')">
+    💸 Withdrawals
+  </button>
+
+  <button class="secondary" onclick="showAdminTab('examManager')">
+    ➕ New Online Exam
+  </button>
+
+  <button class="secondary" onclick="showAdminTab('exams')">
+    📝 Exam Results
+  </button>
+
+  <button class="secondary" onclick="showAdminTab('revenue')">
+    💰 Revenue
+  </button>
+
+  <button class="secondary" onclick="openAdminAd()">
+    📢 New Ad
+  </button>
+</div>
+     
      <button class="secondary" onclick="showAdminTab('revenue')">💰 Revenue</button>
   <button class="secondary" onclick="openAdminAd()">📢 New Ad</button>
  </div>
