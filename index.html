@@ -1,5 +1,5 @@
     <!DOCTYPE html>
-<html lang="rw">
+<html lang="rw" id="zunivoHtml">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -330,7 +330,9 @@ header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px #
  </div></div>
 </section>
 
-<section id="settingsPage" class="page hidden"><div class="panel"><h2>⚙️ Settings</h2>
+<section id="settingsPage" class="page hidden"> <div class="panel"> <h2 data-i18n="settings_title">⚙️ Settings</h2> <button onclick="alert(t('notifications_setting'))"> 🔔 <span data-i18n="notifications">Notifications</span> </button> <div class="languageBox"> <span class="langBadge">🌐 <span data-i18n="language">Language</span></span> <select id="languageSelect" onchange="changeLanguage(this.value)"> <option value="rw">🇷🇼 Kinyarwanda</option> <option value="en">🇬🇧 English</option> <option value="fr">🇫🇷 Français</option> <option value="sw">🇹🇿 Kiswahili</option> <option value="es">🇪🇸 Español</option> <option value="pt">🇵🇹 Português</option> <option value="de">🇩🇪 Deutsch</option> <option value="ar">🇸🇦 العربية</option> </select> </div> <button class="secondary" onclick="alert(t('payment_settings'))"> 💳 <span data-i18n="payment_settings_title">Payment Settings</span> </button> <p class="muted" data-i18n="language_saved"> Ururimi wahisemo ruzabikwa kuri iki gikoresho. </p> </div> </section>
+
+    <div class="panel"><h2>⚙️ Settings</h2>
  <button onclick="alert('Notifications setting')">🔔 Notifications</button>
  <button class="secondary" onclick="alert('Language: Kinyarwanda')">🌐 Language</button>
  <button class="secondary" onclick="alert('Payment verification ikorwa na Supabase/RPC cyangwa admin verification.')">💳 Payment Settings</button>
